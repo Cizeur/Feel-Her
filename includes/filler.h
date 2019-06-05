@@ -16,8 +16,8 @@
 # include "libft.h"
 #      include <stdio.h>
 
-# define P_ME 1
-# define P_OP 2
+# define P_O 1
+# define P_X 2
 # define P_EMPTY 3
 
 /*
@@ -34,6 +34,7 @@ typedef struct	s_filler
 	char		**piece;
 	int			answerx;
 	int			answery;
+	int			player;
 }				t_filler;
 
 /*
