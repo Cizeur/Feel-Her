@@ -11,3 +11,20 @@
 /* ************************************************************************** */
 
 
+#ifndef FILLER_H
+# define FILLER_H
+
+#include "libft.h"
+#      include <stdio.h>
+
+typedef struct			s_filler
+{
+	int			bszx;
+	int			bszy;
+	char		**board;
+	int			pszx;
+	int			pszy;
+	char		**piece;
+}						t_filler;
+
+#endif
