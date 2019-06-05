@@ -10,4 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "filler.h"
 
+void			sub_solver(t_filler *mfill)
+{
+	ft_solver_heatmap_gen(mfill);
+}
