@@ -24,7 +24,7 @@
 ** Pour les tableaux premiere dimension y, seconde dimension x
 */
 
-typedef struct			s_filler
+typedef struct	s_filler
 {
 	int			bszx;
 	int			bszy;
@@ -34,6 +34,16 @@ typedef struct			s_filler
 	char		**piece;
 	int			answerx;
 	int			answery;
-}						t_filler;
+}				t_filler;
 
+/*
+** PROTOTYPE ZONE START
+*/
+
+void			sub_solver(t_filler *mfill);
+void			ft_solver_heatmap(t_filler *mfill);
+
+/*
+** PROTOTYPE ZONE END
+*/
 #endif
