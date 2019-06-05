@@ -35,6 +35,8 @@ typedef struct	s_filler
 	int			answerx;
 	int			answery;
 	int			player;
+	char		*player_1;
+	char		*player_2;
 }				t_filler;
 
 /*
