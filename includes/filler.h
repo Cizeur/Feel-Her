@@ -18,6 +18,7 @@
 
 # define P_ME 1
 # define P_OP 2
+# define P_EMPTY 3
 
 /*
 ** Pour les tableaux premiere dimension y, seconde dimension x
