@@ -12,22 +12,21 @@
 
 #include "filler.h"
 
-void			ft_solver_heatmap_init(t_filler *mfill)
+static void		ft_solver_heatmap_init(t_filler *mfill)
 {
 	int **board;
 	int bszx;
 	int bszy;
-	int	dpass;
 
 	bszx = mfill->bszx;
 	bszy = mfill->bszy;
 	board = mfill->board;
-	while (bszx)
+	while ((bszx = mfill->bszx) && bszy--)
 	{
-		while (bszy)
+		while (bszx--)
 		{
 			if (board[bszy][bszx] == P_EMPTY)
-				board[bszy][bszx] = - (bszx + bszy);
+				board[bszy][bszx] = - (mfill->bszx + mfill->bszy);
 		}
 	}
 }
@@ -48,7 +47,7 @@ static int		ft_update_j(t_filler *mf, int i, int j, int sz)
 		ii++;
 	}
 	ii = ft_max(0, i - sz);
-	while ( j + sz < mf->bszy - 1 && ii <= ft_min(mf->bszx - 1, i + sz))
+	while ( j + sz < mf->bszy && ii <= ft_min(mf->bszx - 1, i + sz))
 	{
 		value = -(sz + ft_abs(i - ii));
 		if ((mf->board[j + sz][ii] < value) && (changed = 1))
@@ -64,6 +63,7 @@ static int		ft_update_i(t_filler *mf, int i, int j, int sz)
 	int changed;
 	int value;
 
+	changed = 0;
 	jj = ft_max(0, j - sz);
 	while ( i - sz >= 0 && jj <= ft_min(mf->bszy - 1, j + sz))
 	{
@@ -72,8 +72,8 @@ static int		ft_update_i(t_filler *mf, int i, int j, int sz)
 			mf->board[jj][i -sz] = value;
 		jj++;
 	}
-	jj = ft_max(0, i - sz);
-	while ( i + sz < mf->bszx - 1 && jj <= ft_min(mf->bszy - 1, j + sz))
+	jj = ft_max(0, j - sz);
+	while ( i + sz < mf->bszx && jj <= ft_min(mf->bszy - 1, j + sz))
 	{
 		value = -(sz + ft_abs(j - jj));
 		if ((mf->board[jj][i + sz] < value) && (changed = 1))
@@ -89,29 +89,28 @@ static void		ft_solver_heatmap_update(t_filler *mf, int i, int j, int sz)
 	int value;
 	int ii;
 
+	changed = 0;
 	changed += ft_update_i(mf,i ,j ,sz);
 	changed += ft_update_j(mf,i ,j ,sz);
 	if (changed)
-		ft_solver_heatmap_update(mf,i ,j ,sz);
+		ft_solver_heatmap_update(mf,i ,j ,++sz);
 }
-
 
 void			ft_solver_heatmap(t_filler *mfill)
 {
 	int **board;
 	int bszx;
 	int bszy;
-	int	dpass;
 
 	bszx = mfill->bszx;
 	bszy = mfill->bszy;
 	board = mfill->board;
 	ft_solver_heatmap_init(mfill);
-	while (bszx)
+	while ((bszx = mfill->bszx) && bszy--)
 	{
-		while (bszy)
+		while (bszx--)
 		{
-			if (board[--bszy][--bszx] == P_OP)
+			if (board[bszy][bszx] == (mfill->player == P_O ? P_X : P_O))
 				ft_solver_heatmap_update(mfill, bszx, bszy ,1);
 		}
 	}
