@@ -17,8 +17,8 @@
 #include "libft.h"
 #      include <stdio.h>
 
-# define P1 1
-# define P2 2
+# define P_ME 1
+# define P_OP 2
 
 typedef struct			s_filler
 {
