@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/05 12:02:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/05 15:05:05 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_filler
 
 void			sub_solver(t_filler *mfill);
 void			ft_solver_heatmap(t_filler *mfill);
+void			ft_parser_free_board(int **board)
 
 /*
 ** PROTOTYPE ZONE END

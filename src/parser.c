@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 12:12:35 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/05 13:56:58 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/05 14:58:32 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ static int	exit_parser(void)
 
 static int	get_board(t_filler *mst)
 {
-	
+	char	*line;
+
+	line = NULL;
+	if (get_next_list_single_fd(0, &line) <= 0)
+		return (1);
+	free(line);
+	mst->
 }
 
 int			parser(t_filler *mst)
