@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/05 11:12:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/05 12:02:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 #include "libft.h"
 #      include <stdio.h>
+
+# define P1 1
+# define P2 2
 
 typedef struct			s_filler
 {
