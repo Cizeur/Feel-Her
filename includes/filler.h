@@ -10,15 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef FILLER_H
 # define FILLER_H
 
-#include "libft.h"
+# include "libft.h"
 #      include <stdio.h>
 
 # define P_ME 1
 # define P_OP 2
+
+/*
+** Pour les tableaux premiere dimension y, seconde dimension x
+*/
 
 typedef struct			s_filler
 {
