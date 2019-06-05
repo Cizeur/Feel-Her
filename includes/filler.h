@@ -24,7 +24,7 @@ typedef struct			s_filler
 {
 	int			bszx;
 	int			bszy;
-	char		**board;
+	int			**board;
 	int			pszx;
 	int			pszy;
 	char		**piece;
