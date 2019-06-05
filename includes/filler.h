@@ -28,6 +28,8 @@ typedef struct			s_filler
 	int			pszx;
 	int			pszy;
 	char		**piece;
+	int			answerx;
+	int			answery;
 }						t_filler;
 
 #endif
