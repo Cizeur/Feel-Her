@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser_alloc_double_array.c                     :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/05 15:20:08 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/05 16:00:20 by yforeau          ###   ########.fr       */
+/*   Created: 2019/01/25 20:03:20 by yforeau           #+#    #+#             */
+/*   Updated: 2019/01/25 20:08:28 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <stdint.h>
 
-void	**ft_parser_alloc_double_array(int x, int y, size_t size)
+int	ft_intlen(intmax_t n)
 {
-	void	**arr;
-	int		i;
+	int	len;
 
-	if (!(arr = (void **)malloc((y + 1) * sizeof(void *))))
-		return (NULL);
-	i = 0;
-	while (i < y)
-	{
-		if (!(arr[i++] = (void *)malloc((x + 1) * size)))
-		{
-			ft_parser_free_double_array(arr);
-			return (NULL);
-		}
-	}
-	arr[y] = NULL;
-	return (arr);
+	len = 1;
+	while ((n /= 10))
+		++len;
+	return (len);
 }
