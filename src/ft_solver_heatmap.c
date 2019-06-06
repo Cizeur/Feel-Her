@@ -86,8 +86,6 @@ static int		ft_update_i(t_filler *mf, int i, int j, int sz)
 static void		ft_solver_heatmap_update(t_filler *mf, int i, int j, int sz)
 {
 	int	changed;
-	int value;
-	int ii;
 
 	changed = 0;
 	changed += ft_update_i(mf,i ,j ,sz);
