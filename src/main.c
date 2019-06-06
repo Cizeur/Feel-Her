@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 10:20:09 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 13:57:11 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int	main(void)
 		printf("\nanswerx = %d\n", mst->answerx);
 		printf("answery = %d\n", mst->answery);
 		printf("mst->player = %s\n", mst->player == P_O ? "P_O" : "P_X");
-		printf("mst->player_1 = %s\n", mst->player_1);
-		printf("mst->player_2 = %s\n", mst->player_2);
 	}
 	else
 		printf("nay :(\n");
