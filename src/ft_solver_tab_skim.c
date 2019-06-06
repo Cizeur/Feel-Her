@@ -14,18 +14,15 @@
 
 void	ft_solver_tab_skim(t_filler *mf, void (*f)(t_filler *mf, int i, int j))
 {
-	int **board;
-	int bszx;
-	int bszy;
+	int i;
+	int j;
 
-	bszx = mf->bszx;
-	bszy = mf->bszy;
-	board = mf->board;
-	while ((bszx = mf->bszx) && bszy--)
+	j = -1;
+	while ((i = -1) && ++j < mf->bszy)
 	{
-		while (bszx--)
+		while (++i < mf->bszx)
 		{
-			(*f)(mf, bszx, bszy);
+			(*f)(mf, i, j);
 		}
 	}
 }
