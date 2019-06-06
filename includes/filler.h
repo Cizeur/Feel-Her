@@ -37,6 +37,7 @@ typedef struct	s_filler
 	int			player;
 	char		*player_1;
 	char		*player_2;
+	int			best_score;
 }				t_filler;
 
 /*
@@ -44,7 +45,9 @@ typedef struct	s_filler
 */
 
 void			sub_solver(t_filler *mfill);
-void			ft_solver_heatmap(t_filler *mfill);
+void			ft_solver_heatmap_init(t_filler *mfill, int i, int j);
+void			ft_solver_heatmap(t_filler *mfill, int i, int j);
+void			ft_solver_check_score(t_filler *mf, int i, int j);
 int				ft_intlen(intmax_t n);
 int				parser(t_filler *mst);
 void			ft_parser_free_double_array(void **arr);
@@ -54,6 +57,7 @@ int				ft_parser_get_board_dims(t_filler *mst);
 int				ft_parser_get_board(t_filler *mst);
 int				ft_parser_get_piece_dims(t_filler *mst);
 int				ft_parser_get_piece(t_filler *mst);
+void			ft_solver_tab_skim(t_filler *mf, void (*f)(t_filler *mf, int i, int j));
 
 /*
 ** PROTOTYPE ZONE END
