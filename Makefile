@@ -1,8 +1,8 @@
 ############################## COMPILE VAR #####################################
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
-#CFLAGS		=	-g
+#CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-g
 HDIR		=	includes
 SRCDIR		=	src
 SUB1D		=	libft
@@ -12,7 +12,16 @@ NAME		=	cgiron-yforeau.filler
 
 ############################## SOURCES #########################################
 
-SRCC			=	main.c\
+SRCC			=	ft_intlen.c\
+					ft_parser_alloc_double_array.c\
+					ft_parser_free_double_array.c\
+					ft_parser_get_board.c\
+					ft_parser_get_board_dims.c\
+					ft_parser_get_dims.c\
+					ft_solver_heatmap.c\
+					main.c\
+					parser.c\
+					sub_solver.c\
 
 ODIR			=	obj
 OBJ				=	$(patsubst %.c,%.o,$(SRCC))
@@ -32,7 +41,14 @@ $(NAME): $(SRCDIR)/$(SUB1D)/libft.a $(ODIR) $(OBJ)
 $(SRCDIR)/$(SUB1D)/libft.a:
 	make -C $(SRCDIR)/$(SUB1D)
 
+ft_parser_alloc_double_array.o: filler.h libft.h
+ft_parser_get_board.o: filler.h libft.h get_next_line.h
+ft_parser_get_board_dims.o: filler.h libft.h get_next_line.h
+ft_parser_get_dims.o: libft.h
+ft_solver_heatmap.o: filler.h libft.h
 main.o: filler.h libft.h
+parser.o: filler.h libft.h
+sub_solver.o: filler.h libft.h
 %.o: %.c
 	@mkdir -p $(ODIR)
 	$(CC) -c $(CFLAGS) $< $(HFLAGS) -o $(ODIR)/$@
