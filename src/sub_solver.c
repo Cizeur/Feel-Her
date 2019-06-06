@@ -14,5 +14,6 @@
 
 void			sub_solver(t_filler *mfill)
 {
-	ft_solver_heatmap(mfill);
+	ft_solver_tab_skim(mfill, &ft_solver_heatmap_init);
+	ft_solver_tab_skim(mfill, &ft_solver_heatmap);
 }
