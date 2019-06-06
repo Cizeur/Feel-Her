@@ -1,8 +1,8 @@
 ############################## COMPILE VAR #####################################
 
 CC			=	gcc
-#CFLAGS		=	-Wall -Wextra -Werror
-CFLAGS		=	-g
+CFLAGS		=	-Wall -Wextra -Werror
+#CFLAGS		=	-g
 HDIR		=	includes
 SRCDIR		=	src
 SUB1D		=	libft
@@ -21,6 +21,7 @@ SRCC			=	ft_intlen.c\
 					ft_parser_get_piece.c\
 					ft_parser_get_piece_dims.c\
 					ft_solver_heatmap.c\
+					ft_solver_tab_skim.c\
 					main.c\
 					parser.c\
 					sub_solver.c\
@@ -50,7 +51,7 @@ ft_parser_get_dims.o: libft.h
 ft_parser_get_piece.o: filler.h libft.h get_next_line.h
 ft_parser_get_piece_dims.o: filler.h libft.h get_next_line.h
 ft_solver_heatmap.o: filler.h libft.h
-main.o: filler.h libft.h
+main.o: filler.h libft.h c_colors.h
 parser.o: filler.h libft.h get_next_line.h
 sub_solver.o: filler.h libft.h
 %.o: %.c

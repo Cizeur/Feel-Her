@@ -6,11 +6,12 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 10:07:47 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 10:20:09 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#	include "c_colors.h"
 
 int	main(void)
 {
@@ -28,7 +29,20 @@ int	main(void)
 		while (*board)
 		{
 			for (int i = 0; i < mst->bszx; i++)
-				printf("%d ", (*board)[i]);
+			{
+				switch ((*board)[i])
+				{
+					case 1:
+						printf(C_RED"1 "C_RESET);
+						break ;
+					case 2:
+						printf(C_GREEN"2 "C_RESET);
+						break ;
+					default:
+						printf(C_MAGENTA"3 "C_RESET);
+						break ;
+				}
+			}
 			printf("\n");
 			++board;
 		}
