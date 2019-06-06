@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 15:18:48 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:11:14 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	main(void)
 	while (!parser(mst))
 	{
 		sub_solver(mst);
-		printf("%d %d\n", mst->answery, mst->answerx);
+		ft_putnbr(mst->answery);
+		ft_putchar(' ');
+		ft_putnbr(mst->answerx);
+		ft_putchar('\n');
 		if (mst->board)
 		{
 			ft_parser_free_double_array((void **)mst->board);
@@ -34,7 +37,6 @@ int	main(void)
 			ft_parser_free_double_array((void **)mst->piece);
 			mst->piece = NULL;
 		}
-		sleep(5);
 	}
 	return (0);
 }
