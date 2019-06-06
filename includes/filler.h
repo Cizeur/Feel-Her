@@ -36,8 +36,6 @@ typedef struct	s_filler
 	int			answery;
 	int			player;
 	int			adv;
-	char		*player_1;
-	char		*player_2;
 	int			best_score;
 }				t_filler;
 
