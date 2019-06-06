@@ -6,11 +6,12 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 12:12:35 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 09:00:13 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 09:36:14 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "get_next_line.h"
 
 static int	exit_parser(t_filler *mst)
 {
@@ -28,9 +29,20 @@ static int	exit_parser(t_filler *mst)
 
 int			parser(t_filler *mst)
 {
+	int		r;
+	char	*line;
+
 	if (ft_parser_get_board_dims(mst) || !mst->bszx || !mst->bszy)
 		return (exit_parser(mst));
 	if (ft_parser_get_board(mst))
 		return (exit_parser(mst));
-	return (0);
+	if (ft_parser_get_piece_dims(mst) || !mst->pszx || !mst->pszy)
+		return (exit_parser(mst));
+	if (ft_parser_get_piece(mst))
+		return (exit_parser(mst));
+	line = NULL;
+	r = get_next_line_single_fd(0, &line);
+	if (r > -1)
+		free(line);
+	return (r > 0);
 }

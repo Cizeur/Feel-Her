@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser_alloc_double_array.c                     :+:      :+:    :+:   */
+/*   ft_parser_get_piece_dims.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/05 15:20:08 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 09:26:22 by yforeau          ###   ########.fr       */
+/*   Created: 2019/06/06 09:20:48 by yforeau           #+#    #+#             */
+/*   Updated: 2019/06/06 09:37:05 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "get_next_line.h"
 
-void	**ft_parser_alloc_double_array(int x, int y, size_t size)
+int			ft_parser_get_piece_dims(t_filler *mst)
 {
-	void	**arr;
-	int		i;
+	char	*line;
+	int		c;
 
-	if (!(arr = (void **)ft_memalloc((y + 1) * sizeof(void *))))
-		return (NULL);
-	i = 0;
-	while (i < y)
+	c = 0;
+	line = NULL;
+	if (get_next_line_single_fd(0, &line) < 0)
+		return (1);
+	if (ft_strncmp(line, "Piece ", 6))
 	{
-		if (!(arr[i++] = (void *)ft_memalloc((x + 1) * size)))
-		{
-			ft_parser_free_double_array(arr);
-			return (NULL);
-		}
+		free(line);
+		return (1);
 	}
-	arr[y] = NULL;
-	return (arr);
+	ft_parser_get_dims(line + 6, &mst->pszx, &mst->pszy);
+	free(line);
+	return (0);
 }
