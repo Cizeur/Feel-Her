@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 12:12:35 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 16:08:14 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:16:00 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	exit_parser(t_filler *mst, char *err)
 		ft_parser_free_double_array((void **)mst->board);
 	if (mst->piece)
 		ft_parser_free_double_array((void **)mst->piece);
-	return (1);
 	dprintf(2, "map error: %s\n", err);
+	return (1);
 }
 
 int			parser(t_filler *mst)
