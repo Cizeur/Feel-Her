@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 08:50:25 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 13:56:54 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 14:58:44 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int			ft_parser_get_board_dims(t_filler *mst)
 		ft_parser_get_dims(line + 8, &mst->bszx, &mst->bszy);
 	if (r > -1)
 		free(line);
+	dprintf(2, "r = %d\nbzsx = %d\nbzsy = %d\n", r, mst->bszx, mst->bszy);
 	return (r < 1 || !mst->bszx || !mst->bszy);
 }
 

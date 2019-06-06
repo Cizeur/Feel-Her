@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 12:36:22 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 12:54:53 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 15:55:25 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_parser_get_player(t_filler *mst)
 	char	*ptr;
 	char	*line;
 
+	line = NULL;
 	if ((r = get_next_line_single_fd(0, &line)) > 0
 		&& !ft_strncmp(line, "$$$ exec p", 10)
 		&& (line[10] == '1' || line[10] == '2')

@@ -6,13 +6,39 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 13:57:11 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 15:18:48 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #	include "c_colors.h"
 
+int	main(void)
+{
+	t_filler	master;
+	t_filler	*mst;
+
+	mst = &master;
+	ft_bzero((void *)mst, sizeof(t_filler));
+	while (!parser(mst))
+	{
+		sub_solver(mst);
+		printf("%d %d\n", mst->answery, mst->answerx);
+		if (mst->board)
+		{
+			ft_parser_free_double_array((void **)mst->board);
+			mst->board = NULL;
+		}
+		if (mst->piece)
+		{
+			ft_parser_free_double_array((void **)mst->piece);
+			mst->piece = NULL;
+		}
+		sleep(5);
+	}
+	return (0);
+}
+/*
 int	main(void)
 {
 	t_filler	master;
@@ -63,4 +89,4 @@ int	main(void)
 	else
 		printf("nay :(\n");
 	return (0);
-}
+}*/
