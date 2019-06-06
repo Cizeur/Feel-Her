@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 08:57:36 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 09:05:37 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/06 09:12:16 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_parser_get_board(t_filler *mst)
 		return (1);
 	margin = ft_intlen(mst->bszy - 1) + 2;
 	i = 0;
-	while (i < mst->bszx && get_next_line_single_fd(0, &line) > -1)
+	while (i < mst->bszy && get_next_line_single_fd(0, &line) > -1)
 	{
 		if (fill_board(line + margin, mst->board[i++], mst->bszx, &mst->player))
 		{
@@ -65,5 +65,5 @@ int			ft_parser_get_board(t_filler *mst)
 		}
 		free(line);
 	}
-	return (i != mst->bszx);
+	return (i != mst->bszy);
 }
