@@ -6,7 +6,7 @@
 #    By: cgiron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/07 14:56:21 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/07 16:52:23 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,8 +101,8 @@ OBJ_DIR := ./obj_libft
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 CC      := gcc
-#CFLAGS  := -Wall -Wextra -Werror -O3
-CFLAGS	:= -g
+CFLAGS  := -Wall -Wextra -Werror -O3
+#CFLAGS	:= -g
 
 L_FT    := ./lib/$(LIB_DIR)
 
