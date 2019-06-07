@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 17:07:25 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/07 09:17:37 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,9 @@ int	main(void)
 		ft_putnbr(mst->answerx);
 		ft_putchar('\n');
 		if (mst->board)
-		{
-			ft_parser_free_double_array((void **)mst->board);
-			mst->board = NULL;
-		}
+			ft_parser_free_double_array((void ***)&mst->board);
 		if (mst->piece)
-		{
-			ft_parser_free_double_array((void **)mst->piece);
-			mst->piece = NULL;
-		}
+			ft_parser_free_double_array((void ***)&mst->piece);
 	}
 	return (0);
 }

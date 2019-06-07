@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/06 13:58:21 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/07 07:10:47 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			ft_solver_heatmap_init(t_filler *mfill, int i, int j);
 void			ft_solver_heatmap(t_filler *mfill, int i, int j);
 void			ft_solver_check_score(t_filler *mf, int i, int j);
 int				parser(t_filler *mst);
-void			ft_parser_free_double_array(void **arr);
+void			ft_parser_free_double_array(void ***arr);
 void			**ft_parser_alloc_double_array(int x, int y, size_t size);
 int				ft_parser_get_player(t_filler *mst);
 int				ft_parser_get_board_dims(t_filler *mst);

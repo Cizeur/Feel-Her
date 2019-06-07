@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 08:50:25 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 16:08:42 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/07 07:21:00 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			ft_parser_get_board_dims(t_filler *mst)
 	char	*line;
 	int		r;
 
+	line = NULL;
 	if ((r = get_next_line_single_fd(0, &line)) > 0
 		&& !ft_strncmp(line, "Plateau ", 8))
 		ft_parser_get_dims(line + 8, &mst->bszx, &mst->bszy);
