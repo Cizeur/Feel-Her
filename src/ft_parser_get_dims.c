@@ -27,7 +27,7 @@ int			ft_parser_get_board_dims(t_filler *mst)
 	int		r;
 
 	line = NULL;
-	if ((r = get_next_line_single_fd(0, &line)) > 0
+	if ((r = get_next_line(0, &line)) > 0
 		&& !ft_strncmp(line, "Plateau ", 8))
 		ft_parser_get_dims(line + 8, &mst->bszx, &mst->bszy);
 	if (r > -1)
@@ -42,7 +42,7 @@ int			ft_parser_get_piece_dims(t_filler *mst)
 
 	c = 0;
 	line = NULL;
-	if (get_next_line_single_fd(0, &line) < 0)
+	if (get_next_line(0, &line) < 0)
 		return (1);
 	if (ft_strncmp(line, "Piece ", 6))
 	{

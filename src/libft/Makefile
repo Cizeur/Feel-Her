@@ -6,7 +6,7 @@
 #    By: cgiron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/07 07:30:19 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/07 14:56:21 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,6 @@ SRC = ft_memset.c \
 	  ft_lstaddend.c\
 	  ft_tab_len.c\
 	  get_next_line.c\
-	  get_next_line_single_fd.c\
 	  ft_atoi_base.c
 
 SRC_DIR := ./src_libft

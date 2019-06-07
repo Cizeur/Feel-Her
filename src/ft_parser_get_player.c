@@ -20,7 +20,7 @@ int	ft_parser_get_player(t_filler *mst)
 	char	*line;
 
 	line = NULL;
-	if ((r = get_next_line_single_fd(0, &line)) > 0
+	if ((r = get_next_line(0, &line)) > 0
 		&& !ft_strncmp(line, "$$$ exec p", 10)
 		&& (line[10] == '1' || line[10] == '2')
 		&& !ft_strncmp(line + 11, " : [", 3)

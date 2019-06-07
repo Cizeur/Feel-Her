@@ -41,14 +41,14 @@ int			ft_parser_get_board(t_filler *mst)
 	char	*line;
 
 	line = NULL;
-	if (get_next_line_single_fd(0, &line) < 0)
+	if (get_next_line(0, &line) < 0)
 		return (1);
 	free(line);
 	if (!(mst->board = (int **)ft_parser_alloc_double_array(mst->bszx,
 			mst->bszy, sizeof(int))))
 		return (1);
 	i = 0;
-	while (i < mst->bszy && get_next_line_single_fd(0, &line) > -1)
+	while (i < mst->bszy && get_next_line(0, &line) > -1)
 	{
 		if (ft_strlen(line) < 4
 			|| fill_board(line + 4, mst->board[i++], mst->bszx))
@@ -87,7 +87,7 @@ int			ft_parser_get_piece(t_filler *mst)
 			mst->pszy, sizeof(char))))
 		return (1);
 	i = 0;
-	while (i < mst->pszy && get_next_line_single_fd(0, &line) > -1)
+	while (i < mst->pszy && get_next_line(0, &line) > -1)
 	{
 		if (fill_piece(line, mst->piece[i++], mst->pszx))
 		{

@@ -6,77 +6,59 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/21 13:32:02 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/07 14:46:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-static char		*read_gnl(char **gnl, char *buf, int fd)
+static int		ft_free_return(char **gnl, int val)
 {
-	char		*tmp;
-	int			ret;
-
-	ret = 1;
-	while (!(ft_strchr(*gnl, '\n')) && ret)
-	{
-		ret = read(fd, buf, BUFF_SIZE);
-		if (ret)
-		{
-			buf[ret] = '\0';
-			tmp = *gnl;
-			if (!(*gnl = ft_strjoin(*gnl, buf)))
-				return (NULL);
-			free(tmp);
-		}
-	}
-	free(buf);
-	return (*gnl);
+	if (*gnl)
+		ft_memdel((void **)gnl);
+	return (val);
 }
 
-static char		*stock_line(char **gnl)
+int				ft_complete_line(char **gnl, int fd, char *buf, int *r)
 {
-	char		*buf;
-	char		*newline;
-	char		*tmp;
+	char		*temp;
 
-	buf = ft_strchr(*gnl, '\n');
-	tmp = NULL;
-	if (buf)
+	while (!ft_strchr(gnl[fd], '\n') && (*r = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		if (!(newline = ft_strndup(*gnl, buf - *gnl)))
-			return (NULL);
-		tmp = *gnl;
-		if (!(*gnl = ft_strdup(buf + 1)))
-			return (NULL);
-		free(tmp);
+		temp = gnl[fd];
+		gnl[fd] = ft_strjoin(gnl[fd], buf);
+		free(temp);
+		if (!gnl[fd])
+			return (0);
+		ft_bzero(buf, BUFF_SIZE + 1);
 	}
-	else if (!(newline = ft_strdup(*gnl)))
-		return (NULL);
-	if (!(*gnl) || !tmp)
-	{
-		free(*gnl);
-		*gnl = NULL;
-	}
-	return (newline);
+	return (1);
 }
 
 int				get_next_line(const int fd, char **line)
 {
 	static char	*gnl[MAX_FD] = {0};
-	char		*buf;
+	char		buf[BUFF_SIZE + 1];
+	int			r;
+	char		*temp;
 
-	if (fd < 0 || !line || BUFF_SIZE <= 0 || !(buf = ft_strnew(BUFF_SIZE + 1)) \
-		|| read(fd, buf, 0) == -1 || (gnl[fd] == NULL
-			&& !(gnl[fd] = ft_strnew(0))))
+	if (fd < 0 || fd >= MAX_FD || !line || BUFF_SIZE <= 0)
 		return (-1);
-	if (!(read_gnl(&(gnl[fd]), buf, fd)))
+	if (!(gnl[fd] = !gnl[fd] ? ft_strnew(0) : gnl[fd]))
 		return (-1);
-	if (*(gnl[fd]))
-	{
-		if (!(*line = stock_line(&(gnl[fd]))))
-			return (-1);
-		return (1);
-	}
-	return (0);
+	*line = 0;
+	ft_bzero(buf, BUFF_SIZE + 1);
+	if (!ft_complete_line(gnl, fd, buf, &r))
+		return (-1);
+	if (r == -1 || (!r && !*gnl[fd]))
+		return (ft_free_return(&gnl[fd], r == -1 ? -1 : 0));
+	temp = ft_strchr(gnl[fd], '\n');
+	r = !temp ? (ft_strlen(gnl[fd])) : temp - gnl[fd];
+	if ((*line = ft_strnew(r)))
+		ft_memcpy(*line, gnl[fd], r);
+	ft_strcpy(gnl[fd], temp ? temp + 1 : gnl[fd] + ft_strlen(gnl[fd]));
+	if (!*line)
+		return (ft_free_return(&gnl[fd], -1));
+	return (1);
 }
