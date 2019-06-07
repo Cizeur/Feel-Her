@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 14:46:43 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/07 15:41:29 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				get_next_line(const int fd, char **line)
 	r = !temp ? (ft_strlen(gnl[fd])) : temp - gnl[fd];
 	if ((*line = ft_strnew(r)))
 		ft_memcpy(*line, gnl[fd], r);
-	ft_strcpy(gnl[fd], temp ? temp + 1 : gnl[fd] + ft_strlen(gnl[fd]));
+	ft_strcpy(gnl[fd], temp ? temp + 1 : "");
 	if (!*line)
 		return (ft_free_return(&gnl[fd], -1));
 	return (1);
