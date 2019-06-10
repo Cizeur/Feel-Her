@@ -27,7 +27,15 @@ SRC := main.c\
 	ft_write_usage.c\
 	ft_exit.c\
 	ft_key_simple_press.c\
-	ft_init_window.c
+	ft_init_window.c\
+	ft_grid_size.c\
+	ft_image_fresh.c\
+	ft_rgb.c\
+	ft_grid_trace.c\
+	ft_line_trace.c\
+	ft_draw_pixel.c\
+	ft_image_dump.c\
+	ft_text_draw.c
 
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
