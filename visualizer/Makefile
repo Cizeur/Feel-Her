@@ -1,0 +1,71 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/05/21 10:25:47 by cgiron            #+#    #+#              #
+#    Updated: 2019/05/24 13:33:12 by cgiron           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = fdf
+
+SRC_DIR := ./src
+INC_DIR := ./includes
+OBJ_DIR := ./obj
+INCL := $(INC_DIR)/fdf.h\
+
+L_FT    := ./libft
+L_MLX	:= ./mlx
+
+SRC := main.c\
+	sub_parser_stockage.c\
+	ft_init_resolution.c\
+	ft_init_mstr.c\
+	ft_write_usage.c\
+	ft_exit.c\
+	ft_key_simple_press.c\
+	ft_init_window.c
+
+OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+
+CC      := gcc
+CFLAGS  := -Wall -Wextra -Werror
+CFLAGS  += -O3 -ffreestanding -fno-builtin
+EXFLAGS	+= -lmlx -framework OpenGL -framework AppKit
+#EXFLAGS += -L $(L_MLX) -I $(L_MLX)
+EXFLAGS	+= -L $(L_FT) -lft  
+
+
+.PHONY: all clean fclean re debug
+
+all: $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+%.o : $(SRC_DIR)/%.c Makefile $(INCL)	
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(INC_DIR) -o $(OBJ_DIR)/$@ -c $<
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c Makefile $(INCL)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(INC_DIR) $(LIBFLAGS) -o $@ -c $<
+
+$(NAME): $(OBJ) Makefile $(INCL)
+	$(MAKE) -C $(L_FT) --no-print-directory
+	#$(MAKE) -C $(L_MLX) --no-print-directory
+	$(CC)  $(EXFLAGS)  $(OBJ) -o $(NAME)
+
+clean:
+	$(MAKE) clean -C $(L_FT) --no-print-directory
+	#$(MAKE) clean -C $(L_MLX) --no-print-directory
+	rm -rf $(OBJ_DIR)
+
+fclean: clean
+	$(MAKE) fclean -C $(L_FT) --no-print-directory
+	rm -f $(NAME)
+
+re: fclean all
