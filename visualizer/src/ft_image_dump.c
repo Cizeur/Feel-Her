@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_simple_press.c                              :+:      :+:    :+:   */
+/*   ft_image_dump.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:22:54 by cgiron           ###   ########.fr       */
+/*   Created: 2019/05/13 12:21:01 by cgiron            #+#    #+#             */
+/*   Updated: 2019/05/20 11:10:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				ft_key_simple_press(int key, t_master *mstr)
+void			ft_image_dump(void **mem_ptr)
 {
-	close(0);
-	key != 53 ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
-	return (key);
+	mlx_put_image_to_window(mem_ptr[MLX_PTR], mem_ptr[WIN_PTR],
+			mem_ptr[I_PTR], 0, 0);
 }

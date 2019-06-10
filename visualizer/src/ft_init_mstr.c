@@ -45,6 +45,6 @@ void			ft_init_mstr(t_master *mstr)
 	mstr->turn = 0;
 	mstr->player_1 = NULL;
 	mstr->player_2 = NULL;
-	mstr->mult = 0;
+	mstr->square_tg = 0;
 	mstr->updated = 2;
 }

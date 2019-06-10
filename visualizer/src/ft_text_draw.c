@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_simple_press.c                              :+:      :+:    :+:   */
+/*   ft_text_draw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:22:54 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/10 17:34:23 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/10 17:34:26 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				ft_key_simple_press(int key, t_master *mstr)
+void	ft_text_draw(t_master *mstr, int pos[2], int color, char *text)
 {
-	close(0);
-	key != 53 ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
-	return (key);
+	if (!text)
+		return;
+	mlx_string_put (mstr->mem_ptr[MLX_PTR],
+	 mstr->mem_ptr[WIN_PTR], 
+	 pos[0], pos[1],
+	 color, text);
 }

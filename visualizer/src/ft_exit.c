@@ -18,8 +18,9 @@ static void		ft_standard_exit(int code, t_master *mstr)
 	int ind;
 
 	ind = mstr->fail_ind;
-	if (code == STANDARD_EXIT)
-		mlx_destroy_image(mstr->mem_ptr[MLX_PTR], mstr->mem_ptr[I_PTR]);
+	code = 0;
+	//if (code == STANDARD_EXIT)
+	//	mlx_destroy_image(mstr->mem_ptr[MLX_PTR], mstr->mem_ptr[I_PTR]);
 }
 
 void			ft_exit(int code, t_master *mstr)

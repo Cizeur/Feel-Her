@@ -45,7 +45,7 @@ static int		ft_check_size(char *line, int *size)
 	return(1);
 }
 
-static void		ft_extract_player(t_master *mstr,char *line)
+static void		ft_player_extract(t_master *mstr,char *line)
 {
 	char *shorter;
 	char **player;
@@ -65,7 +65,7 @@ static void		ft_extract_player(t_master *mstr,char *line)
 	*player = ft_strdup(line);
 }
 
-static int		ft_extract_line(t_master *mstr, char *line, int j)
+static int		ft_line_extract(t_master *mstr, char *line, int j)
 {
 	char *start;
 	int *pos;
@@ -89,7 +89,7 @@ static int		ft_extract_line(t_master *mstr, char *line, int j)
 	return (i == mstr->size[1] ? 1 : 0);
 }
 
-static int		ft_read_map(t_master *mstr, int *size)
+static int		ft_map_extract(t_master *mstr, int *size)
 {
 	int j;
 	int check_line;
@@ -104,14 +104,14 @@ static int		ft_read_map(t_master *mstr, int *size)
 	while (check_line && ++j < size[0] && (check = get_next_line(0, &line)) > 0)
 	{
 		mstr->read_lines++;
-		check_line = ft_extract_line(mstr, line, j);
+		check_line = ft_line_extract(mstr, line, j);
 		free(line);
 	}
 	return (check_line && check > 0 ? 1 : 0);
 }
 
 
-static void		ft_find_map(t_master *mstr, int *size)
+static void		ft_map_find_extract(t_master *mstr, int *size)
 {
 	char	*line;
 	int		check;
@@ -125,12 +125,13 @@ static void		ft_find_map(t_master *mstr, int *size)
 		if (ft_strstr(line, LAUNCH_S))
 			mstr->turn = 0;
 		else if (ft_strstr(line, EXEC_1_S) || ft_strstr(line, EXEC_2_S))
-			ft_extract_player(mstr, line);
+			ft_player_extract(mstr, line);
 		else if (ft_strstr(line, PLATEAU))
 		{
 			size_check = ft_check_size(line, size);
 			if (size_check)
-				size_check = ft_read_map(mstr,size);
+				size_check = ft_map_extract(mstr,size);
+			free(line);
 			break;
 		}
 		free(line);
@@ -143,7 +144,8 @@ static void		ft_find_map(t_master *mstr, int *size)
 
 void			sub_parser_stockage(t_master *mstr)
 {
-	ft_find_map(mstr, mstr->size);
+	ft_map_find_extract(mstr, mstr->size);
+	//ft_size_map(mstr, mstr->size);
 	printf("Map Size y: %d - x: %d\n", mstr->size[0], mstr->size[1]);
 	printf("%s\n",mstr->player_1);
 	printf("%s\n",mstr->player_2);

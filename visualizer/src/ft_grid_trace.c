@@ -15,14 +15,20 @@
 void		ft_grid_trace(t_master *mstr, int *size)
 {
 	int		i;
-	int		j;
+	int		pos[2];
 
-	j = -1;
-	while (++j < size[0])
+	i = -1;
+	while (++i <= size[0])
 	{
-		while (++i < size[1])
-		{
-			ft_draw
-		}
+		pos[0] = mstr->top_corner[0] + i * mstr->mult_y;
+		pos[1] = mstr->top_corner[1];
+		ft_line_trace(mstr, pos, mstr->mult_x * size[1] , HORI);
+	}
+	i = -1;
+	while (++i <= size[1])
+	{
+		pos[0] = mstr->top_corner[0];
+		pos[1] = mstr->top_corner[1] + i * mstr->mult_x;
+		ft_line_trace(mstr, pos, mstr->mult_y * size[0] , VERT);
 	}
 }
