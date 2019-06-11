@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/11 10:19:11 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/11 12:31:53 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ player2=$2
 n_turns=10
 map=test_maps/test
 KEEP_OUTPUT=1
+RAND_MAP=1
+RAND_MAP_SIZE="30 30"
 
 # dont touch after this line --------------------------------------------------
 
@@ -27,16 +29,18 @@ score_p1=0;
 score_p2=0;
 i=0
 
-if [ $KEEP_OUTPUT -ne 0 ]; then
+if [ $KEEP_OUTPUT -ne 0 -o $RAND_MAP -ne 0 ]; then
 	mkdir -p test_outputs
 fi
 
 while [ $i -lt $n_turns ]
 do
+	if [ $RAND_MAP -ne 0 ]; then
+		test_maps/a.out $RAND_MAP_SIZE > test_outputs/round_"$i"_map
+		map=test_outputs/round_"$i"_map
+	fi
 	if [ $KEEP_OUTPUT -ne 0 ]; then
-		test_maps/a.out 20 30 > test_outputs/round_"$i"_map
-		./filler_vm -s 2145 -f test_outputs/round_"$i"_map\
-			 -p1 $player1 -p2 $player2 &> test_outputs/round_"$i"_output
+		./filler_vm -f $map -p1 $player1 -p2 $player2 &> test_outputs/round_"$i"_output
 	else
 		./filler_vm -f $map -p1 $player1 -p2 $player2 -q &> /dev/null
 	fi
