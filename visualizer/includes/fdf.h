@@ -22,6 +22,11 @@
 # include "libft/get_next_line.h"
 # include <errno.h>
 
+# define ESCAPE 53
+# define SPACEBAR 49
+# define TOUCH_1 18
+# define TOUCH_2 19
+# define TILDE 50
 # define XRES 1080
 # define YRES 720
 # define FILL_PERCENT 80
@@ -48,7 +53,8 @@
 # define FAIL_IMAGE_CREATION 5
 # define FAIL_LINE_LEN 6
 # define FAIL_SPLIT_WHITESPACE 7
-# define FAIL_WINDOW_TO_SMALL 7
+# define FAIL_WINDOW_TO_SMALL 8
+# define FAIL_LISTING 9
 # define MOUSE_LEFT 1
 # define MOUSE_RIGHT 2
 # define SCROLL_DOWN 4
@@ -69,6 +75,8 @@ typedef struct	s_mouse
 
 typedef struct	s_master
 {
+	t_list		*output;
+	t_list		*current;
 	int			fail_ind;
 	char		*player_1;
 	char		*player_2;
@@ -78,6 +86,8 @@ typedef struct	s_master
 	int			xres;
 	int			yres;
 	int			map[YRES][XRES][2];
+	int			amp_x[3];
+	int			amp_o[3];
 	float		middle[2];
 	int			mult_x;
 	int			mult_y;
@@ -85,15 +95,19 @@ typedef struct	s_master
 	int			top_corner[2];
 	int			updated;
 	int			square_tg;
+	int			color_1_tg;
+	int			color_2_tg;
 	t_mouse		mouse;
 }				t_master;
 
+void			ft_list_generate(t_master *mstr);
 void			ft_exit(int code, t_master *mstr);
 void			ft_grid_trace(t_master *mstr, int *size);
-void			ft_line_trace(t_master *mstr, int pos[2], int len, int orientation);
+void			ft_line_trace(t_master *mstr, int pos[3], int len, int orientation);
 void			ft_grid_size(t_master *mstr, int *size);
 void			ft_text_draw(t_master *mstr, int pos[2], int color, char *text);
 void			ft_refresh(t_master *mstr);
+void			ft_grid_fill(t_master *mstr, int *size);
 void			sub_parser_stockage(t_master *mstr);
 void			ft_init_mstr(t_master *mstr);
 void			ft_init_resolution(t_master *mstr, char **argv, int argc);

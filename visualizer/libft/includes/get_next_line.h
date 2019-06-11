@@ -6,14 +6,14 @@
 /*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:51:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 15:22:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/11 16:31:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 4096 
+# define BUFF_SIZE 65536
 # include "libft.h"
 # define MAX_FD 590432
 

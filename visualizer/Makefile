@@ -35,7 +35,13 @@ SRC := main.c\
 	ft_line_trace.c\
 	ft_draw_pixel.c\
 	ft_image_dump.c\
-	ft_text_draw.c
+	ft_text_draw.c\
+	ft_refresh.c\
+	ft_image_background.c\
+	ft_grid_fill.c\
+	ft_key_loop.c\
+	ft_color_gradient.c\
+	ft_list_generate.c
 
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
