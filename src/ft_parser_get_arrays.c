@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:48:49 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/06 13:55:46 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:19:35 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ static int	fill_board(const char *line, int *board, int len)
 	j = 0;
 	while (line[j] && j < len)
 	{
-		if (line[j] == '.')
-			board[j] = P_EMPTY;
-		else if (line[j] == 'o' || line[j] == 'O')
+		board[j] = P_OBS;
+		if (line[j] == 'o' || line[j] == 'O')
 			board[j] = P_O;
 		else if (line[j] == 'x' || line[j] == 'X')
 			board[j] = P_X;
-		else
-			return (1);
+		else if (line[j] == '.')
+			board[j] = P_EMPTY;
 		++j;
 	}
 	if (line[j] || j < len)

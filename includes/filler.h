@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 07:10:47 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:17:58 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define P_O 1
 # define P_X 2
 # define P_EMPTY 3
+# define P_OBS	 3
 
 /*
 ** Pour les tableaux premiere dimension y, seconde dimension x
