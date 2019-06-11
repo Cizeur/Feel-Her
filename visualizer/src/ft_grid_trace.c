@@ -15,9 +15,10 @@
 void		ft_grid_trace(t_master *mstr, int *size)
 {
 	int		i;
-	int		pos[2];
+	int		pos[3];
 
 	i = -1;
+	pos[2] = ft_rgb(255, 255, 255);
 	while (++i <= size[0])
 	{
 		pos[0] = mstr->top_corner[0] + i * mstr->mult_y;

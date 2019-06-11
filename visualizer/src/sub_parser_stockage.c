@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/* 
 static int		ft_line_jump(int fd, int nb_lines)
 {
 	char *line;
@@ -29,6 +29,7 @@ static int		ft_line_jump(int fd, int nb_lines)
 	}
 	return (r < 0 ? -1 : nb_lines - actual_lines);
 }
+*/
 
 static int		ft_check_size(char *line, int *size)
 {
@@ -65,6 +66,71 @@ static void		ft_player_extract(t_master *mstr,char *line)
 	*player = ft_strdup(line);
 }
 
+void			ft_amp_extract(t_master *mstr, int val)
+{
+	if (!val)
+		return;
+	if (val > 0 && !mstr->amp_o[0])
+		{
+			mstr->amp_o[0] = val;
+			mstr->amp_o[1] = val;
+		}
+	else if (val < 0 && !mstr->amp_x[0])
+		{
+			mstr->amp_x[0] = val;
+			mstr->amp_x[1] = val;
+		}
+	else if (val > 0)
+	{
+		mstr->amp_o[0] = ft_max(mstr->amp_o[0], val);
+		mstr->amp_o[1] = ft_min(mstr->amp_o[1], val);
+		mstr->amp_o[2] = ft_abs(mstr->amp_o[0] - mstr->amp_o[1]);
+	}
+	else if (val < 0)
+	{
+		mstr->amp_x[0] = ft_min(mstr->amp_x[0], val);
+		mstr->amp_x[1] = ft_max(mstr->amp_x[1], val);
+		mstr->amp_x[2] = ft_abs(mstr->amp_x[0] - mstr->amp_x[1]);
+	}
+
+}
+
+t_list			*ft_line_find(t_list *current, char  *line)
+{
+	char *pos;
+
+	if (!current)
+		return (NULL);
+	ft_bzero(line, MAX_XRES * 2 + 1);
+	if((pos = ft_strchr(current->content, '\n')))
+	{	
+		*pos = 0;
+		ft_strcpy(line, current->content);
+		ft_memmove(current->content, pos + 1, (int)(pos + 1 - (char *)current->content));
+		return (current);
+	}
+	else
+	{
+		if (current->next)
+		{
+			ft_strcpy(line, current->content);
+			if((pos = ft_strchr(current->next->content, '\n')))
+			{	
+				*pos = 0;
+				ft_strjoin(line, current->next->content);
+				ft_memmove(current->next->content, pos + 1,
+				(int)(pos + 1 - (char *)current->next->content));
+			}
+			else
+				ft_strjoin(line, current->next->content);
+		}
+		else
+			ft_strcpy(line, current->content);
+	}
+	return(current->next);
+
+}
+
 static int		ft_line_extract(t_master *mstr, char *line, int j)
 {
 	char *start;
@@ -83,9 +149,8 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 		*pos = start[i] == 'o' ? 1 : *pos;
 		*pos = start[i] == 'x' ? -1 : *pos;
 		mstr->map[j][i][1] = 0;
-		printf("%3d", mstr->map[j][i][0]);
+		ft_amp_extract(mstr, *pos);
 	}
-	printf("\n");
 	return (i == mstr->size[1] ? 1 : 0);
 }
 
@@ -93,34 +158,35 @@ static int		ft_map_extract(t_master *mstr, int *size)
 {
 	int j;
 	int check_line;
-	int check;
-	char *line;
+	char	line[2 * MAX_XRES + 1];
 
-	if (ft_line_jump(0, 1) <= 0)
-		return (0);
+	mstr->current = ft_line_find(mstr->current, line);
+	if (!mstr->current)
+		return(-1);
 	mstr->read_lines++;
 	j = -1;
 	check_line = 1;
-	while (check_line && ++j < size[0] && (check = get_next_line(0, &line)) > 0)
+	while (check_line && ++j < size[0] &&
+		(mstr->current = ft_line_find(mstr->current, line)))
 	{
 		mstr->read_lines++;
 		check_line = ft_line_extract(mstr, line, j);
-		free(line);
+		mstr->current = mstr->current->next;
 	}
-	return (check_line && check > 0 ? 1 : 0);
+	return (check_line && mstr->current ? 1 : 0);
 }
 
 
 static void		ft_map_find_extract(t_master *mstr, int *size)
 {
-	char	*line;
-	int		check;
+	char	line[2 * MAX_XRES + 1];
 	int		size_check;
 
 	size_check = 1;
 	mstr->fail_ind = 0;
-	while (size_check && (check = get_next_line(0, &line)) > 0)
+	while (size_check && (mstr->current = ft_line_find(mstr->current, line)))
 	{
+		printf("%s", line);
 		mstr->read_lines++;
 		if (ft_strstr(line, LAUNCH_S))
 			mstr->turn = 0;
@@ -131,12 +197,10 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 			size_check = ft_check_size(line, size);
 			if (size_check)
 				size_check = ft_map_extract(mstr,size);
-			free(line);
 			break;
 		}
-		free(line);
 	}
-	if (check <= 0)
+	if (!mstr->current)
 		ft_exit(FAIL_READ_LINE, mstr);
 	if (!size_check || size[0] <= 0)
 		ft_exit(FAIL_LINE_LEN, mstr);
@@ -144,9 +208,14 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 
 void			sub_parser_stockage(t_master *mstr)
 {
-	ft_map_find_extract(mstr, mstr->size);
-	//ft_size_map(mstr, mstr->size);
-	printf("Map Size y: %d - x: %d\n", mstr->size[0], mstr->size[1]);
-	printf("%s\n",mstr->player_1);
-	printf("%s\n",mstr->player_2);
+
+		ft_bzero(mstr->amp_o, sizeof(int) * 3);
+		ft_bzero(mstr->amp_x, sizeof(int) * 3);
+		ft_map_find_extract(mstr, mstr->size);
+		//printf("Map Size y: %d - x: %d\n", mstr->size[0], mstr->size[1]);
+	//	printf("amplitudes x - %d - %d - %d\n", mstr->amp_x[0], mstr->amp_x[1], mstr->amp_x[2]);
+	//	printf("amplitudes o - %d - %d - %d\n", mstr->amp_o[0], mstr->amp_o[1], mstr->amp_o[2]);
+	//	printf("%s\n",mstr->player_1);
+	//	printf("%s\n",mstr->player_2);
+		mstr->updated = 0;
 }

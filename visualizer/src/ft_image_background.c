@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_simple_press.c                              :+:      :+:    :+:   */
+/*   ft_image_background.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:22:54 by cgiron           ###   ########.fr       */
+/*   Created: 2019/05/15 10:46:47 by cgiron            #+#    #+#             */
+/*   Updated: 2019/05/20 10:13:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				ft_key_simple_press(int key, t_master *mstr)
+void			ft_image_background(t_master *mstr)
 {
-	close(0);
-	key != ESCAPE ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
-		printf("key - %d\n", key);
-	if (key == TILDE && (mstr->updated = 1))
-		mstr->square_tg = (mstr->square_tg + 1) % 2;
-	if (mstr->updated)
-		ft_refresh(mstr);
+	int i;
+	int j;
 
-
-	return (key);
-
+	i = -1;
+	while (++i < mstr->xres)
+	{
+		j = -1;
+		while (++j < mstr->yres)
+			ft_draw_pixel(mstr, i, j, ft_rgb(0, 0, 0));
+	}
 }

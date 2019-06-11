@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_simple_press.c                              :+:      :+:    :+:   */
+/*   ft_refresh.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:22:54 by cgiron           ###   ########.fr       */
+/*   Created: 2019/05/15 18:23:35 by cgiron            #+#    #+#             */
+/*   Updated: 2019/05/15 18:29:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int				ft_key_simple_press(int key, t_master *mstr)
+void	ft_refresh(t_master *mstr)
 {
-	close(0);
-	key != ESCAPE ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
-		printf("key - %d\n", key);
-	if (key == TILDE && (mstr->updated = 1))
-		mstr->square_tg = (mstr->square_tg + 1) % 2;
-	if (mstr->updated)
-		ft_refresh(mstr);
-
-
-	return (key);
+		if (mstr->updated == 2)
+			sub_parser_stockage(mstr);
+		ft_grid_size(mstr, mstr->size);
+		ft_grid_trace(mstr, mstr->size);
+		ft_grid_fill(mstr, mstr->size);
+		ft_image_dump(mstr->mem_ptr);
+		ft_image_background(mstr);
+	//	ft_text_draw(mstr, pos, 255, mstr->player_1);
 
 }

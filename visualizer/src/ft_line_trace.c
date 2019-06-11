@@ -12,12 +12,12 @@
 
 #include "fdf.h"
 
-void		ft_line_trace(t_master *mstr, int pos[2], int len, int orientation)
+void		ft_line_trace(t_master *mstr, int pos[3], int len, int orientation)
 {
 	int i;
 
 	i = -1;
 	while (++i <= len)
 		ft_draw_pixel(mstr, orientation == HORI ? pos[1] + i : pos[1],
-		orientation == VERT ? pos[0] + i : pos[0], ft_rgb(255, 255, 255));
+		orientation == VERT ? pos[0] + i : pos[0], pos[2]);
 }
