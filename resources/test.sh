@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/11 09:39:36 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/11 10:19:11 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ player1=$1
 player2=$2
 
 n_turns=10
-map=test
+map=test_maps/test
+KEEP_OUTPUT=1
 
 # dont touch after this line --------------------------------------------------
 
@@ -26,9 +27,19 @@ score_p1=0;
 score_p2=0;
 i=0
 
+if [ $KEEP_OUTPUT -ne 0 ]; then
+	mkdir -p test_outputs
+fi
+
 while [ $i -lt $n_turns ]
 do
-	./filler_vm -f ./test_maps/$map -p1 $player1 -p2 $player2 -q &> /dev/null
+	if [ $KEEP_OUTPUT -ne 0 ]; then
+		test_maps/a.out 20 30 > test_outputs/round_"$i"_map
+		./filler_vm -s 2145 -f test_outputs/round_"$i"_map\
+			 -p1 $player1 -p2 $player2 &> test_outputs/round_"$i"_output
+	else
+		./filler_vm -f $map -p1 $player1 -p2 $player2 -q &> /dev/null
+	fi
 	echo "round" $((i+1))/$n_turns
 	result=$(cat filler.trace | grep AGAINST | sed -e 's/AGAINST/ /g')
 	score_p1=$(echo $result | cut -d\  -f1)
@@ -40,7 +51,6 @@ do
 	elif [ $score_p2 -gt $score_p1 ]; then
 		((p2++))
 	fi
-	echo "p1=$p1 p2=$p2"
 	((i++))
 done
 
