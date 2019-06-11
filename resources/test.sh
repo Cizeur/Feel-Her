@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/11 08:04:56 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/11 09:39:36 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ map=test
 # dont touch after this line --------------------------------------------------
 
 p1=0
-p2=2
+p2=0
 score_p1=0;
 score_p2=0;
 i=0
@@ -40,6 +40,7 @@ do
 	elif [ $score_p2 -gt $score_p1 ]; then
 		((p2++))
 	fi
+	echo "p1=$p1 p2=$p2"
 	((i++))
 done
 
