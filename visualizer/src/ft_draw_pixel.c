@@ -19,8 +19,8 @@ void		ft_draw_pixel(t_master *mstr, int x, int y, int color)
 	img_cont = (mstr->mem_ptr)[I_ADR];
 	if (x < mstr->xres && y < mstr->yres && x >= 0 && y >= 0)
 	{
-		img_cont[4 * (x + y * mstr->xres) + 2] = color % 256;
+		img_cont[4 * (x + y * mstr->xres) + 0] = color % 256;
 		img_cont[4 * (x + y * mstr->xres) + 1] = (color / 256) % 256;
-		img_cont[4 * (x + y * mstr->xres) + 0] = color / (256 * 256);
+		img_cont[4 * (x + y * mstr->xres) + 2] = color / (256 * 256);
 	}
 }

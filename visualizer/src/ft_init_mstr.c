@@ -45,6 +45,11 @@ void			ft_init_mstr(t_master *mstr)
 	mstr->turn = 0;
 	mstr->player_1 = NULL;
 	mstr->player_2 = NULL;
+	mstr->color_1_tg = 2;
+	mstr->color_2_tg = 0;
+	mstr->color_1_g_tg = 1;
+	mstr->color_2_g_tg = 1;
 	mstr->square_tg = 0;
 	mstr->updated = 2;
+	mstr->still_reading = 1;
 }

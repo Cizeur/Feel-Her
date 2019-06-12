@@ -26,6 +26,9 @@
 # define SPACEBAR 49
 # define TOUCH_1 18
 # define TOUCH_2 19
+# define TOUCH_P 35
+# define TOUCH_Q 12
+# define TOUCH_W 13
 # define TILDE 50
 # define XRES 1080
 # define YRES 720
@@ -39,6 +42,7 @@
 # define I_ADR 3
 # define VERT 0
 # define HORI 1
+# define END_S "fin"
 # define LAUNCH_S "launched "
 # define EXEC_1_S "$$$ exec p1"
 # define EXEC_2_S "$$$ exec p2"
@@ -77,6 +81,7 @@ typedef struct	s_master
 {
 	t_list		*output;
 	t_list		*current;
+	int			still_reading;
 	int			fail_ind;
 	char		*player_1;
 	char		*player_2;
@@ -97,6 +102,8 @@ typedef struct	s_master
 	int			square_tg;
 	int			color_1_tg;
 	int			color_2_tg;
+	int			color_1_g_tg;
+	int			color_2_g_tg;
 	t_mouse		mouse;
 }				t_master;
 

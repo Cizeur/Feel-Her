@@ -95,40 +95,37 @@ void			ft_amp_extract(t_master *mstr, int val)
 
 }
 
-t_list			*ft_line_find(t_list *current, char  *line)
+int 					ft_line_find(t_master *mstr, char  *line)
 {
 	char *pos;
+	t_list *current;
 
-	if (!current)
-		return (NULL);
+	current = mstr->current;
+	if (!current || (*((char *)current->content) == 0 && !current->next))
+		return (0);
+	mstr->read_lines++;
+	if (current->content)
 	ft_bzero(line, MAX_XRES * 2 + 1);
 	if((pos = ft_strchr(current->content, '\n')))
 	{	
 		*pos = 0;
 		ft_strcpy(line, current->content);
-		ft_memmove(current->content, pos + 1, (int)(pos + 1 - (char *)current->content));
-		return (current);
+		ft_strcpy(current->content, pos + 1);
 	}
 	else
 	{
-		if (current->next)
+		ft_strcpy(line, current->content);
+		current = current->next;
+		mstr->current = current;
+		if (current)
 		{
-			ft_strcpy(line, current->content);
-			if((pos = ft_strchr(current->next->content, '\n')))
-			{	
+			if((pos = ft_strchr(current->content, '\n')))
 				*pos = 0;
-				ft_strjoin(line, current->next->content);
-				ft_memmove(current->next->content, pos + 1,
-				(int)(pos + 1 - (char *)current->next->content));
-			}
-			else
-				ft_strjoin(line, current->next->content);
+			ft_strcpy(line + ft_strlen(line), current->content);
+			ft_strcpy(current->content, pos ? pos + 1 : "");
 		}
-		else
-			ft_strcpy(line, current->content);
 	}
-	return(current->next);
-
+	return(1);
 }
 
 static int		ft_line_extract(t_master *mstr, char *line, int j)
@@ -160,19 +157,13 @@ static int		ft_map_extract(t_master *mstr, int *size)
 	int check_line;
 	char	line[2 * MAX_XRES + 1];
 
-	mstr->current = ft_line_find(mstr->current, line);
+	ft_line_find(mstr, line);
 	if (!mstr->current)
 		return(-1);
-	mstr->read_lines++;
 	j = -1;
 	check_line = 1;
-	while (check_line && ++j < size[0] &&
-		(mstr->current = ft_line_find(mstr->current, line)))
-	{
-		mstr->read_lines++;
+	while (check_line && ++j < size[0] && ft_line_find(mstr, line))
 		check_line = ft_line_extract(mstr, line, j);
-		mstr->current = mstr->current->next;
-	}
 	return (check_line && mstr->current ? 1 : 0);
 }
 
@@ -184,18 +175,19 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 
 	size_check = 1;
 	mstr->fail_ind = 0;
-	while (size_check && (mstr->current = ft_line_find(mstr->current, line)))
+	while (size_check && ft_line_find(mstr, line))
 	{
-		printf("%s", line);
-		mstr->read_lines++;
+		if (ft_strstr(line, END_S))
+		{
+			mstr->still_reading = 0;
+		}
 		if (ft_strstr(line, LAUNCH_S))
 			mstr->turn = 0;
 		else if (ft_strstr(line, EXEC_1_S) || ft_strstr(line, EXEC_2_S))
 			ft_player_extract(mstr, line);
 		else if (ft_strstr(line, PLATEAU))
 		{
-			size_check = ft_check_size(line, size);
-			if (size_check)
+			if ((size_check = ft_check_size(line, size)))
 				size_check = ft_map_extract(mstr,size);
 			break;
 		}
@@ -208,14 +200,11 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 
 void			sub_parser_stockage(t_master *mstr)
 {
-
+	if (mstr->updated >= 2 && mstr->still_reading)
+	{
 		ft_bzero(mstr->amp_o, sizeof(int) * 3);
 		ft_bzero(mstr->amp_x, sizeof(int) * 3);
 		ft_map_find_extract(mstr, mstr->size);
-		//printf("Map Size y: %d - x: %d\n", mstr->size[0], mstr->size[1]);
-	//	printf("amplitudes x - %d - %d - %d\n", mstr->amp_x[0], mstr->amp_x[1], mstr->amp_x[2]);
-	//	printf("amplitudes o - %d - %d - %d\n", mstr->amp_o[0], mstr->amp_o[1], mstr->amp_o[2]);
-	//	printf("%s\n",mstr->player_1);
-	//	printf("%s\n",mstr->player_2);
-		mstr->updated = 0;
+		mstr->updated = mstr->updated == 2 ? 1 : mstr->updated;
+	}
 }
