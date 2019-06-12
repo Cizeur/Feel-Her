@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = ../filler_visualiser
 
 SRC_DIR := ./src
 INC_DIR := ./includes
