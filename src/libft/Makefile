@@ -6,13 +6,20 @@
 #    By: cgiron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/07 16:52:23 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/10 09:14:20 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-INCL = ./includes/libft.h
+INCL = ./includes/libft.h\
+	   ./includes/get_next_line.h
+
+SRC_DIR := ./src_libft
+INC_DIR := ./includes
+OBJ_DIR := ./obj_libft
+INCL := $(INC_DIR)/get_next_line.h\
+$(INC_DIR)/get_next_line.h\
 
 SRC = ft_memset.c \
 	  ft_bzero.c \
@@ -94,19 +101,14 @@ SRC = ft_memset.c \
 	  get_next_line.c\
 	  ft_atoi_base.c
 
-SRC_DIR := ./src_libft
-INC_DIR := ./includes
-OBJ_DIR := ./obj_libft
-
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 CC      := gcc
-CFLAGS  := -Wall -Wextra -Werror -O3
-#CFLAGS	:= -g
+CFLAGS  := -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
 
 L_FT    := ./lib/$(LIB_DIR)
 
-.PHONY: all clean fclean re addlib
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
@@ -117,22 +119,18 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I $(INC_DIR) -o $(OBJ_DIR)/$@ -c $<
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c Makefile $(INCL)	
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c Makefile $(INCL)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I ./includes  -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(INC_DIR)  -o $@ -c $<
 
 $(NAME): $(OBJ) Makefile $(INCL)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-
 
 clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-
-addlib: $(OBJ) Makefile ./includes/libft.h
-	ar rc $(ADDNAME) $(OBJ)
 
 re: fclean all
