@@ -6,9 +6,11 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 14:08:35 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/08 17:18:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2018/12/14 14:11:21 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int				ft_power(int nb, int power)
 {
