@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "filler_visualiser.h"
 
 int				ft_key_simple_press(int key, t_master *mstr)
 {

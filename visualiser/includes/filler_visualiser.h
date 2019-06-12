@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   filler_visualiser.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:23:56 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/10 13:24:41 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/12 15:29:46 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FILLER_VISUALISER_H
+# define FILLER_VISUALISER_H
 
 # include <mlx.h>
 # include <stdlib.h>

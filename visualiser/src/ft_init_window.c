@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "filler_visualiser.h"
 
 void		ft_init_window(void **mem_ptr, t_master *mstr)
 {

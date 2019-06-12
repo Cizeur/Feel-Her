@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <filler_visualiser.h>
 
 static int	ft_rainbow(int val, int amp)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "filler_visualiser.h"
 
 void		ft_draw_pixel(t_master *mstr, int x, int y, int color)
 {

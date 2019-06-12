@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "filler_visualiser.h"
 
 void			ft_image_dump(void **mem_ptr)
 {

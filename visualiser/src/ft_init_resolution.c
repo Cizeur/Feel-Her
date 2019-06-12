@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "filler_visualiser.h"
 
 void		ft_init_resolution(t_master *mstr, char **argv, int argc)
 {

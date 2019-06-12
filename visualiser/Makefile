@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 10:25:47 by cgiron            #+#    #+#              #
-#    Updated: 2019/05/24 13:33:12 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/12 15:29:14 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ../filler_visualiser
 SRC_DIR := ./src
 INC_DIR := ./includes
 OBJ_DIR := ./obj
-INCL := $(INC_DIR)/fdf.h\
+INCL := $(INC_DIR)/filler_visualiser.h
 
 L_FT    := ./libft
 L_MLX	:= ./mlx
