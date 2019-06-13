@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 15:14:21 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/13 15:32:55 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ do
 		test_maps/a.out $RAND_MAP_SIZE > test_outputs/round_"$istr"_map
 		map=test_outputs/round_"$istr"_map
 	fi
-	echo "round" $istr/$n_turns " - seed: " $seed
+	echo "round" $istr/$n_turns "- seed:" $seed
 	total=0
 	for j in 1 2
 	do
@@ -124,8 +124,8 @@ do
 			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2\
 				 &> test_outputs/round_"$istr"_output_a
 		else
-			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2\
-				 &> test_outputs/round_"$istr"_output_b
+			(echo '$$$ invert' && ./filler_vm -s $seed -f $map -p1 $pstr1\
+				 -p2 $pstr2) &> test_outputs/round_"$istr"_output_b
 		fi
 		result=$(cat filler.trace | grep AGAINST | sed -e 's/AGAINST/ /g')
 		if [ $j -eq 1 ]; then
