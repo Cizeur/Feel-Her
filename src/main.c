@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/13 12:44:36 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/13 14:49:15 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 	ft_bzero((void *)mst, sizeof(t_filler));
 	while (!parser(mst))
 	{
-		write_mst(mst);	//debug
+	//	write_mst(mst);	//debug
 		mst->answerx = 0;
 		mst->answery = 0;
 		sub_solver(mst);
