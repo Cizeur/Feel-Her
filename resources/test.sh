@@ -6,15 +6,16 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 11:55:00 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/13 14:53:20 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-player1=$1
-player2=$2
+########################## Variables initialization ############################
 
+player1=""
+player2=""
 n_turns=10
 map=test_maps/test
 visualizer=../filler_visualiser
@@ -22,27 +23,87 @@ KEEP_OUTPUT=1
 RAND_MAP=1
 WATCH_PROMPT=1
 RAND_MAP_SIZE="30 25"
-
-# dont touch after this line --------------------------------------------------
-
 p1=0
 p2=0
 score_p1=0;
 score_p2=0;
 i=0
 
-if [ $KEEP_OUTPUT -ne 0 -o $RAND_MAP -ne 0 ]; then
-	mkdir -p test_outputs
-fi
+################################ Functions #####################################
+
+function usage
+{
+	printf "usage: test.sh p1 p2 [-n turns] [-m map] [-s width height] [-rkh]\n\n"
+	printf "	-h | --help:	Print this.\n"
+	printf "	-n | --turns:	Number of turns.\n"
+	printf "	-m | --map:	Give a map to 'test.sh'.\n"
+	printf "	-s | --size:	Size of the map to generate if it applies.\n"
+	printf "	-r | --random:	Generate a random map for each turn.\n"
+	printf "			It also keeps them in the test_outputs\n"
+	printf "			directory. This option supersedes the\n"
+	printf "			given map, if any.\n"
+	printf "	-k | --keep:	Keep output in test_outputs.\n"
+}
+
+############################# Options parser ###################################
+
+
+while [ "$1" != "" ]
+do
+	OPT=$1
+	case $OPT in
+		-h | --help )
+			usage
+			exit 0
+			;;
+		-n | --turns )
+			shift
+			n_turns=$1
+			;;
+		-m | --map )
+			shift
+			map=$1
+			;;
+		-s | --size )
+			shift
+			RAND_MAP=1
+			RAND_MAP_SIZE="$1 $2"
+			shift
+			;;
+		-r | --random )
+			RAND_MAP=1
+			;;
+		-k | --keep )
+			KEEP_OUTPUT=1
+			;;
+		* )
+			if [ "$player1" == "" ]; then
+				player1=$1
+			elif [ "$player2" == "" ]; then
+				player2=$1
+			fi
+			;;
+	esac
+	shift
+done
+
+################################ Main loop #####################################
+
+mkdir -p test_outputs
 
 while [ $i -lt $n_turns ]
 do
+	if [ $i -lt 10 ]; then
+		istr="0$((i+1))"
+	else
+		istr="$((i+1))"
+	fi
 	seed=$RANDOM
 	if [ $RAND_MAP -ne 0 ]; then
-		test_maps/a.out $RAND_MAP_SIZE > test_outputs/round_"$i"_map
-		map=test_outputs/round_"$i"_map
+		test_maps/a.out $RAND_MAP_SIZE > test_outputs/round_"$istr"_map
+		map=test_outputs/round_"$istr"_map
 	fi
-	echo "round" $((i+1))/$n_turns
+	echo "round" $istr/$n_turns
 	total=0
 	for j in 1 2
 	do
@@ -55,11 +116,12 @@ do
 			pstr1=$player2
 			pstr2=$player1
 		fi
-		if [ $KEEP_OUTPUT -ne 0 ]; then
-			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2 \
-				&> test_outputs/round_"$i"_output_"$j"
+		if [ $j -eq 1 ]; then
+			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2\
+				 &> test_outputs/round_"$istr"_output_a
 		else
-			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2 -q &> /dev/null
+			./filler_vm -s $seed -f $map -p1 $pstr1 -p2 $pstr2\
+				 &> test_outputs/round_"$istr"_output_b
 		fi
 		result=$(cat filler.trace | grep AGAINST | sed -e 's/AGAINST/ /g')
 		if [ $j -eq 1 ]; then
@@ -86,12 +148,14 @@ do
 	else
 		echo "no clear winer..."
 	fi
-	if [ $WATCH_PROMPT -ne 0 ]; then
-		read -p "watch round ? (y/n) " answer
-		if [ "$answer" == "y" -o "$answer" == "Y" ]; then
-			cat test_outputs/round_"$i"_output_1 | $visualizer &> /dev/null &
-			cat test_outputs/round_"$i"_output_2 | $visualizer &> /dev/null &
-		fi
+	read -p "watch round ? (y/n) " answer
+	if [ "$answer" == "y" -o "$answer" == "Y" ]; then
+		cat test_outputs/round_"$istr"_output_a | $visualizer &> /dev/null &
+		cat test_outputs/round_"$istr"_output_b | $visualizer &> /dev/null &
+	fi
+	if [ $KEEP_OUTPUT -eq 0 ]; then
+		rm test_outputs/round_"$istr"_output_a
+		rm test_outputs/round_"$istr"_output_b
 	fi
 	echo
 	((i++))
