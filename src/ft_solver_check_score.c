@@ -12,14 +12,21 @@
 
 #include "filler.h"
 
+static void	ft_update_solution(t_filler *mf, int score[2] ,int i, int j)
+{
+	mf->best_score[0] = score[0];
+	mf->answerx = i;
+	mf->answery = j;
+}
+
 int		ft_only_one_adversary(t_filler *mf, int i, int j)
 {
 	int cov_piece;
-	int	score;
+	int	score[2];
 	int ii;
 	int jj;
 
-	score = 0;
+	ft_bzero(score,sizeof(score));
 	cov_piece = 0;
 	jj = -1;
 	while ((ii = -1) && ++jj < mf->pszy)
@@ -31,17 +38,16 @@ int		ft_only_one_adversary(t_filler *mf, int i, int j)
 			cov_piece += mf->board[j + jj][i + ii] == mf->player ? 1 : 0;
 			if (mf->board[j + jj][i + ii] == mf->adv || cov_piece > 1)
 				return (0);
-			score += mf->board[j + jj][i + ii];
+			score[0] += mf->board[j + jj][i + ii];
+			score[1] += ft_abs( 2 * (i + ii) - mf->bszx) + 
+						ft_abs( 2 * (j + jj) - mf->bszy);
 		}
 	}
-	if (cov_piece != 1 || (score <= mf->best_score && mf->best_score))
-		return (cov_piece == 1 ? 1 : 0);
-	mf->best_score = score;
-	mf->answerx = i;
-	mf->answery = j;
+	if (cov_piece != 1 || (score[0] < mf->best_score[0] && mf->best_score[0] && mf->alone))
+		return (0);
+	ft_update_solution(mf, score, i, j);
 	return (1);
 }
-
 
 void	ft_solver_check_score(t_filler *mf, int i, int j)
 {
