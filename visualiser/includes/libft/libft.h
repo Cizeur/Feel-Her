@@ -6,7 +6,7 @@
 /*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 18:19:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/13 13:24:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/13 15:52:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ t_list			*ft_lstaddend(t_list *lst, void const *content,
 		size_t content_size);
 int				ft_tab_len(char **tab);
 int				ft_atoi_base(char *str, char *base);
+void			ft_swap(int *a, int *b);
 
 #endif

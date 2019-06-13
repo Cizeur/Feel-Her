@@ -30,6 +30,8 @@
 # define TOUCH_R 15
 # define TOUCH_Q 12
 # define TOUCH_W 13
+# define TOUCH_L 37
+# define LARGEUR_CHAR 10
 # define TILDE 50
 # define XRES 1080
 # define YRES 720
@@ -38,7 +40,7 @@
 # define MAX_YRES 2880
 # define BUFFER_READ 65536
 # define BUFFER_LINE (2 * BUFFER_READ) + 1
-# define TOP_ROW_THICKNESS 50
+# define TOP_ROW_THICKNESS 100
 # define MLX_PTR 0
 # define WIN_PTR 1
 # define I_PTR 2
@@ -49,6 +51,7 @@
 # define LAUNCH_S "launched "
 # define EXEC_1_S "$$$ exec p1"
 # define EXEC_2_S "$$$ exec p2"
+# define INVERT "$$$ invert"
 # define PLATEAU "Plateau"
 # define LN_PLAT_MAP 1
 # define STANDARD_EXIT -1
@@ -90,6 +93,8 @@ typedef struct	s_master
 	char		*player_1;
 	char		*player_2;
 	void		*mem_ptr[4];
+	int			score_1;
+	int			score_2;
 	int			turn;
 	int			read_lines;
 	int			xres;

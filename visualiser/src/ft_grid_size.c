@@ -20,7 +20,7 @@ void		ft_grid_size(t_master *mstr, int *size)
 	int max_y;
 
 	max_x = (mstr->xres - 1) * FILL_PERCENT / 100;
-	max_y = (mstr->yres - 1) * FILL_PERCENT / 100;
+	max_y = (mstr->yres - TOP_ROW_THICKNESS - 1) * FILL_PERCENT / 100;
 	multx = 0;
 	multy = 0;
 	while ((multx + 1) * size[1] < max_x)
@@ -31,7 +31,6 @@ void		ft_grid_size(t_master *mstr, int *size)
 	multy = mstr->square_tg ? ft_min(multx, multy) : multy;
 	mstr->mult_x = multx;
 	mstr->mult_y = multy;
-	mstr->top_corner[0] = ((mstr->yres - 1) - size[0] * multy) / 2
-							+ TOP_ROW_THICKNESS;
+	mstr->top_corner[0] = ((mstr->yres + TOP_ROW_THICKNESS - 1) - size[0] * multy) / 2;
 	mstr->top_corner[1] = ((mstr->xres - 1) - size[1] * multx) / 2;
 }

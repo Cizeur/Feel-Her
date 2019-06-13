@@ -108,7 +108,6 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 	int i;
 
 	start = line + 4;
-	//printf("test{{%s}}", start);
 	i = -1;
 	while(++i < mstr->size[1] && start[i])
 	{
@@ -120,7 +119,6 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 		mstr->map[j][i][1] = 0;
 		ft_amp_extract(mstr, *pos);
 	}
-	//printf ("valeur de %d sur %d || ", i, mstr->size[1]);
 	return (i == mstr->size[1] ? 1 : 0);
 }
 
@@ -152,10 +150,10 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 	mstr->fail_ind = 0;
 	while (size_check && ft_line_find(mstr, line))
 	{
+		if (ft_strstr(line, INVERT))
+			ft_swap(&(mstr->color_1_tg), &(mstr->color_2_tg));
 		if (ft_strstr(line, END_S))
-		{
 			mstr->still_reading = 0;
-		}
 		if (ft_strstr(line, LAUNCH_S))
 			mstr->turn = 0;
 		else if (ft_strstr(line, EXEC_1_S) || ft_strstr(line, EXEC_2_S))
@@ -171,11 +169,41 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 		ft_exit(FAIL_LINE_LEN, mstr);
 }
 
+void			ft_check_score(t_master *mstr, int *size)
+{
+	int i;
+	int j;
+	int check[2];
+
+	j = -1;
+	ft_bzero(check, sizeof(check));
+	while ((i = -1) && ++j < size[0])
+	{
+		while (++i < size[1])
+		{
+			check[0] = mstr->map[j][i][0] == 1 ? 1 : check[0];
+			check[1] = mstr->map[j][i][0] == -1 ? 1 : check[1];
+		}
+	}
+	mstr->score_1 += check[0] ? 1 : 0;
+	mstr->score_2 += check[1] ? 1 : 0;
+	if (mstr->score_1 > mstr->score_2 + 1 || mstr->score_2 > mstr->score_1)
+		mstr->updated = mstr->updated == 4 ? 2 : mstr->updated;
+}
+
+
 void			sub_parser_stockage(t_master *mstr)
 {
 	if (mstr->updated >= 2 && mstr->still_reading)
 	{
 		ft_map_find_extract(mstr, mstr->size);
+		if (mstr->still_reading)
+			ft_check_score(mstr, mstr->size);
+		else
+		{
+			mstr->color_1_g_tg = 0;
+			mstr->color_2_g_tg = 0;
+		}
 		mstr->updated = mstr->updated == 2 ? 1 : mstr->updated;
 	}
 }

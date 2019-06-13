@@ -41,4 +41,6 @@ void			ft_init_mstr(t_master *mstr)
 	mstr->square_tg = 0;
 	mstr->updated = 2;
 	mstr->still_reading = 1;
+	mstr->score_1 = -1;
+	mstr->score_2 = -1;
 }
