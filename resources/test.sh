@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 11:34:59 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/13 11:55:00 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ visualizer=../filler_visualiser
 KEEP_OUTPUT=1
 RAND_MAP=1
 WATCH_PROMPT=1
-RAND_MAP_SIZE="100 100"
+RAND_MAP_SIZE="30 25"
 
 # dont touch after this line --------------------------------------------------
 
@@ -89,8 +89,8 @@ do
 	if [ $WATCH_PROMPT -ne 0 ]; then
 		read -p "watch round ? (y/n) " answer
 		if [ "$answer" == "y" -o "$answer" == "Y" ]; then
-			cat test_outputs/round_"$i"_output_1 | $visualizer &
-			cat test_outputs/round_"$i"_output_2 | $visualizer &
+			cat test_outputs/round_"$i"_output_1 | $visualizer &> /dev/null &
+			cat test_outputs/round_"$i"_output_2 | $visualizer &> /dev/null &
 		fi
 	fi
 	echo
