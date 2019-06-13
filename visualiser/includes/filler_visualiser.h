@@ -35,6 +35,8 @@
 # define FILL_PERCENT 80
 # define MAX_XRES 5120
 # define MAX_YRES 2880
+# define BUFFER_READ 65536
+# define BUFFER_LINE (2 * BUFFER_READ) + 1
 # define TOP_ROW_THICKNESS 50
 # define MLX_PTR 0
 # define WIN_PTR 1
@@ -81,6 +83,7 @@ typedef struct	s_master
 {
 	t_list		*output;
 	t_list		*current;
+	char		*buffer_pos;
 	int			still_reading;
 	int			fail_ind;
 	char		*player_1;

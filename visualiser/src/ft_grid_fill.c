@@ -21,8 +21,10 @@ void		ft_cell_fill(t_master *mstr, int i, int j)
 	while (++jj <= mstr->mult_y)
 	{
 		pos[2] = mstr->map[j][i][0] < 0 ? 
-		ft_color_gradient(mstr->map[j][i][0] - mstr->amp_x[0] , mstr->amp_x[2] , mstr->color_2_tg, mstr->color_2_g_tg):
-		ft_color_gradient(mstr->amp_o[0] - mstr->map[j][i][0] , mstr->amp_o[2] , mstr->color_1_tg, mstr->color_1_g_tg);
+		ft_color_gradient(mstr->map[j][i][0] - mstr->amp_x[0], mstr->amp_x[2],
+		 	mstr->color_2_tg, mstr->color_2_g_tg):
+		ft_color_gradient(mstr->amp_o[0] - mstr->map[j][i][0], mstr->amp_o[2],
+		 	mstr->color_1_tg, mstr->color_1_g_tg);
 		pos[0] = mstr->top_corner[0] + j * mstr->mult_y + jj;
 		pos[1] = mstr->top_corner[1] + i * mstr->mult_x;
 		if((ft_abs(mstr->map[j][i][0]) == 1 && jj % 2))

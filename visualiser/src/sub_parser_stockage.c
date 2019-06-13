@@ -11,25 +11,6 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
-/* 
-static int		ft_line_jump(int fd, int nb_lines)
-{
-	char *line;
-	int r;
-	int actual_lines;
-
-	r = 1;
-	actual_lines = nb_lines;
-	if (nb_lines < 0)
-		return (-1);
-	while (actual_lines && (r = get_next_line(fd,&line) >= 0))
-	{
-		actual_lines--;
-		free(line);
-	}
-	return (r < 0 ? -1 : nb_lines - actual_lines);
-}
-*/
 
 static int		ft_check_size(char *line, int *size)
 {
@@ -98,34 +79,26 @@ void			ft_amp_extract(t_master *mstr, int val)
 int 					ft_line_find(t_master *mstr, char  *line)
 {
 	char *pos;
-	t_list *current;
+	char *bufferpos;
 
-	current = mstr->current;
-	if (!current || (*((char *)current->content) == 0 && !current->next))
+	ft_bzero(line, BUFFER_LINE);
+	bufferpos = mstr->buffer_pos;
+	if (!bufferpos)
 		return (0);
-	mstr->read_lines++;
-	if (current->content)
-	ft_bzero(line, MAX_XRES * 2 + 1);
-	if((pos = ft_strchr(current->content, '\n')))
-	{	
-		*pos = 0;
-		ft_strcpy(line, current->content);
-		ft_strcpy(current->content, pos + 1);
-	}
-	else
+	while(bufferpos && !(pos = ft_strchr(bufferpos, '\n')))
 	{
-		ft_strcpy(line, current->content);
-		current = current->next;
-		mstr->current = current;
-		if (current)
-		{
-			if((pos = ft_strchr(current->content, '\n')))
-				*pos = 0;
-			ft_strcpy(line + ft_strlen(line), current->content);
-			ft_strcpy(current->content, pos ? pos + 1 : "");
-		}
+		ft_strcpy(line + ft_strlen(line), bufferpos);
+		mstr->current = mstr->current->next;
+		bufferpos = mstr->current ? mstr->current->content : NULL;
 	}
-	return(1);
+	if ((mstr->buffer_pos = bufferpos))
+	{
+		mstr->buffer_pos = pos + 1;
+		ft_strcpy(line + ft_strlen(line), bufferpos);
+		pos = ft_strchr(line, '\n');
+		*pos = 0;
+	} 
+	return (1);
 }
 
 static int		ft_line_extract(t_master *mstr, char *line, int j)
@@ -134,9 +107,8 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 	int *pos;
 	int i;
 
-	if (!(start = ft_strchr(line, ' ')))
-		return (0);
-	start++;
+	start = line + 4;
+	//printf("test{{%s}}", start);
 	i = -1;
 	while(++i < mstr->size[1] && start[i])
 	{
@@ -148,6 +120,7 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 		mstr->map[j][i][1] = 0;
 		ft_amp_extract(mstr, *pos);
 	}
+	//printf ("valeur de %d sur %d || ", i, mstr->size[1]);
 	return (i == mstr->size[1] ? 1 : 0);
 }
 
@@ -155,8 +128,10 @@ static int		ft_map_extract(t_master *mstr, int *size)
 {
 	int j;
 	int check_line;
-	char	line[2 * MAX_XRES + 1];
+	char	line[BUFFER_LINE];
 
+	ft_bzero(mstr->amp_o, sizeof(int) * 3);
+	ft_bzero(mstr->amp_x, sizeof(int) * 3);
 	ft_line_find(mstr, line);
 	if (!mstr->current)
 		return(-1);
@@ -192,8 +167,6 @@ static void		ft_map_find_extract(t_master *mstr, int *size)
 			break;
 		}
 	}
-	if (!mstr->current)
-		ft_exit(FAIL_READ_LINE, mstr);
 	if (!size_check || size[0] <= 0)
 		ft_exit(FAIL_LINE_LEN, mstr);
 }
@@ -202,8 +175,6 @@ void			sub_parser_stockage(t_master *mstr)
 {
 	if (mstr->updated >= 2 && mstr->still_reading)
 	{
-		ft_bzero(mstr->amp_o, sizeof(int) * 3);
-		ft_bzero(mstr->amp_x, sizeof(int) * 3);
 		ft_map_find_extract(mstr, mstr->size);
 		mstr->updated = mstr->updated == 2 ? 1 : mstr->updated;
 	}

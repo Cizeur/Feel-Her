@@ -29,7 +29,7 @@ void			ft_exit(int code, t_master *mstr)
 	if ((mstr->mem_ptr)[WIN_PTR] && (mstr->mem_ptr)[MLX_PTR])
 		mlx_destroy_window((mstr->mem_ptr)[MLX_PTR], (mstr->mem_ptr)[WIN_PTR]);
 	ft_standard_exit(code, mstr);
-	printf("ligne - ||%.120s|| et num %d\n", mstr->current->content, mstr->read_lines);
+	printf("ligne - ||%.120s|| et num %d\n", mstr->buffer_pos, mstr->read_lines);
 	ft_putstr("\r");
 	if (code == STANDARD_EXIT)
 		exit(0);
