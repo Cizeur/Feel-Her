@@ -26,18 +26,7 @@ static void		ft_init_mouse(t_master *mstr)
 
 void			ft_init_mstr(t_master *mstr)
 {
-	int i;
-	int j;
-
-	i = -1;
-	while ((j = -1) && ++i < XRES)
-	{
-		while (++j < YRES)
-		{
-			mstr->map[j][i][0] = 0;
-			mstr->map[j][i][1] = 0;
-		}
-	}
+	ft_bzero(mstr->map, sizeof(mstr->map));
 	ft_init_mouse(mstr);
 	mstr->size[0] = -1;
 	mstr->size[1] = -1;

@@ -27,6 +27,7 @@
 # define TOUCH_1 18
 # define TOUCH_2 19
 # define TOUCH_P 35
+# define TOUCH_R 15
 # define TOUCH_Q 12
 # define TOUCH_W 13
 # define TILDE 50

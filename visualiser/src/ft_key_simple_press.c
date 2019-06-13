@@ -27,6 +27,13 @@ int				ft_key_simple_press(int key, t_master *mstr)
 		mstr->color_1_g_tg = (mstr->color_1_g_tg + 1) % 2;
 	if (key == TOUCH_W && (mstr->updated = ft_max(mstr->updated, 1)))
 		mstr->color_2_g_tg = (mstr->color_2_g_tg + 1) % 2;
+	if (key == TOUCH_R && (mstr->updated = 2))
+	{
+		mstr->still_reading = 1;
+		mstr->current = mstr->output;
+		mstr->buffer_pos = (char *)mstr->current->content;
+		ft_bzero(mstr->map, sizeof(mstr->map));
+	}
 	if (key == TOUCH_P)
 		mstr->updated = 3;
 	return (key);
