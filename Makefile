@@ -37,6 +37,7 @@ vpath			%.c	$(SRCDIR)
 all: $(NAME)
 
 $(NAME): $(SRCDIR)/$(SUB1D)/libft.a $(ODIR) $(OBJ)
+	make -C visualiser 
 	$(CC) $(CFLAGS) -o $@ $(patsubst %.o,$(ODIR)/%.o,$(OBJ)) $(LIBS)
 
 $(SRCDIR)/$(SUB1D)/libft.a:
@@ -62,10 +63,12 @@ $(ODIR):
 ############################## CLEANUP #########################################
 
 clean:
+	make clean -C visualiser 
 	rm -rf $(ODIR)
 	make -C $(SRCDIR)/$(SUB1D) fclean
 
 fclean: clean
+	make fclean -C visualiser 
 	rm -f $(NAME)
 
 re: fclean all
