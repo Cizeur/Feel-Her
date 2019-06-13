@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 10:51:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 15:22:10 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/13 15:49:37 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/13 15:52:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+void		ft_swap(int *a, int *b)
+{
+	int temp;
 
-# define BUFF_SIZE 4096 
-# include "libft.h"
-# define MAX_FD 590432
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}

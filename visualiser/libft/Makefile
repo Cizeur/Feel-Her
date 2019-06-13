@@ -6,7 +6,7 @@
 #    By: cgiron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/10 09:14:20 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/13 15:53:12 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ SRC = ft_memset.c \
 	  ft_lstaddend.c\
 	  ft_tab_len.c\
 	  get_next_line.c\
-	  ft_atoi_base.c
+	  ft_atoi_base.c\
+	  ft_swap.c
 
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
