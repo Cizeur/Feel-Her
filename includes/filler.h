@@ -37,8 +37,7 @@ typedef struct	s_filler
 	int			answery;
 	int			player;
 	int			adv;
-	int			best_score;
-	int			best_sec_score;
+	int			best_score[2];
 	int			round;
 	int			alone;
 }				t_filler;
