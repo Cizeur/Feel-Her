@@ -6,7 +6,7 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 09:41:15 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/13 14:49:15 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/13 14:55:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	write_mst(t_filler *mst)
 	dprintf(fd, "\nanswery=%d", mst->answery);
 	dprintf(fd, "\nplayer=%s", mst->player == P_O ? "P_O" : "P_X");
 	dprintf(fd, "\nadv=%s", mst->adv == P_O ? "P_O" : "P_X");
-	dprintf(fd, "\nbest_score=%d", mst->best_score);
 	dprintf(fd, "\nround=%d", mst->round);
 	dprintf(fd, "\nalone=%d\n", mst->alone);
 }
