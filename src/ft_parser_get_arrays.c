@@ -6,18 +6,19 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:48:49 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/11 12:19:35 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/13 12:31:56 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include "get_next_line.h"
 
-static int	fill_board(const char *line, int *board, int len)
+static int	fill_board(t_filler *mst, const char *line, int *board, int len)
 {
 	int	j;
 
 	j = 0;
+	mst->alone = mst->alone || !mst->round ? mst->alone : 1;
 	while (line[j] && j < len)
 	{
 		board[j] = P_OBS;
@@ -27,6 +28,8 @@ static int	fill_board(const char *line, int *board, int len)
 			board[j] = P_X;
 		else if (line[j] == '.')
 			board[j] = P_EMPTY;
+		if (!mst->round && !mst->alone && (line[j] == 'o' || line[j] == 'x'))
+			mst->alone = 0;
 		++j;
 	}
 	if (line[j] || j < len)
@@ -50,7 +53,7 @@ int			ft_parser_get_board(t_filler *mst)
 	while (i < mst->bszy && get_next_line(0, &line) > -1)
 	{
 		if (ft_strlen(line) < 4
-			|| fill_board(line + 4, mst->board[i++], mst->bszx))
+			|| fill_board(mst, line + 4, mst->board[i++], mst->bszx))
 		{
 			free(line);
 			return (1);
