@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/11 12:17:58 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/13 12:24:19 by yforeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_filler
 	int			adv;
 	int			best_score;
 	int			round;
+	int			alone;
 }				t_filler;
 
 /*
