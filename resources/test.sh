@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 15:32:55 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/13 15:34:42 by yforeau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,11 @@ do
 	esac
 	shift
 done
+
+if [ "$player1" == "" -o "$player2" == "" ]; then
+	echo "Error: not enough players"
+	exit 1
+fi
 
 ################################ Main loop #####################################
 
