@@ -6,13 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 09:53:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/10 14:18:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 11:25:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-void		ft_draw_pixel(t_master *mstr, int x, int y, int color)
+void		ft_image_draw_pixel(t_master *mstr, int x, int y, int color)
 {
 	char	*img_cont;
 
