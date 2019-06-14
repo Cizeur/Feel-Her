@@ -33,7 +33,6 @@ void	ft_list_generate(t_master *mstr)
 	}
 	if (r == -1 || !mstr->read_lines)
 		ft_exit(FAIL_LISTING, mstr);
-	printf("nombre de carac - %d\n\n", mstr->read_lines);
 	mstr->read_lines = 0;
 	mstr->current = mstr->output;
 	mstr->buffer_pos = (char *)mstr->current->content;

@@ -13,21 +13,17 @@
 #include "filler_visualiser.h"
 
 
-static void		ft_standard_exit(int code, t_master *mstr)
+static void		ft_standard_exit(t_master *mstr)
 {
-	code = 0;
-	mstr = NULL;
-	//if (code == STANDARD_EXIT)
-	//	mlx_destroy_image(mstr->mem_ptr[MLX_PTR], mstr->mem_ptr[I_PTR]);
+	if ((mstr->mem_ptr)[WIN_PTR] && (mstr->mem_ptr)[MLX_PTR])
+		mlx_destroy_window((mstr->mem_ptr)[MLX_PTR], (mstr->mem_ptr)[WIN_PTR]);
+	if ((mstr->mem_ptr)[MLX_PTR] && (mstr->mem_ptr)[I_PTR])
+		mlx_destroy_image(mstr->mem_ptr[MLX_PTR], mstr->mem_ptr[I_PTR]);
 }
 
 void			ft_exit(int code, t_master *mstr)
 {
-	printf("Exit-code : %d\n", code);	
-	if ((mstr->mem_ptr)[WIN_PTR] && (mstr->mem_ptr)[MLX_PTR])
-		mlx_destroy_window((mstr->mem_ptr)[MLX_PTR], (mstr->mem_ptr)[WIN_PTR]);
-	ft_standard_exit(code, mstr);
-	printf("ligne - ||%.120s|| et num %d\n", mstr->buffer_pos, mstr->read_lines);
+	ft_standard_exit(mstr);
 	ft_putstr("\r");
 	if (code == STANDARD_EXIT)
 		exit(0);

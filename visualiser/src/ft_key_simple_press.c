@@ -12,13 +12,8 @@
 
 #include "filler_visualiser.h"
 
-int				ft_key_simple_press(int key, t_master *mstr)
+static void		ft_color_toggling(int key, t_master *mstr)
 {
-	close(0);
-	key != ESCAPE ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
-		printf("key - %d\n", key);
-	if (key == TILDE && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
-		mstr->square_tg = (mstr->square_tg + 1) % 2;
 	if (key == TOUCH_1 && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
 		mstr->color_1_tg = (mstr->color_1_tg + 1) % 8;
 	if (key == TOUCH_2 && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
@@ -27,16 +22,30 @@ int				ft_key_simple_press(int key, t_master *mstr)
 		mstr->color_1_g_tg = (mstr->color_1_g_tg + 1) % 2;
 	if (key == TOUCH_W && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
 		mstr->color_2_g_tg = (mstr->color_2_g_tg + 1) % 2;
+}
+
+static void		ft_reset_game(t_master *mstr)
+{
+	if (mstr->player_1)
+		ft_memdel((void **)&mstr->player_1);
+	if (mstr->player_2)
+		ft_memdel((void **)&mstr->player_2);
+	ft_init_mstr(mstr);
+	mstr->current = mstr->output;
+	mstr->buffer_pos = (char *)mstr->current->content;
+}
+
+int				ft_key_simple_press(int key, t_master *mstr)
+{
+	key != ESCAPE ? key = key + 0 : ft_exit(STANDARD_EXIT, mstr);
+	ft_color_toggling(key, mstr);
+	if (key == TILDE && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
+		mstr->square_tg = (mstr->square_tg + 1) % 2;
 	if (key == TOUCH_L)
 		mstr->updated = U_TO_LOOSE;
-	if (key == TOUCH_R && (mstr->updated = 2))
-	{
-		ft_init_mstr(mstr);
-		mstr->current = mstr->output;
-		mstr->buffer_pos = (char *)mstr->current->content;
-	}
+	if (key == TOUCH_R && (mstr->updated = U_ONE_TURN))
+		ft_reset_game(mstr);
 	if (key == TOUCH_P)
 		mstr->updated = U_TO_THE_END;
 	return (key);
-
 }

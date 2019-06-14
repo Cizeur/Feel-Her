@@ -23,6 +23,12 @@ L_MLX	:= ./mlx
 SRC := main.c\
 	sub_parser_stockage.c\
 	ft_parser_check_size.c\
+	ft_parser_output_skimmer.c\
+	ft_parser_gnl.c\
+	ft_parser_check_score.c\
+	ft_parser_special_cases.c\
+	ft_parser_map_update.c\
+	ft_parser_player_get.c\
 	ft_init_resolution.c\
 	ft_init_mstr.c\
 	ft_write_usage.c\
