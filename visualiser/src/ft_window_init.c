@@ -6,13 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 10:48:33 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/15 15:36:09 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 11:43:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-void		ft_init_window(void **mem_ptr, t_master *mstr)
+void		ft_window_init(void **mem_ptr, t_master *mstr)
 {
 	mem_ptr[MLX_PTR] = mlx_init();
 	if (!(mem_ptr[WIN_PTR] = mlx_new_window(mem_ptr[MLX_PTR],
