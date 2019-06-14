@@ -14,7 +14,7 @@
 
 int				ft_loop_hook(t_master *mstr)
 {
-	if (mstr->updated)
+	if (mstr->updated != U_IDLE)
 		ft_refresh(mstr);
 	return(1);
 }
@@ -25,9 +25,6 @@ void	hook_loops(t_master *mstr)
 	mlx_hook((mstr->mem_ptr)[WIN_PTR], 2, 0, ft_key_loop, mstr);
 	mlx_loop_hook((mstr->mem_ptr)[MLX_PTR], ft_loop_hook, mstr);
 	mlx_expose_hook((mstr->mem_ptr)[WIN_PTR],ft_loop_hook, mstr);
-//	mlx_hook((mstr->mem_ptr)[WIN_PTR], 4, 0, ft_mouse_pressed, mstr);
-//	mlx_hook((mstr->mem_ptr)[WIN_PTR], 5, 0, ft_mouse_released, mstr);
-//	mlx_hook((mstr->mem_ptr)[WIN_PTR], 6, 0, ft_mouse_moved, mstr);
 }
 
 int		main(int argc, char **argv)
@@ -46,10 +43,10 @@ int		main(int argc, char **argv)
 		ft_write_usage();
 	else
 	{
-		ft_init_window(mstr->mem_ptr, mstr);
-		ft_image_fresh(mstr->mem_ptr, mstr);
 		ft_list_generate(mstr);
-		ft_refresh(mstr);
+		sub_parser_stockage(mstr);
+		ft_window_init(mstr->mem_ptr, mstr);
+		ft_image_init(mstr->mem_ptr, mstr);
 		hook_loops(mstr);
 		mlx_loop((mstr->mem_ptr)[MLX_PTR]);
 	}

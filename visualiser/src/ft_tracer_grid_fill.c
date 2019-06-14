@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_grid_fill.c                                     :+:      :+:    :+:   */
+/*   ft_tracer_grid_fill.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 09:39:39 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/11 09:39:42 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/14 14:16:57 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/14 14:17:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-void		ft_cell_fill(t_master *mstr, int i, int j)
+static void		ft_tracer_cell_fill(t_master *mstr, int i, int j)
 {
 	int jj;
 	int pos[3];
@@ -29,13 +29,11 @@ void		ft_cell_fill(t_master *mstr, int i, int j)
 		pos[1] = mstr->top_corner[1] + i * mstr->mult_x;
 		if((ft_abs(mstr->map[j][i][0]) == 1 && jj % 2))
 			pos[2] = ft_rgb(255, 255, 255);
-		ft_line_trace(mstr, pos, mstr->mult_x , HORI);
+		ft_image_line_trace(mstr, pos, mstr->mult_x , HORI);
 	}
 }
 
-
-
-void		ft_grid_fill(t_master *mstr, int *size)
+void		ft_tracer_grid_fill(t_master *mstr, int *size)
 {
 	int		i;
 	int		j;
@@ -44,9 +42,9 @@ void		ft_grid_fill(t_master *mstr, int *size)
 	while ((i = -1) && ++j <= size[0])
 	{
 		while (++i <= size[1])
-	{
-		if (mstr->map[j][i][0])
-			ft_cell_fill(mstr, i, j);
-	}
+		{
+			if (mstr->map[j][i][0])
+				ft_tracer_cell_fill(mstr, i, j);
+		}
 	}
 }

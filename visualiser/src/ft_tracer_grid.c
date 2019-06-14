@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_grid_trace.c                                    :+:      :+:    :+:   */
+/*   ft_tracer_grid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 16:18:09 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/10 16:18:12 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/14 14:17:46 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/14 14:17:47 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "filler_visualiser.h"
 
-void		ft_grid_trace(t_master *mstr, int *size)
+void		ft_tracer_grid(t_master *mstr, int *size)
 {
 	int		i;
 	int		pos[3];
@@ -23,13 +24,13 @@ void		ft_grid_trace(t_master *mstr, int *size)
 	{
 		pos[0] = mstr->top_corner[0] + i * mstr->mult_y;
 		pos[1] = mstr->top_corner[1];
-		ft_line_trace(mstr, pos, mstr->mult_x * size[1] , HORI);
+		ft_image_line_trace(mstr, pos, mstr->mult_x * size[1] , HORI);
 	}
 	i = -1;
 	while (++i <= size[1])
 	{
 		pos[0] = mstr->top_corner[0];
 		pos[1] = mstr->top_corner[1] + i * mstr->mult_x;
-		ft_line_trace(mstr, pos, mstr->mult_y * size[0] , VERT);
+		ft_image_line_trace(mstr, pos, mstr->mult_y * size[0] , VERT);
 	}
 }

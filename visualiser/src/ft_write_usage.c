@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 09:47:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/15 10:21:49 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 12:01:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_write_usage(void)
 {
-	ft_putstr("Usage : ./fdf <filename> [ x_size y_size ]\n");
+	ft_putstr("[filler.vm] | filler_visualiseur [size x size y] ");
 }

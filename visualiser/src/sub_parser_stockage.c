@@ -12,21 +12,6 @@
 
 #include "filler_visualiser.h"
 
-static int		ft_check_size(char *line, int *size)
-{
-	char *number;
-	if (size[0] != -1 && size[1] != -1)
-		return (1);
-	if (!(number = ft_strchr(line,' ')) || ft_atoi(number + 1) <= 0)
-		return (0);
-	size[0] = ft_atoi(number + 1);
-	*number = '|';
-	if (!(number = ft_strchr(line,' ')) || ft_atoi(number + 1) <= 0)
-		return (0);
-	size[1] = ft_atoi(number + 1);
-	return(1);
-}
-
 static void		ft_player_extract(t_master *mstr,char *line)
 {
 	char *shorter;
@@ -122,7 +107,7 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 	return (i == mstr->size[1] ? 1 : 0);
 }
 
-static int		ft_map_extract(t_master *mstr, int *size)
+static int		ft_parser_map_extract(t_master *mstr, int *size)
 {
 	int j;
 	int check_line;
@@ -141,27 +126,26 @@ static int		ft_map_extract(t_master *mstr, int *size)
 }
 
 
-static void		ft_map_find_extract(t_master *mstr, int *size)
+static void		ft_parser_output_skimmer(t_master *mstr, int *size)
 {
 	char	line[2 * MAX_XRES + 1];
 	int		size_check;
 
 	size_check = 1;
-	mstr->fail_ind = 0;
 	while (size_check && ft_line_find(mstr, line))
 	{
-		if (ft_strstr(line, INVERT))
+		if (line == ft_strstr(line, INVERT))
 			ft_swap(&(mstr->color_1_tg), &(mstr->color_2_tg));
 		if (ft_strstr(line, END_S))
 			mstr->still_reading = 0;
 		if (ft_strstr(line, LAUNCH_S))
-			mstr->turn = 0;
+			size_check = 1;
 		else if (ft_strstr(line, EXEC_1_S) || ft_strstr(line, EXEC_2_S))
 			ft_player_extract(mstr, line);
-		else if (ft_strstr(line, PLATEAU))
+		else if (ft_strstr(line, PLATEAU_S))
 		{
-			if ((size_check = ft_check_size(line, size)))
-				size_check = ft_map_extract(mstr,size);
+			if ((size_check = ft_parser_check_size(line, size)))
+				size_check = ft_parser_map_extract(mstr,size);
 			break;
 		}
 	}
@@ -196,7 +180,7 @@ void			sub_parser_stockage(t_master *mstr)
 {
 	if (mstr->updated >= 2 && mstr->still_reading)
 	{
-		ft_map_find_extract(mstr, mstr->size);
+		ft_parser_output_skimmer(mstr, mstr->size);
 		if (mstr->still_reading)
 			ft_check_score(mstr, mstr->size);
 		else

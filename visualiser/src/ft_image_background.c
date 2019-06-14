@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 10:46:47 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:13:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 11:24:07 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void			ft_image_background(t_master *mstr)
 	{
 		j = -1;
 		while (++j < mstr->yres)
-			ft_draw_pixel(mstr, i, j, ft_rgb(0, 0, 0));
+			ft_image_draw_pixel(mstr, i, j, ft_rgb(0, 0, 0));
 	}
 }

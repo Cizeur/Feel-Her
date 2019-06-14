@@ -1,1 +1,0 @@
-cc -I /usr/local/include main.c fdf.h -L /usr/local/lib/ -lmlx -framework OpenGl -framework AppKit -Wall -Werror -Wextra

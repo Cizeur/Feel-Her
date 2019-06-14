@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 10:50:03 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/11 10:31:06 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 12:18:29 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static int	ft_rainbow(int val, int amp)
 	int b;
 
 	col = amp ? COLOR_AMP - val * (COLOR_AMP) / amp : COLOR_AMP;
-	r = col <= 255 ? 255 : 0;
+	b = col <= 255 ? 255 : 0;
 	g = col <= 255 ? col : 0;
-	b = 0;
-	r = col <= 510 && col > 255 ? 510 - col : r;
+	r = 0;
+	b = col <= 510 && col > 255 ? 510 - col : b;
 	g = col <= 510 && col > 255 ? 255 : g;
 	g = col <= 765 && col > 510 ? 255 : g;
-	b = col <= 765 && col > 510 ? col - 510 : 0;
+	r = col <= 765 && col > 510 ? col - 510 : 0;
 	g = col <= 1020 && col > 765 ? 1020 - col : g;
-	b = col <= 1020 && col > 765 ? 255 : b;
-	b = col <= 1275 && col > 1020 ? 255 : b;
-	r = col <= 1275 && col > 1020 ? col - 1020 : r;
+	r = col <= 1020 && col > 765 ? 255 : r;
+	r = col <= 1275 && col > 1020 ? 255 : r;
+	b = col <= 1275 && col > 1020 ? col - 1020 : b;
 	return (ft_rgb(r, g, b));
 }
 

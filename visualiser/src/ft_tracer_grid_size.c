@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_grid_size.c                                     :+:      :+:    :+:   */
+/*   ft_tracer_grid_size.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 15:07:44 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/10 15:08:54 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/14 14:17:28 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/14 14:17:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "filler_visualiser.h"
 
-void		ft_grid_size(t_master *mstr, int *size)
+void		ft_tracer_grid_size(t_master *mstr, int *size)
 {
 	int multx;
 	int multy;

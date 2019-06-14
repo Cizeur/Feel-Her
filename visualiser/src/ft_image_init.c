@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_text_draw.c                                     :+:      :+:    :+:   */
+/*   ft_image_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 17:34:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/10 17:34:26 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/14 14:19:25 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/14 14:19:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-void	ft_text_draw(t_master *mstr, int pos[2], int color, char *text)
+void			ft_image_init(void **mem_ptr, t_master *mstr)
 {
-	if (!text)
-		return;
-	mlx_string_put (mstr->mem_ptr[MLX_PTR],
-	 mstr->mem_ptr[WIN_PTR], 
-	 pos[0], pos[1],
-	 color, text);
+	int data_prm[3];
+
+	mem_ptr[I_PTR] = mlx_new_image(mem_ptr[MLX_PTR], mstr->xres, mstr->yres);
+	if (!mem_ptr[I_PTR])
+		ft_exit(FAIL_IMAGE_CREATION, mstr);
+	mem_ptr[I_ADR] = mlx_get_data_addr(mem_ptr[I_PTR],
+			&(data_prm[0]), &(data_prm[1]), &(data_prm[2]));
 }

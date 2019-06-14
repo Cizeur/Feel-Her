@@ -22,25 +22,29 @@ L_MLX	:= ./mlx
 
 SRC := main.c\
 	sub_parser_stockage.c\
+	ft_parser_check_size.c\
 	ft_init_resolution.c\
 	ft_init_mstr.c\
 	ft_write_usage.c\
 	ft_exit.c\
-	ft_key_simple_press.c\
-	ft_init_window.c\
-	ft_grid_size.c\
-	ft_image_fresh.c\
-	ft_rgb.c\
-	ft_grid_trace.c\
-	ft_line_trace.c\
-	ft_draw_pixel.c\
-	ft_image_dump.c\
-	ft_text_draw.c\
-	ft_refresh.c\
+	ft_window_init.c\
+	ft_window_top_bar.c\
+	ft_window_text_draw.c\
+	ft_tracer.c\
+	ft_tracer_grid_size.c\
+	ft_tracer_grid.c\
+	ft_tracer_grid_fill.c\
+	ft_image_init.c\
 	ft_image_background.c\
-	ft_grid_fill.c\
-	ft_key_loop.c\
+	ft_image_top_bar_bg.c\
+	ft_image_line_trace.c\
+	ft_image_draw_pixel.c\
+	ft_image_dump.c\
 	ft_color_gradient.c\
+	ft_rgb.c\
+	ft_refresh.c\
+	ft_key_loop.c\
+	ft_key_simple_press.c\
 	ft_list_generate.c
 
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 14:42:01 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/11 14:42:21 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/14 12:03:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_list_generate(t_master *mstr)
 			ft_exit(FAIL_LISTING, mstr);
 		ft_bzero(buffer, BUFFER_READ + 1);
 	}
-	if (r == -1)
+	if (r == -1 || !mstr->read_lines)
 		ft_exit(FAIL_LISTING, mstr);
 	printf("nombre de carac - %d\n\n", mstr->read_lines);
 	mstr->read_lines = 0;
