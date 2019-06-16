@@ -29,4 +29,6 @@ void			ft_init_mstr(t_master *mstr)
 	mstr->still_reading = 1;
 	mstr->score_1 = -1;
 	mstr->score_2 = -1;
+	mstr->heatmap_tg = 0;
+	mstr->heatmap_c_tg = 6;
 }

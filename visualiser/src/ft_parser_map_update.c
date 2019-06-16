@@ -56,7 +56,6 @@ static int		ft_line_extract(t_master *mstr, char *line, int j)
 		*pos -= start[i] == 'X' ? 1 : 0;
 		*pos = start[i] == 'o' ? 1 : *pos;
 		*pos = start[i] == 'x' ? -1 : *pos;
-		mstr->map[j][i][1] = 0;
 		ft_amp_extract(mstr, *pos);
 	}
 	return (i == mstr->size[1] ? 1 : 0);

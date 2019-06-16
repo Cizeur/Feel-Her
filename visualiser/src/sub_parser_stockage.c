@@ -26,4 +26,6 @@ void			sub_parser_stockage(t_master *mstr)
 		}
 		mstr->updated = mstr->updated == U_ONE_TURN ? U_THE_MAP : mstr->updated;
 	}
+	if (mstr->heatmap_tg && mstr->updated >= U_THE_MAP)
+			ft_parser_heatmap(mstr);
 }

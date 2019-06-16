@@ -16,6 +16,7 @@ void			ft_tracer(t_master *mstr)
 {
 		ft_tracer_grid_size(mstr, mstr->size);
 		ft_tracer_grid(mstr, mstr->size);
+		ft_tracer_grid_heatmap_fill(mstr, mstr->size);
 		ft_tracer_grid_fill(mstr, mstr->size);
 }
 

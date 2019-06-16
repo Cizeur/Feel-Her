@@ -32,11 +32,13 @@
 # define SPACEBAR 49
 # define TOUCH_1 18
 # define TOUCH_2 19
+# define TOUCH_3 20
 # define TOUCH_P 35
 # define TOUCH_R 15
 # define TOUCH_Q 12
 # define TOUCH_W 13
 # define TOUCH_L 37
+# define TOUCH_H 4
 # define TILDE 50
 /*
 **	UPDATE VALUES
@@ -129,6 +131,8 @@ typedef struct	s_master
 	int			top_corner[2];
 	int			updated;
 	int			square_tg;
+	int			heatmap_tg;
+	int			heatmap_c_tg;
 	int			color_1_tg;
 	int			color_2_tg;
 	int			color_1_g_tg;
@@ -159,6 +163,7 @@ void			ft_parser_check_score(t_master *mstr, int *size);
 void			ft_parser_player_get(t_master *mstr, char  *line);
 void			ft_parser_special_cases(t_master *mstr, char  *line);
 int				ft_parser_map_update(t_master *mstr, int *size);
+void			ft_parser_heatmap(t_master *mstr);
 /*
 **	BIBLIOTEQUE WINDOW
 */
@@ -181,8 +186,9 @@ void			ft_tracer(t_master *mstr);
 void			ft_tracer_grid(t_master *mstr, int *size);
 void			ft_tracer_grid_size(t_master *mstr, int *size);
 void			ft_tracer_grid_fill(t_master *mstr, int *size);
+void			ft_tracer_grid_heatmap_fill(t_master *mstr, int *size);
 /*
-**	
+**
 */
 int				ft_key_simple_press(int key, t_master *mstr);
 int				ft_key_loop(int key, t_master *mstr);

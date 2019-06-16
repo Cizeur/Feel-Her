@@ -20,7 +20,7 @@ static void		ft_tracer_cell_fill(t_master *mstr, int i, int j)
 	jj= -1;
 	while (++jj <= mstr->mult_y)
 	{
-		pos[2] = mstr->map[j][i][0] < 0 ? 
+		pos[2] = mstr->map[j][i][0] < 0 ?
 		ft_color_gradient(mstr->map[j][i][0] - mstr->amp_x[0], mstr->amp_x[2],
 		 	mstr->color_2_tg, mstr->color_2_g_tg):
 		ft_color_gradient(mstr->amp_o[0] - mstr->map[j][i][0], mstr->amp_o[2],
@@ -39,9 +39,9 @@ void		ft_tracer_grid_fill(t_master *mstr, int *size)
 	int		j;
 
 	j = -1;
-	while ((i = -1) && ++j <= size[0])
+	while ((i = -1) && ++j < size[0])
 	{
-		while (++i <= size[1])
+		while (++i < size[1])
 		{
 			if (mstr->map[j][i][0])
 				ft_tracer_cell_fill(mstr, i, j);

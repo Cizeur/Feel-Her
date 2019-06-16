@@ -22,6 +22,10 @@ static void		ft_color_toggling(int key, t_master *mstr)
 		mstr->color_1_g_tg = (mstr->color_1_g_tg + 1) % 2;
 	if (key == TOUCH_W && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
 		mstr->color_2_g_tg = (mstr->color_2_g_tg + 1) % 2;
+	if (key == TOUCH_H && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
+		mstr->heatmap_tg = (mstr->heatmap_tg + 1) % 3;
+		if (key == TOUCH_3 && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
+		mstr->heatmap_c_tg = (mstr->heatmap_c_tg + 1) % 8;
 }
 
 static void		ft_reset_game(t_master *mstr)
@@ -47,5 +51,6 @@ int				ft_key_simple_press(int key, t_master *mstr)
 		ft_reset_game(mstr);
 	if (key == TOUCH_P)
 		mstr->updated = U_TO_THE_END;
+		printf("%d", key);
 	return (key);
 }

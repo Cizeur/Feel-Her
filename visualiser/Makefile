@@ -29,6 +29,7 @@ SRC := main.c\
 	ft_parser_special_cases.c\
 	ft_parser_map_update.c\
 	ft_parser_player_get.c\
+	ft_parser_heatmap.c\
 	ft_init_resolution.c\
 	ft_init_mstr.c\
 	ft_write_usage.c\
@@ -40,6 +41,7 @@ SRC := main.c\
 	ft_tracer_grid_size.c\
 	ft_tracer_grid.c\
 	ft_tracer_grid_fill.c\
+	ft_tracer_grid_heatmap_fill.c\
 	ft_image_init.c\
 	ft_image_background.c\
 	ft_image_top_bar_bg.c\
@@ -60,7 +62,7 @@ CFLAGS  := -Wall -Wextra -Werror
 CFLAGS  += -O3 -ffreestanding -fno-builtin
 EXFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 #EXFLAGS += -L $(L_MLX) -I $(L_MLX)
-EXFLAGS	+= -L $(L_FT) -lft  
+EXFLAGS	+= -L $(L_FT) -lft
 
 
 .PHONY: all clean fclean re debug
@@ -70,7 +72,7 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-%.o : $(SRC_DIR)/%.c Makefile $(INCL)	
+%.o : $(SRC_DIR)/%.c Makefile $(INCL)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I $(INC_DIR) -o $(OBJ_DIR)/$@ -c $<
 
