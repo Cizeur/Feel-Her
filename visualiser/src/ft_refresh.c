@@ -20,5 +20,6 @@ void	ft_refresh(t_master *mstr)
 		ft_image_dump(mstr->mem_ptr);
 		ft_image_background(mstr);
 		ft_window_text_top_bar(mstr);
-		mstr->updated = mstr->updated == U_THE_MAP ? U_IDLE : mstr->updated;
+		mstr->updated = mstr->updated == U_THE_MAP || !mstr->still_reading ?
+					U_IDLE : mstr->updated;
 }
