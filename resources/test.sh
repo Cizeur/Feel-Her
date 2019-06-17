@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/14 10:46:48 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/17 16:39:14 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,8 +160,8 @@ do
 	if [ $WATCH_PROMPT -ne 0 ]; then
 		read -p "watch round ? (y/n) " answer
 		if [ "$answer" == "y" -o "$answer" == "Y" ]; then
-			cat test_outputs/round_"$istr"_output_a | $visualizer &> /dev/null &
-			cat test_outputs/round_"$istr"_output_b | $visualizer &> /dev/null &
+			cat test_outputs/round_"$istr"_output_a | $visualizer &
+			cat test_outputs/round_"$istr"_output_b | $visualizer 
 		fi
 	fi
 	if [ $KEEP_OUTPUT -eq 0 ]; then
