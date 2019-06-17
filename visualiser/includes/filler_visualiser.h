@@ -75,7 +75,8 @@
 # define EXEC_2_S "$$$ exec p2"
 # define INVERT "$$$ invert"
 # define PLATEAU_S "Plateau"
-# define ERROR_S "An error occured. aborting..."
+# define ABORT_S "An error occured. aborting..."
+# define ERROR_S "error:"
 /*
 **	CLARIFICATIONS
 */
@@ -155,7 +156,7 @@ void			ft_init_resolution(t_master *mstr, char **argv, int argc);
 /*
 **	PARSER ENTREE STANDARD
 */
-void			sub_parser_stockage(t_master *mstr);
+void			ft_parser(t_master *mstr);
 int				ft_parser_check_size(char *line, int *size);
 void			ft_parser_output_skimmer(t_master *mstr, int *size);
 int 			ft_parser_gnl(t_master *mstr, char  *line);
