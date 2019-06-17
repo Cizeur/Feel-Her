@@ -12,6 +12,7 @@
 
 include ./champion/dependancies_champion.mk
 include ./visualiser/dependancies_visu.mk
+include ./libft/dependancies_ft.mk
 
 NAME = $(NAME_FILL_CHAMPION) $(NAME_VISU_FILL)
 
@@ -27,9 +28,9 @@ $(NAME_FILL_CHAMPION) : |make_champ
 $(NAME_VISU_FILL) : |make_visu
 
 make_champ:
-	 $(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
+	 @$(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
 make_visu:
-	 $(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
+	 @$(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
 
 clean:
 	$(MAKE) clean -C $(L_FT_DIR) --no-print-directory
