@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 15:34:42 by yforeau          ###   ########.fr        #
+#    Updated: 2019/06/14 10:46:48 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ visualizer=../filler_visualiser
 KEEP_OUTPUT=1
 RAND_MAP=1
 WATCH_PROMPT=1
-RAND_MAP_SIZE="30 25"
+RAND_MAP_SIZE="50 45"
 p1=0
 p2=0
 score_p1=0;
