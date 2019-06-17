@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 10:47:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 09:58:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:51:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void			ft_init_mstr(t_master *mstr, int acti)
 {
-	
 	if (acti)
-	{
 		ft_bzero(mstr, sizeof(mstr));
-	}
 	ft_bzero(mstr->map, sizeof(mstr->map));
 	mstr->size[0] = -1;
 	mstr->size[1] = -1;

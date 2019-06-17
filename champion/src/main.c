@@ -11,28 +11,6 @@
 /* ************************************************************************** */
 
 #include "filler.h"
-#	include "c_colors.h"
-
-#	include <stdio.h>
-#	include <fcntl.h>
-
-void	write_mst(t_filler *mst)
-{
-	int	fd;
-
-	fd = 2;
-	dprintf(fd, "bszx=%d", mst->bszx);
-	dprintf(fd, "\nbszy=%d", mst->bszy);
-	dprintf(fd, "\npszx=%d", mst->pszx);
-	dprintf(fd, "\npszy=%d", mst->pszy);
-	dprintf(fd, "\nanswerx=%d", mst->answerx);
-	dprintf(fd, "\nanswery=%d", mst->answery);
-	dprintf(fd, "\nplayer=%s", mst->player == P_O ? "P_O" : "P_X");
-	dprintf(fd, "\nadv=%s", mst->adv == P_O ? "P_O" : "P_X");
-	dprintf(fd, "\nround=%d", mst->round);
-	dprintf(fd, "\nalone=%d\n", mst->alone);
-}
-
 
 int	main(void)
 {
@@ -43,7 +21,6 @@ int	main(void)
 	ft_bzero((void *)mst, sizeof(t_filler));
 	while (!parser(mst))
 	{
-	//	write_mst(mst);	//debug
 		mst->answerx = 0;
 		mst->answery = 0;
 		sub_solver(mst);

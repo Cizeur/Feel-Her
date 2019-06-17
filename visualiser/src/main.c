@@ -6,40 +6,40 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 08:43:17 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/21 10:06:30 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:07:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-int				ft_loop_hook(t_master *mstr)
+static int		ft_loop_hook(t_master *mstr)
 {
 	if (mstr->updated != U_IDLE)
 		ft_refresh(mstr);
-	return(1);
+	return (1);
 }
 
-int				ft_close_click(t_master *mstr)
+static int		ft_close_click(t_master *mstr)
 {
 	ft_exit(STANDARD_EXIT, mstr);
-	return(1);
+	return (1);
 }
 
-void	hook_loops(t_master *mstr)
+static void		hook_loops(t_master *mstr)
 {
 	mlx_key_hook((mstr->mem_ptr)[WIN_PTR], ft_key_simple_press, mstr);
 	mlx_hook((mstr->mem_ptr)[WIN_PTR], 2, 0, ft_key_loop, mstr);
 	mlx_hook((mstr->mem_ptr)[WIN_PTR], 17, 0, ft_close_click, mstr);
 	mlx_loop_hook((mstr->mem_ptr)[MLX_PTR], ft_loop_hook, mstr);
-	mlx_expose_hook((mstr->mem_ptr)[WIN_PTR],ft_loop_hook, mstr);
+	mlx_expose_hook((mstr->mem_ptr)[WIN_PTR], ft_loop_hook, mstr);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	int			i;
 	char		*line;
 	t_master	*mstr;
-	
+
 	mstr = (t_master *)malloc(sizeof(t_master));
 	if (!mstr)
 		ft_exit(FAIL_MASTER, mstr);

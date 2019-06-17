@@ -12,7 +12,7 @@
 
 #include "filler_visualiser.h"
 
-static void		ft_free_all(t_master *mstr)
+static void			ft_free_all(t_master *mstr)
 {
 	ft_list_destroy(&(mstr->output));
 	mstr->current = NULL;
@@ -28,29 +28,29 @@ static void		ft_free_all(t_master *mstr)
 
 static void			ft_error_message(int code, t_master *mstr)
 {
+	if (code == STANDARD_EXIT)
+		return ;
 	ft_putstr("\e[31m");
-	if (code ==	FAIL_WINDOW_TO_SMALL)
+	if (code == FAIL_WINDOW_TO_SMALL)
 	{
 		ft_putstr("Window to small (TOP YBAR = 100): ");
 		ft_putstr(mstr->current_line);
 	}
-	if (code == FAIL_LINE_TO_LONG)
-		ft_putstr("Line too long : ");
-	if (code == FAIL_IMAGE_CREATION || code == FAIL_WINDOW_CREATION
-			|| code == FAIL_LISTING || code == FAIL_MASTER)
-		ft_putstr("Fail de malloc");
+	if (code <= 4 && code >= 1)
+		ft_putstr("Fail de malloc ");
 	if (code == FAIL_ERROR)
 		ft_putstr("Fail Error ou Abort : ");
-	if (code == FAIL_LINE_LEN)
-		ft_putstr("Check Plateau or line length: ");
-	if (code == FAIL_LINE_LEN || code == FAIL_LISTING ||
-			code == FAIL_LINE_TO_LONG || code == FAIL_ERROR)
+	if (code == FAIL_READING)
+		ft_putstr("Read Problem : ");
+	if (code == FAIL_LINE_LEN || code == FAIL_LINE_TO_LONG)
+		ft_putstr("Check Plateau or line length : ");
+	if (code >= 4 && code <= 10)
 		ft_putnbr(mstr->read_lines);
 	ft_putstr("\n");
 	ft_putstr("\e[39m");
 }
 
-void			ft_exit(int code, t_master *mstr)
+void				ft_exit(int code, t_master *mstr)
 {
 	if (mstr)
 		ft_free_all(mstr);

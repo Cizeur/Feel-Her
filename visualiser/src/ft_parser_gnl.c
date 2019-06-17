@@ -6,13 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 15:08:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 15:08:47 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:57:09 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
 
-int 					ft_parser_gnl(t_master *mstr, char  *line)
+int				ft_parser_gnl(t_master *mstr, char *line)
 {
 	char *pos;
 	char *bufferpos;
@@ -21,7 +21,7 @@ int 					ft_parser_gnl(t_master *mstr, char  *line)
 	bufferpos = mstr->buffer_pos;
 	if (!bufferpos && !(mstr->still_reading = 0))
 		return (0);
-	while(bufferpos && !(pos = ft_strchr(bufferpos, '\n')))
+	while (bufferpos && !(pos = ft_strchr(bufferpos, '\n')))
 	{
 		if (ft_strlen(line) + ft_strlen(bufferpos) > BUFFER_LINE)
 			ft_exit(FAIL_LINE_TO_LONG, mstr);

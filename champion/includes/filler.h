@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
-#      include <stdio.h>
 
 # define P_O 1
 # define P_X 2
@@ -38,7 +37,7 @@ typedef struct	s_filler
 	int			answery;
 	int			player;
 	int			adv;
-	int			best_score[2];
+	int			best_sc;
 	int			round;
 	int			alone;
 }				t_filler;
@@ -59,7 +58,8 @@ int				ft_parser_get_board_dims(t_filler *mst);
 int				ft_parser_get_board(t_filler *mst);
 int				ft_parser_get_piece_dims(t_filler *mst);
 int				ft_parser_get_piece(t_filler *mst);
-void			ft_solver_tab_skim(t_filler *mf, void (*f)(t_filler *mf, int i, int j));
+void			ft_solver_tab_skim(t_filler *mf,
+				void (*f)(t_filler *mf, int i, int j));
 
 /*
 ** PROTOTYPE ZONE END

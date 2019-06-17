@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 15:03:25 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 15:03:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:57:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void		ft_parser_output_skimmer(t_master *mstr, int *size)
 		ft_parser_special_cases(mstr, line);
 		if (line == ft_strstr(line, PLATEAU_S))
 		{
-				if ((size_check = ft_parser_check_size(mstr, line, size)))
-				size_check = ft_parser_map_update(mstr,size);
-			break;
+			if ((size_check = ft_parser_check_size(mstr, line, size)))
+				size_check = ft_parser_map_update(mstr, size);
+			break ;
 		}
 	}
 	if (!size_check || size[0] <= 0)

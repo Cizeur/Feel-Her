@@ -12,11 +12,10 @@
 
 #include "filler_visualiser.h"
 
-
 int				ft_key_loop(int key, t_master *mstr)
 {
 	mstr->updated = key == SPACEBAR ? 2 : mstr->updated;
 	if (mstr->updated)
 		ft_refresh(mstr);
-	return(key);
+	return (key);
 }

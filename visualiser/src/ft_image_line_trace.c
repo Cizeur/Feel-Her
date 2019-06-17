@@ -12,7 +12,8 @@
 
 #include "filler_visualiser.h"
 
-void		ft_image_line_trace(t_master *mstr, int pos[3], int len, int orientation)
+void		ft_image_line_trace(t_master *mstr, int pos[3], int len,
+				int orientation)
 {
 	int i;
 

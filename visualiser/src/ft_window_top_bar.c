@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 11:02:33 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 11:20:55 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:05:35 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void				ft_topbar_title(t_master *mstr)
 	ft_wr(mstr, pos, 0, "#       ### ####### ####### ####### #     # ");
 }
 
-static void			ft_topbar_player_name(t_master *mstr)
+static void				ft_topbar_player_name(t_master *mstr)
 {
 	int pos[2];
 
@@ -51,7 +51,7 @@ static void			ft_topbar_player_name(t_master *mstr)
 			mstr->player_2 ? mstr->player_2 : "NO PLAYER");
 }
 
-static void			ft_topbar_score(t_master *mstr)
+static void				ft_topbar_score(t_master *mstr)
 {
 	int		i[2];
 	int		score;
@@ -80,7 +80,7 @@ static void			ft_topbar_score(t_master *mstr)
 	}
 }
 
-void				ft_window_text_top_bar(t_master *mstr)
+void					ft_window_text_top_bar(t_master *mstr)
 {
 	ft_topbar_player_name(mstr);
 	ft_topbar_score(mstr);

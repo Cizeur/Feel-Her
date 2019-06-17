@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 10:49:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 17:36:17 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:52:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void			ft_parser(t_master *mstr)
 		mstr->updated = mstr->updated == U_ONE_TURN ? U_THE_MAP : mstr->updated;
 	}
 	if (mstr->heatmap_tg && mstr->updated >= U_THE_MAP)
-			ft_parser_heatmap(mstr);
+		ft_parser_heatmap(mstr);
 }

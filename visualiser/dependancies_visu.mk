@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 09:46:01 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/17 12:20:18 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/17 17:19:22 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ SRC_VISU_FILL_F		:= $(addprefix $(SRC_DIR_VISU_FILL)/,$(SRC_VISU_FILL))
 
 DEPENDANCIES_VISU_FILL		:= Makefile $(INC_VISU_FILL) ./dependancies_visu.mk
 DEPENDANCIES_VISU_FILL		+= $(addprefix ../,$(DEPENDANCIES_FT_EXPORT))
-DEPENDANCIES_VISU_FILL_F 	:= $(DEPENDANCIES_VISU_FILL) $(SRC_VISU_FILL_F)
+DEPENDANCIES_VISU_FILL_F 	:=  $(DEPENDANCIES_VISU_FILL) $(SRC_VISU_FILL_F)
 
 SHARE_FLAGS			:= -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
 SHARE_FLAGS			+= -I $(INC_DIR_VISU_FILL)

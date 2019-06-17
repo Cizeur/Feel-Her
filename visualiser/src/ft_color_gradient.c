@@ -38,7 +38,6 @@ static int	ft_color_grad(int val, int amp, int color_tg)
 {
 	int graded;
 
-	
 	graded = amp ? (val * 205) / amp + 45 : 250;
 	if (color_tg == 0)
 		return (ft_rgb(graded, 0, 0));

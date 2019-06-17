@@ -17,7 +17,7 @@ void			ft_solver_heatmap_init(t_filler *mfill, int i, int j)
 	if (mfill->board[j][i] == P_EMPTY)
 		mfill->board[j][i] = -(mfill->bszx + mfill->bszy);
 }
- 
+
 static int		ft_update_j(t_filler *mf, int i, int j, int sz)
 {
 	int ii;

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:27:06 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 14:27:08 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:56:25 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ void		ft_check_too_big(t_master *mstr, int *size)
 		ft_exit(FAIL_WINDOW_TO_SMALL, mstr);
 }
 
-int		ft_parser_check_size(t_master *mstr, char *line, int *size)
+int			ft_parser_check_size(t_master *mstr, char *line, int *size)
 {
 	char *number;
+
 	if (size[0] != -1 && size[1] != -1)
 		return (1);
-	if (!(number = ft_strchr(line,' ')) || ft_atoi(number + 1) <= 0)
+	if (!(number = ft_strchr(line, ' ')) || ft_atoi(number + 1) <= 0)
 		return (0);
 	size[0] = ft_atoi(number + 1);
 	*number = '|';
-	if (!(number = ft_strchr(line,' ')) || ft_atoi(number + 1) <= 0)
+	if (!(number = ft_strchr(line, ' ')) || ft_atoi(number + 1) <= 0)
 		return (0);
 	size[1] = ft_atoi(number + 1);
 	ft_check_too_big(mstr, size);

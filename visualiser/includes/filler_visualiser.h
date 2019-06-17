@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler_visualiser.h                                              :+:      :+:    :+:   */
+/*   filler_visualiser.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/15 13:23:56 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 10:48:38 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/17 18:34:38 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/17 18:41:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 # define FILLER_VISUALISER_H
 
 # include <mlx.h>
-# include <stdlib.h>
-# 	include <stdio.h>
-# include <math.h>
-# include <fcntl.h>
 # include "libft/libft.h"
-# include <errno.h>
 
-/* ********************************************** */
-/*                  DEFINES                       */
-/* ********************************************** */
+/*
+*********************************
+**			DEFINES
+*********************************
+*/
+
 /*
 **	TOUCHES
 */
@@ -39,35 +37,45 @@
 # define TOUCH_L 37
 # define TOUCH_H 4
 # define TILDE 50
+
 /*
 **	UPDATE VALUES
 */
+
 # define U_TO_LOOSE 4
 # define U_TO_THE_END 3
 # define U_THE_MAP 1
 # define U_ONE_TURN 2
 # define U_IDLE 0
+
 /*
 **	TEXT SIZE
 */
+
 # define LARGEUR_CHAR 10
+
 /*
 **	READ BUFFER
 */
+
 # define BUFFER_READ 65536
 # define BUFFER_LINE (2 * BUFFER_READ) + 1
+
 /*
 **	WINDOW SIZE
 */
+
 # define XRES 1080
 # define YRES 720
 # define MAX_XRES 5120
 # define MAX_YRES 2880
 # define FILL_PERCENT 90
 # define TOP_ROW_THICKNESS 100
+
 /*
 **	ERROR STRINGS
 */
+
 # define END_S "fin"
 # define LAUNCH_S "launched "
 # define EXEC_1_S "$$$ exec p1"
@@ -76,39 +84,46 @@
 # define PLATEAU_S "Plateau"
 # define ABORT_S "An error occured. aborting..."
 # define ERROR_S "error:"
+
 /*
 **	CLARIFICATIONS
 */
+
 # define MLX_PTR 0
 # define WIN_PTR 1
 # define I_PTR 2
 # define I_ADR 3
 # define VERT 0
 # define HORI 1
+
 /*
 **	EXIT VALUE
 */
-# define FAIL_MASTER -1
+
 # define STANDARD_EXIT 0
-# define FAIL_LISTING 1
-# define FAIL_READING 2
-# define FAIL_SINGLE_LINE 3
-# define FAIL_WINDOW_CREATION 4
-# define FAIL_IMAGE_CREATION 5
-# define FAIL_READ_LINE 6
+# define FAIL_MASTER 1
+# define FAIL_WINDOW_CREATION 2
+# define FAIL_IMAGE_CREATION 3
+# define FAIL_LISTING 4
+# define FAIL_READING 5
+# define FAIL_SINGLE_LINE 6
 # define FAIL_LINE_LEN 7
 # define FAIL_WINDOW_TO_SMALL 8
-# define FAIL_BAD_DEFINES 9
-# define FAIL_LINE_TO_LONG 10
-# define FAIL_ERROR 11
+# define FAIL_LINE_TO_LONG 9
+# define FAIL_ERROR 10
+# define FAIL_BAD_DEFINES 11
+
 /*
 **	RAINBOW AMPLITUDE
 */
+
 # define COLOR_AMP 1275
 
-/* ********************************************** */
-/*                  STRUCTURE                     */
-/* ********************************************** */
+/*
+*********************************
+**			STRUCTURES
+*********************************
+*/
 
 typedef struct	s_master
 {
@@ -142,9 +157,11 @@ typedef struct	s_master
 	int			color_2_g_tg;
 }				t_master;
 
-/* ********************************************** */
-/*                  PROTOTYPES                    */
-/* ********************************************** */
+/*
+*********************************
+**			PROTOTYPES
+*********************************
+*/
 
 int				ft_chr_counter(char *str, char c);
 void			ft_list_generate(t_master *mstr);
@@ -163,24 +180,26 @@ void			ft_init_resolution(t_master *mstr, char **argv, int argc);
 void			ft_parser(t_master *mstr);
 int				ft_parser_check_size(t_master *mstr, char *line, int *size);
 void			ft_parser_output_skimmer(t_master *mstr, int *size);
-int 			ft_parser_gnl(t_master *mstr, char  *line);
+int				ft_parser_gnl(t_master *mstr, char *line);
 void			ft_parser_check_score(t_master *mstr, int *size);
-void			ft_parser_player_get(t_master *mstr, char  *line);
-void			ft_parser_special_cases(t_master *mstr, char  *line);
+void			ft_parser_player_get(t_master *mstr, char *line);
+void			ft_parser_special_cases(t_master *mstr, char *line);
 int				ft_parser_map_update(t_master *mstr, int *size);
 void			ft_parser_heatmap(t_master *mstr);
 /*
 **	BIBLIOTEQUE WINDOW
 */
 void			ft_window_init(void **mem_ptr, t_master *mstr);
-void			ft_window_text_draw(t_master *mstr, int pos[2], int color, char *text);
+void			ft_window_text_draw(t_master *mstr, int pos[2], int color,
+					char *text);
 void			ft_window_text_top_bar(t_master *mstr);
 /*
 **	BIBLIOTEQUE IMAGE
 */
 void			ft_image_init(void **mem_ptr, t_master *mstr);
 void			ft_image_background(t_master *mstr);
-void			ft_image_line_trace(t_master *mstr, int pos[3], int len, int orientation);
+void			ft_image_line_trace(t_master *mstr, int pos[3], int len,
+					int orientation);
 void			ft_image_draw_pixel(t_master *mstr, int x, int y, int color);
 void			ft_image_top_bar_bg(t_master *mstr);
 void			ft_image_dump(void **mem_ptr);
@@ -193,7 +212,7 @@ void			ft_tracer_grid_size(t_master *mstr, int *size);
 void			ft_tracer_grid_fill(t_master *mstr, int *size);
 void			ft_tracer_grid_heatmap_fill(t_master *mstr, int *size);
 /*
-**
+**	AUTRE
 */
 void			ft_define_error_check(t_master *mstr);
 int				ft_key_simple_press(int key, t_master *mstr);

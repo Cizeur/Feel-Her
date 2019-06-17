@@ -17,7 +17,7 @@ int			ft_chr_counter(char *str, char c)
 	if (!str || !c)
 		return (0);
 	count = 0;
-	while(*str)
+	while (*str)
 		count += *(str++) == c ? 1 : 0;
 	return (count);
 }

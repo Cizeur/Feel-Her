@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 14:14:41 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/06 10:26:29 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:53:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ static void		ft_parser_heatmap_init(t_master *mstr)
 	{
 		while (++i < mstr->size[1])
 		{
-		pos = &mstr->map[j][i][0];
-		pos_h = &mstr->map[j][i][1];
-		*pos_h = *pos > 0 && mstr->heatmap_tg == 1 ? 1 : 0;
-		*pos_h = *pos < 0 && mstr->heatmap_tg == 2 ? 1 : *pos_h;
-		*pos_h = *pos == 0 && mstr->heatmap_tg ?
-			-mstr->size[0] - mstr->size[1] :*pos_h;
+			pos = &mstr->map[j][i][0];
+			pos_h = &mstr->map[j][i][1];
+			*pos_h = *pos > 0 && mstr->heatmap_tg == 1 ? 1 : 0;
+			*pos_h = *pos < 0 && mstr->heatmap_tg == 2 ? 1 : *pos_h;
+			*pos_h = *pos == 0 && mstr->heatmap_tg ?
+				-mstr->size[0] - mstr->size[1] : *pos_h;
 		}
 	}
 }
@@ -108,8 +108,8 @@ void			ft_parser_heatmap(t_master *mstr)
 	{
 		while (++i < mstr->size[1])
 		{
-		if (mstr->map[j][i][1] == 1)
-			ft_parser_heatmap_update(mstr, i, j, 1);
+			if (mstr->map[j][i][1] == 1)
+				ft_parser_heatmap_update(mstr, i, j, 1);
 		}
 	}
 }

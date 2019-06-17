@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 13:53:25 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:50:17 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		ft_color_toggling(int key, t_master *mstr)
 		mstr->color_2_g_tg = (mstr->color_2_g_tg + 1) % 2;
 	if (key == TOUCH_H && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
 		mstr->heatmap_tg = (mstr->heatmap_tg + 1) % 3;
-		if (key == TOUCH_3 && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
+	if (key == TOUCH_3 && (mstr->updated = ft_max(mstr->updated, U_THE_MAP)))
 		mstr->heatmap_c_tg = (mstr->heatmap_c_tg + 1) % 8;
 }
 
