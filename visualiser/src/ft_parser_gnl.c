@@ -23,6 +23,8 @@ int 					ft_parser_gnl(t_master *mstr, char  *line)
 		return (0);
 	while(bufferpos && !(pos = ft_strchr(bufferpos, '\n')))
 	{
+		if (ft_strlen(line) + ft_strlen(bufferpos) > BUFFER_LINE)
+			ft_exit(FAIL_LINE_TO_LONG, mstr);
 		ft_strcpy(line + ft_strlen(line), bufferpos);
 		mstr->current = mstr->current->next;
 		bufferpos = mstr->current ? mstr->current->content : NULL;

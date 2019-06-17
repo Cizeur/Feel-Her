@@ -16,8 +16,8 @@ void			ft_define_error_check(t_master *mstr)
 {
 	if (BUFFER_LINE != (2 * BUFFER_READ) + 1)
 		ft_putstr("\e[31mPlease keep BUFFER_LINE at (2 * BUFFER_READ) + 1)\e[39m\n");
-	else if (BUFFER_READ <= 0)
-		ft_putstr("\e[31mKeep BUFFER_READ strictly positif\e[31m\n");
+	else if (BUFFER_READ <= MAX_XRES)
+		ft_putstr("\e[31mKeep BUFFER over MAX RES\e[31m\n");
 	else if (XRES <= 0 || YRES <= 0 || MAX_XRES <= 0 || MAX_YRES <= 0)
 		ft_putstr("\e[31mRES defines should be strictly positive\e[31m\n");
 	else if (FILL_PERCENT <= 0 || FILL_PERCENT > 100)

@@ -48,4 +48,8 @@ debug:
 	$(MAKE) debug -C	$(L_FILL_CHAMPION_DIR) --no-print-directory
 	$(MAKE) debug -C	$(L_VISU_FILL_DIR) --no-print-directory
 
+show:
+	echo $(DEPENDANCIES_VISU_FILL_EXPORT)
+
+
 re: fclean all

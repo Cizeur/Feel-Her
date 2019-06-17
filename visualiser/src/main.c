@@ -19,10 +19,17 @@ int				ft_loop_hook(t_master *mstr)
 	return(1);
 }
 
+int				ft_close_click(t_master *mstr)
+{
+	ft_exit(STANDARD_EXIT, mstr);
+	return(1);
+}
+
 void	hook_loops(t_master *mstr)
 {
 	mlx_key_hook((mstr->mem_ptr)[WIN_PTR], ft_key_simple_press, mstr);
 	mlx_hook((mstr->mem_ptr)[WIN_PTR], 2, 0, ft_key_loop, mstr);
+	mlx_hook((mstr->mem_ptr)[WIN_PTR], 17, 0, ft_close_click, mstr);
 	mlx_loop_hook((mstr->mem_ptr)[MLX_PTR], ft_loop_hook, mstr);
 	mlx_expose_hook((mstr->mem_ptr)[WIN_PTR],ft_loop_hook, mstr);
 }
@@ -32,9 +39,10 @@ int		main(int argc, char **argv)
 	int			i;
 	char		*line;
 	t_master	*mstr;
-	t_master	mstr_val;
-
-	mstr = &mstr_val;
+	
+	mstr = (t_master *)malloc(sizeof(t_master));
+	if (!mstr)
+		ft_exit(FAIL_MASTER, mstr);
 	i = 0;
 	line = 0;
 	ft_init_mstr(mstr, 1);

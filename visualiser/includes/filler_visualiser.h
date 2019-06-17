@@ -88,6 +88,7 @@
 /*
 **	EXIT VALUE
 */
+# define FAIL_MASTER -1
 # define STANDARD_EXIT 0
 # define FAIL_LISTING 1
 # define FAIL_READING 2
@@ -122,7 +123,7 @@ typedef struct	s_master
 	char		*player_2;
 	int			score_1;
 	int			score_2;
-	int			map[YRES][XRES][2];
+	int			map[MAX_YRES][MAX_XRES][2];
 	int			amp_x[3];
 	int			amp_o[3];
 	int			mult_x;
