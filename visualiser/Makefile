@@ -21,7 +21,7 @@ L_FT    := ./libft
 L_MLX	:= ./mlx
 
 SRC := main.c\
-	sub_parser_stockage.c\
+	ft_parser.c\
 	ft_parser_check_size.c\
 	ft_parser_output_skimmer.c\
 	ft_parser_gnl.c\
