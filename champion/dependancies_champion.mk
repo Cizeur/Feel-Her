@@ -32,7 +32,8 @@ SRC_DIR_FILL_CHAMPION	:= src
 INC_DIR_FILL_CHAMPION	:= includes
 OBJ_DIR_FILL_CHAMPION	:= obj
 INC_FILL_CHAMPION		:= $(INC_DIR_FILL_CHAMPION)/c_colors.h\
-				$(INC_DIR_FILL_CHAMPION)/libft/libft.h
+				$(INC_DIR_FILL_CHAMPION)/libft/libft.h\
+				$(INC_DIR_FILL_CHAMPION)/libft/get_next_line.h
 OBJ_FILL_CHAMPION		:= $(addprefix $(OBJ_DIR_FILL_CHAMPION)/,$(SRC_FILL_CHAMPION:.c=.o))
 SRC_FILL_CHAMPION_F		:= $(addprefix $(SRC_DIR_FILL_CHAMPION)/,$(SRC_FILL_CHAMPION))
 

@@ -23,14 +23,16 @@ V_NAME = "NAME_VISU_FILL=../$(NAME_VISU_FILL)"
 
 all : $(NAME)
 
-$(NAME_FILL_CHAMPION) : |make_champ
+$(NAME_FILL_CHAMPION) : make_ft make_champ
 
-$(NAME_VISU_FILL) : |make_visu
+$(NAME_VISU_FILL) : make_ft make_visu
 
 make_champ:
-	 @$(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
+	@$(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
 make_visu:
-	 @$(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
+	@$(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
+make_ft:
+	@$(MAKE) -C $(L_FT_DIR) --no-print-directory
 
 clean:
 	$(MAKE) clean -C $(L_FT_DIR) --no-print-directory
