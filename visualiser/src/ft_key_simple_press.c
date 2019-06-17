@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:46:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:22:54 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 13:53:25 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		ft_reset_game(t_master *mstr)
 		ft_memdel((void **)&mstr->player_1);
 	if (mstr->player_2)
 		ft_memdel((void **)&mstr->player_2);
-	ft_init_mstr(mstr);
+	ft_init_mstr(mstr, 0);
 	mstr->current = mstr->output;
 	mstr->buffer_pos = (char *)mstr->current->content;
 }
@@ -51,6 +51,5 @@ int				ft_key_simple_press(int key, t_master *mstr)
 		ft_reset_game(mstr);
 	if (key == TOUCH_P)
 		mstr->updated = U_TO_THE_END;
-		printf("%d", key);
 	return (key);
 }

@@ -1,31 +1,29 @@
-# **********************************V****************************************** #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/05/21 10:25:47 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/17 12:19:58 by cgiron           ###   ########.fr        #
+#    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
+#    Updated: 2019/06/17 12:22:46 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ./dependancies_visu.mk
+include ./dependancies_champion.mk
 
-NAME = $(NAME_VISU_FILL)
-SRC_DIR := $(SRC_DIR_VISU_FILL)
-INC_DIR := $(INC_DIR_VISU_FILL)
-OBJ_DIR := $(OBJ_DIR_VISU_FILL)
-INCL	:= $(INC_VISU_FILL)
-SRC := $(SRC_VISU_FILL)
-OBJ := $(OBJ_VISU_FILL)
-DEPENDANCIES:= $(DEPENDANCIES_VISU_FILL) 
+NAME = $(NAME_FILL_CHAMPION)
+SRC_DIR := $(SRC_DIR_FILL_CHAMPION)
+INC_DIR := $(INC_DIR_FILL_CHAMPION)
+OBJ_DIR := $(OBJ_DIR_FILL_CHAMPION)
+INCL	:= $(INC_FILL_CHAMPION)
+SRC := $(SRC_FILL_CHAMPION)
+OBJ := $(OBJ_FILL_CHAMPION)
+DEPENDANCIES:= $(DEPENDANCIES_FILL_CHAMPION) 
 
 L_FT    := ../libft
-
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
-EXFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 EXFLAGS	+= -L $(L_FT) -lft
 
 .PHONY: all clean fclean re debug

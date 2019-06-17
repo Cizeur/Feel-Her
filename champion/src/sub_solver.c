@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_refresh.c                                       :+:      :+:    :+:   */
+/*   sub_solver.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/15 18:23:35 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/15 18:29:12 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/05 12:11:12 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/05 12:11:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler_visualiser.h"
+#include "filler.h"
 
-void	ft_refresh(t_master *mstr)
+void			sub_solver(t_filler *mfill)
 {
-		ft_parser(mstr);
-		ft_tracer(mstr);
-		ft_image_top_bar_bg(mstr);
-		ft_image_dump(mstr->mem_ptr);
-		ft_image_background(mstr);
-		ft_window_text_top_bar(mstr);
-		mstr->updated = mstr->updated == U_THE_MAP || !mstr->still_reading ?
-					U_IDLE : mstr->updated;
+	mfill->adv = mfill->player == P_O ? P_X : P_O;
+	ft_bzero(mfill->best_score, sizeof(mfill->best_score));
+	ft_solver_tab_skim(mfill, &ft_solver_heatmap_init);
+	ft_solver_tab_skim(mfill, &ft_solver_heatmap);
+	mfill->best_score[0] = 0;
+	ft_solver_tab_skim(mfill, &ft_solver_check_score);
 }

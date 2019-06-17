@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_refresh.c                                       :+:      :+:    :+:   */
+/*   ft_solver_tab_skim.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/15 18:23:35 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/15 18:29:12 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/06 10:01:13 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/06 10:30:14 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler_visualiser.h"
+#include "filler.h"
 
-void	ft_refresh(t_master *mstr)
+void	ft_solver_tab_skim(t_filler *mf, void (*f)(t_filler *mf, int i, int j))
 {
-		ft_parser(mstr);
-		ft_tracer(mstr);
-		ft_image_top_bar_bg(mstr);
-		ft_image_dump(mstr->mem_ptr);
-		ft_image_background(mstr);
-		ft_window_text_top_bar(mstr);
-		mstr->updated = mstr->updated == U_THE_MAP || !mstr->still_reading ?
-					U_IDLE : mstr->updated;
+	int i;
+	int j;
+
+	j = -1;
+	while ((i = -1) && ++j < mf->bszy)
+	{
+		while (++i < mf->bszx)
+		{
+			(*f)(mf, i, j);
+		}
+	}
 }

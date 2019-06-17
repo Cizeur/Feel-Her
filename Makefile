@@ -1,76 +1,51 @@
-############################## COMPILE VAR #####################################
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
+#    Updated: 2019/06/17 12:16:43 by cgiron           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
-#CFLAGS		=	-g
-HDIR		=	includes
-SRCDIR		=	src
-SUB1D		=	libft
-HFLAGS		=	-I $(HDIR) -I $(SRCDIR)/$(SUB1D)/$(HDIR)
-LIBS		=	$(SRCDIR)/$(SUB1D)/libft.a
-NAME		=	cgiron-yforeau.filler
+include ./champion/dependancies_champion.mk
+include ./visualiser/dependancies_visu.mk
+include ./libft/dependancies_ft.mk
 
-############################## SOURCES #########################################
+NAME = $(NAME_FILL_CHAMPION) $(NAME_VISU_FILL)
 
-SRCC			=	ft_parser_alloc_double_array.c\
-					ft_parser_free_double_array.c\
-					ft_parser_get_arrays.c\
-					ft_parser_get_dims.c\
-					ft_parser_get_player.c\
-					ft_solver_check_score.c\
-					ft_solver_heatmap.c\
-					ft_solver_tab_skim.c\
-					main.c\
-					parser.c\
-					sub_solver.c\
+.PHONY: all clean fclean re debug
 
-ODIR			=	obj
-OBJ				=	$(patsubst %.c,%.o,$(SRCC))
+C_NAME = "NAME_FILL_CHAMPION=../$(NAME_FILL_CHAMPION)"
+V_NAME = "NAME_VISU_FILL=../$(NAME_VISU_FILL)"
+DEPENDANCIES = $(DEPENDANCIES_FT_EXPORT) Makefile
 
-vpath			%.o	$(ODIR)
-vpath			%.h	$(HDIR)
-vpath			%.h	$(SRCDIR)/$(SUB1D)/$(HDIR)
-vpath			%.c	$(SRCDIR)
+all : $(NAME) 
 
-############################## BUILD ###########################################
-
-all: $(NAME)
-
-$(NAME): $(SRCDIR)/$(SUB1D)/libft.a $(ODIR) $(OBJ)
-	make -C visualiser 
-	$(CC) $(CFLAGS) -o $@ $(patsubst %.o,$(ODIR)/%.o,$(OBJ)) $(LIBS)
-
-$(SRCDIR)/$(SUB1D)/libft.a:
-	make -C $(SRCDIR)/$(SUB1D)
-
-ft_parser_alloc_double_array.o: filler.h libft.h
-ft_parser_get_arrays.o: filler.h libft.h get_next_line.h
-ft_parser_get_dims.o: filler.h libft.h get_next_line.h
-ft_parser_get_player.o: filler.h libft.h get_next_line.h
-ft_solver_check_score.o: filler.h libft.h
-ft_solver_heatmap.o: filler.h libft.h
-ft_solver_tab_skim.o: filler.h libft.h
-main.o: filler.h libft.h c_colors.h
-parser.o: filler.h libft.h get_next_line.h
-sub_solver.o: filler.h libft.h
-%.o: %.c
-	@mkdir -p $(ODIR)
-	$(CC) -c $(CFLAGS) $< $(HFLAGS) -o $(ODIR)/$@
-
-$(ODIR):
-	mkdir -p $@
-
-############################## CLEANUP #########################################
+$(NAME_FILL_CHAMPION) : $(DEPENDANCIES_FILL_CHAMPION_EXPORT) $(DEPENDANCIES)
+	$(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
+$(NAME_VISU_FILL) : $(DEPENDANCIES_VISU_FILL_EXPORT) $(DEPENDANCIES)
+	$(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
 
 clean:
-	make clean -C visualiser 
-	rm -rf $(ODIR)
-	make -C $(SRCDIR)/$(SUB1D) fclean
+	$(MAKE) clean -C $(L_FT_DIR) --no-print-directory
+	$(MAKE) clean -C $(L_FILL_CHAMPION_DIR) --no-print-directory
+	$(MAKE) clean -C $(L_VISU_FILL_DIR) --no-print-directory
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C visualiser 
-	rm -f $(NAME)
+	$(MAKE) fclean -C	$(L_FT_DIR) --no-print-directory
+	$(MAKE) fclean -C	$(L_FILL_CHAMPION_DIR) --no-print-directory
+	$(MAKE) fclean -C	$(L_VISU_FILL_DIR) --no-print-directory
+	rm -f	$(L_FILL_CHAMPION_DIR)/$(NAME_FILL_CHAMPION)
+	rm -f	$(L_VISU_FILL_DIR)/$(NAME_VISU_FILL)
+	rm -f 	$(NAME)
+
+debug:
+	$(MAKE) debug -C	$(L_FT_DIR) --no-print-directory
+	$(MAKE) debug -C	$(L_FILL_CHAMPION_DIR) --no-print-directory
+	$(MAKE) debug -C	$(L_VISU_FILL_DIR) --no-print-directory
 
 re: fclean all
-
-.PHONY: all clean fclean re

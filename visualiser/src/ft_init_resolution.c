@@ -22,7 +22,7 @@ void		ft_init_resolution(t_master *mstr, char **argv, int argc)
 	mstr->xres = argc >= 2 && ft_atoi(argv[1]) > 0 ? ft_atoi(argv[1]) : XRES;
 	mstr->yres = argc >= 2 && ft_atoi(argv[1]) - TOP_ROW_THICKNESS > 0 ?
 		ft_atoi(argv[1]) : YRES;
-	mstr->yres = argc >= 3 && ft_atoi(argv[2]) > 0 ?
+	mstr->yres = argc >= 3 && ft_atoi(argv[2]) - TOP_ROW_THICKNESS > 0 ?
 	ft_atoi(argv[2]) : mstr->yres;
 	mstr->xres = mstr->xres > MAX_XRES ? MAX_XRES : mstr->xres;
 	mstr->yres = mstr->yres > MAX_YRES ? MAX_YRES : mstr->yres;

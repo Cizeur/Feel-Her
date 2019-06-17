@@ -6,12 +6,11 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 15:49:32 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 11:42:10 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static int		ft_free_return(char **gnl, int val)
 {

@@ -12,7 +12,14 @@
 
 #include "filler_visualiser.h"
 
-int		ft_parser_check_size(char *line, int *size)
+void		ft_check_too_big(t_master *mstr, int *size)
+{
+	if (size[1] >= (mstr->xres - 1) * FILL_PERCENT / 100 ||
+		size[0] >= (mstr->yres - TOP_ROW_THICKNESS - 1) * FILL_PERCENT / 100)
+		ft_exit(FAIL_WINDOW_TO_SMALL, mstr);
+}
+
+int		ft_parser_check_size(t_master *mstr, char *line, int *size)
 {
 	char *number;
 	if (size[0] != -1 && size[1] != -1)
@@ -24,5 +31,6 @@ int		ft_parser_check_size(char *line, int *size)
 	if (!(number = ft_strchr(line,' ')) || ft_atoi(number + 1) <= 0)
 		return (0);
 	size[1] = ft_atoi(number + 1);
-	return(1);
+	ft_check_too_big(mstr, size);
+	return (1);
 }

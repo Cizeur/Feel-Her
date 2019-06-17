@@ -21,9 +21,9 @@ void		ft_parser_output_skimmer(t_master *mstr, int *size)
 	while (mstr->still_reading && size_check && ft_parser_gnl(mstr, line))
 	{
 		ft_parser_special_cases(mstr, line);
-		if (ft_strstr(line, PLATEAU_S))
+		if (line == ft_strstr(line, PLATEAU_S))
 		{
-				if ((size_check = ft_parser_check_size(line, size)))
+				if ((size_check = ft_parser_check_size(mstr, line, size)))
 				size_check = ft_parser_map_update(mstr,size);
 			break;
 		}

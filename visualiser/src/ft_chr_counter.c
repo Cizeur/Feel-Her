@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_chr_counter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 10:51:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/07 15:22:10 by cgiron           ###   ########.fr       */
+/*   Created: 2019/06/17 08:04:30 by cgiron            #+#    #+#             */
+/*   Updated: 2019/06/17 08:04:41 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+int			ft_chr_counter(char *str, char c)
+{
+	int count;
 
-# define BUFF_SIZE 4096 
-# include "libft.h"
-# define MAX_FD 590432
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (!str || !c)
+		return (0);
+	count = 0;
+	while(*str)
+		count += *(str++) == c ? 1 : 0;
+	return (count);
+}

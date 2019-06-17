@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:23:56 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 11:24:53 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/17 10:48:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include "libft/libft.h"
-# include "libft/get_next_line.h"
 # include <errno.h>
 
 /* ********************************************** */
@@ -64,7 +63,7 @@
 # define YRES 720
 # define MAX_XRES 5120
 # define MAX_YRES 2880
-# define FILL_PERCENT 80
+# define FILL_PERCENT 90
 # define TOP_ROW_THICKNESS 100
 /*
 **	ERROR STRINGS
@@ -89,17 +88,17 @@
 /*
 **	EXIT VALUE
 */
-# define STANDARD_EXIT -1
-# define FAIL_EMPTY_FILE 0
-# define FAIL_WINDOW_CREATION 1
-# define FAIL_FILE_OPEN 2
-# define FAIL_READ_LINE 3
-# define FAIL_ADD_LIST 4
+# define STANDARD_EXIT 0
+# define FAIL_LISTING 1
+# define FAIL_READING 2
+# define FAIL_SINGLE_LINE 3
+# define FAIL_WINDOW_CREATION 4
 # define FAIL_IMAGE_CREATION 5
-# define FAIL_LINE_LEN 6
-# define FAIL_SPLIT_WHITESPACE 7
+# define FAIL_READ_LINE 6
+# define FAIL_LINE_LEN 7
 # define FAIL_WINDOW_TO_SMALL 8
-# define FAIL_LISTING 9
+# define FAIL_BAD_DEFINES 9
+# define FAIL_LINE_TO_LONG 10
 /*
 **	RAINBOW AMPLITUDE
 */
@@ -144,20 +143,22 @@ typedef struct	s_master
 /*                  PROTOTYPES                    */
 /* ********************************************** */
 
+int				ft_chr_counter(char *str, char c);
 void			ft_list_generate(t_master *mstr);
+void			ft_list_destroy(t_list **output);
 void			ft_exit(int code, t_master *mstr);
 void			ft_refresh(t_master *mstr);
 int				ft_rgb(unsigned char r, unsigned char g, unsigned char b);
 /*
 **	INITIALISATION
 */
-void			ft_init_mstr(t_master *mstr);
+void			ft_init_mstr(t_master *mstr, int acti);
 void			ft_init_resolution(t_master *mstr, char **argv, int argc);
 /*
 **	PARSER ENTREE STANDARD
 */
 void			ft_parser(t_master *mstr);
-int				ft_parser_check_size(char *line, int *size);
+int				ft_parser_check_size(t_master *mstr, char *line, int *size);
 void			ft_parser_output_skimmer(t_master *mstr, int *size);
 int 			ft_parser_gnl(t_master *mstr, char  *line);
 void			ft_parser_check_score(t_master *mstr, int *size);
@@ -191,10 +192,10 @@ void			ft_tracer_grid_heatmap_fill(t_master *mstr, int *size);
 /*
 **
 */
+void			ft_define_error_check(t_master *mstr);
 int				ft_key_simple_press(int key, t_master *mstr);
 int				ft_key_loop(int key, t_master *mstr);
 int				ft_color_gradient(int val, int amp, int col_tg, int grad_tg);
 void			ft_write_usage(void);
-void			ft_clear_list(t_list **lst);
 
 #endif

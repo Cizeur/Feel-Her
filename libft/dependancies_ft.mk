@@ -1,27 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile.mk                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/13 15:53:12 by cgiron           ###   ########.fr        #
+#    Created: 2019/06/17 09:46:01 by cgiron            #+#    #+#              #
+#    Updated: 2019/06/17 12:19:08 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+L_FT_DIR	:= libft
 
-INCL = ./includes/libft.h\
-	   ./includes/get_next_line.h
+NAME_FT	:= libft.a
 
-SRC_DIR := ./src_libft
-INC_DIR := ./includes
-OBJ_DIR := ./obj_libft
-INCL := $(INC_DIR)/get_next_line.h\
-$(INC_DIR)/get_next_line.h\
-
-SRC = ft_memset.c \
+SRC_FT = ft_memset.c \
 	  ft_bzero.c \
 	  ft_memcpy.c \
 	  ft_memccpy.c \
@@ -102,36 +95,18 @@ SRC = ft_memset.c \
 	  ft_atoi_base.c\
 	  ft_swap.c
 
-OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+SRC_DIR_FT	:= src
+INC_DIR_FT	:= includes
+OBJ_DIR_FT	:= obj
+INC_FT		:= $(INC_DIR_FT)/libft.h\
+			$(INC_DIR_FT)/get_next_line.h
+OBJ_FT		:= $(addprefix $(OBJ_DIR_FT)/,$(SRC_FT:.c=.o))
+SRC_FT_F	:= $(addprefix $(SRC_DIR_FT)/,$(SRC_FT))
 
-CC      := gcc
-CFLAGS  := -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
+DEPENDANCIES_FT			:= Makefile $(INC_FT) ./dependancies_ft.mk 
+DEPENDANCIES_FT_F 		:= $(DEPENDANCIES_FT) $(SRC_FT_F)
 
-L_FT    := ./lib/$(LIB_DIR)
-
-.PHONY: all clean fclean re
-
-all: $(NAME)
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-%.o : $(SRC_DIR)/%.c Makefile $(INCL)	
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I $(INC_DIR) -o $(OBJ_DIR)/$@ -c $<
-
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c Makefile $(INCL)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I $(INC_DIR)  -o $@ -c $<
-
-$(NAME): $(OBJ) Makefile $(INCL)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-
-clean:
-	rm -rf $(OBJ_DIR)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
+SHARE_FLAGS				:= -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
+SHARE_FLAGS				+= -I $(INC_DIR_FT)
+SHARE_DEBUG				:= -O0 -g
+DEPENDANCIES_FT_EXPORT	:= $(addprefix $(L_FT_DIR)/,$(DEPENDANCIES_FT_F))

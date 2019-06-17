@@ -12,8 +12,13 @@
 
 #include "filler_visualiser.h"
 
-void			ft_init_mstr(t_master *mstr)
+void			ft_init_mstr(t_master *mstr, int acti)
 {
+	if (acti)
+	{
+		mstr->output = NULL;
+		mstr->current = NULL;
+	}
 	ft_bzero(mstr->map, sizeof(mstr->map));
 	mstr->size[0] = -1;
 	mstr->size[1] = -1;

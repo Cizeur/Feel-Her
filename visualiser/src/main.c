@@ -37,14 +37,15 @@ int		main(int argc, char **argv)
 	mstr = &mstr_val;
 	i = 0;
 	line = 0;
-	ft_init_mstr(mstr);
+	ft_init_mstr(mstr, 1);
 	ft_init_resolution(mstr, argv, argc);
+	ft_define_error_check(mstr);
 	if (argc < 1 || argc > 3)
 		ft_write_usage();
 	else
 	{
 		ft_list_generate(mstr);
-		sub_parser_stockage(mstr);
+		ft_parser(mstr);
 		ft_window_init(mstr->mem_ptr, mstr);
 		ft_image_init(mstr->mem_ptr, mstr);
 		hook_loops(mstr);
