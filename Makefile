@@ -12,7 +12,6 @@
 
 include ./champion/dependancies_champion.mk
 include ./visualiser/dependancies_visu.mk
-include ./libft/dependancies_ft.mk
 
 NAME = $(NAME_FILL_CHAMPION) $(NAME_VISU_FILL)
 
@@ -20,14 +19,17 @@ NAME = $(NAME_FILL_CHAMPION) $(NAME_VISU_FILL)
 
 C_NAME = "NAME_FILL_CHAMPION=../$(NAME_FILL_CHAMPION)"
 V_NAME = "NAME_VISU_FILL=../$(NAME_VISU_FILL)"
-DEPENDANCIES = $(DEPENDANCIES_FT_EXPORT) Makefile
 
 all : $(NAME)
 
-$(NAME_FILL_CHAMPION) : $(DEPENDANCIES_FILL_CHAMPION_EXPORT) $(DEPENDANCIES)
-	$(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
-$(NAME_VISU_FILL) : $(DEPENDANCIES_VISU_FILL_EXPORT) $(DEPENDANCIES)
-	$(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
+$(NAME_FILL_CHAMPION) : |make_champ
+
+$(NAME_VISU_FILL) : |make_visu
+
+make_champ:
+	 $(MAKE) -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
+make_visu:
+	 $(MAKE) -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
 
 clean:
 	$(MAKE) clean -C $(L_FT_DIR) --no-print-directory
