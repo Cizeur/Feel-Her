@@ -35,7 +35,7 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(DEPENDANCIES)
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(DEPENDANCIES_VISU_FILL_O)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS)  -o $@ -c $<
 

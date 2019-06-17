@@ -62,8 +62,8 @@ INC_VISU_FILL		:= $(INC_DIR_VISU_FILL)/filler_visualiser.h\
 OBJ_VISU_FILL		:= $(addprefix $(OBJ_DIR_VISU_FILL)/,$(SRC_VISU_FILL:.c=.o))
 SRC_VISU_FILL_F		:= $(addprefix $(SRC_DIR_VISU_FILL)/,$(SRC_VISU_FILL))
 
-DEPENDANCIES_VISU_FILL		:= Makefile $(INC_VISU_FILL) ./dependancies_visu.mk
-DEPENDANCIES_VISU_FILL		+= $(addprefix ../,$(DEPENDANCIES_FT_EXPORT))
+DEPENDANCIES_VISU_FILL_O	:= Makefile $(INC_VISU_FILL) ./dependancies_visu.mk
+DEPENDANCIES_VISU_FILL		:= $(addprefix ../,$(DEPENDANCIES_FT_EXPORT)) $(DEPENDANCIES_VISU_FILL_O)
 DEPENDANCIES_VISU_FILL_F 	:=  $(DEPENDANCIES_VISU_FILL) $(SRC_VISU_FILL_F)
 
 SHARE_FLAGS			:= -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
