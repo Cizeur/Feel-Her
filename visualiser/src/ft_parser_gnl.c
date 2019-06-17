@@ -35,6 +35,8 @@ int 					ft_parser_gnl(t_master *mstr, char  *line)
 		ft_strcpy(line + ft_strlen(line), bufferpos);
 		pos = ft_strchr(line, '\n');
 		*pos = 0;
-	} 
+	}
+	mstr->current_line = line;
+	mstr->read_lines++;
 	return (1);
 }

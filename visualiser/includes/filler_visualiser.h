@@ -100,6 +100,7 @@
 # define FAIL_WINDOW_TO_SMALL 8
 # define FAIL_BAD_DEFINES 9
 # define FAIL_LINE_TO_LONG 10
+# define FAIL_ERROR 11
 /*
 **	RAINBOW AMPLITUDE
 */
@@ -117,6 +118,7 @@ typedef struct	s_master
 	t_list		*output;
 	t_list		*current;
 	char		*buffer_pos;
+	char		*current_line;
 	int			still_reading;
 	int			read_lines;
 	char		*player_1;

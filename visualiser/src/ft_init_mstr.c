@@ -17,10 +17,7 @@ void			ft_init_mstr(t_master *mstr, int acti)
 	
 	if (acti)
 	{
-			ft_putstr("hello\n");
-			mstr->output = NULL;
-			ft_putstr("hello\n");
-			mstr->current = NULL;
+		ft_bzero(mstr, sizeof(mstr));
 	}
 	ft_bzero(mstr->map, sizeof(mstr->map));
 	mstr->size[0] = -1;
