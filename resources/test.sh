@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/07 16:09:15 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/17 16:39:14 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/18 08:11:13 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,7 +109,7 @@ do
 	fi
 	seed=$(($RANDOM%10000))
 	if [ $RAND_MAP -ne 0 ]; then
-		test_maps/a.out $RAND_MAP_SIZE > test_outputs/round_"$istr"_map
+		test_maps/map_gen $RAND_MAP_SIZE > test_outputs/round_"$istr"_map
 		map=test_outputs/round_"$istr"_map
 	fi
 	echo "round" $istr/$n_turns "- seed:" $seed
