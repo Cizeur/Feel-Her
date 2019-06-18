@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:11 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/17 17:19:30 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/18 07:47:39 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC_FILL_CHAMPION =  ft_parser_alloc_double_array.c\
 SRC_DIR_FILL_CHAMPION	:= src
 INC_DIR_FILL_CHAMPION	:= includes
 OBJ_DIR_FILL_CHAMPION	:= obj
-INC_FILL_CHAMPION		:= $(INC_DIR_FILL_CHAMPION)/c_colors.h\
+INC_FILL_CHAMPION		:= \
 				$(INC_DIR_FILL_CHAMPION)/libft/libft.h\
 				$(INC_DIR_FILL_CHAMPION)/libft/get_next_line.h
 OBJ_FILL_CHAMPION		:= $(addprefix $(OBJ_DIR_FILL_CHAMPION)/,$(SRC_FILL_CHAMPION:.c=.o))
