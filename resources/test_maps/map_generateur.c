@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 11:45:30 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/18 08:33:49 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/18 08:55:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				main(int ac, char **av)
 	ac--;
 	av++;
 	if (ac != 2 || atoi(av[0]) <= 2 || atoi(av[1]) <= 2)
-		return(0);
+		return (0);
 	else
 	{
 		pos_o[0] = random_int(atoi(av[0]));
@@ -63,5 +63,5 @@ int				main(int ac, char **av)
 		}
 		print_map(pos_o, pos_x, atoi(av[0]), atoi(av[1]));
 	}
-	return(0);
+	return (0);
 }
