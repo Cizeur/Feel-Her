@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/18 12:26:08 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/18 16:29:39 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,5 @@ debug:
 	$(MAKE) debug -C $(L_FT_DIR) --no-print-directory
 	$(MAKE) debug -C $(L_FILL_CHAMPION_DIR) $(C_NAME) --no-print-directory
 	$(MAKE) debug -C $(L_VISU_FILL_DIR) $(V_NAME) --no-print-directory
-
-all: $(NAME)
 
 re: fclean all
