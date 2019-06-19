@@ -14,6 +14,10 @@
 -include ../shared_val.mk
 -include ./shared_val.mk
 
+ifeq ($(SHARE_SRC_DIR),)
+$(error SHARE_VAL not included)
+endif
+
 L_VISUALISER_DIR	:= visualiser
 
 NAME_VISUALISER	:= filler_visualiser

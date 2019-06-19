@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 10:37:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 17:51:17 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 17:25:59 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int				ft_only_one_adversary(t_filler *mf, int i, int j)
 			if (mf->piece[jj][ii] != '*')
 				continue;
 			cov_piece += mf->board[j + jj][i + ii] == mf->player ? 1 : 0;
-			if (mf->board[j + jj][i + ii] == mf->adv || cov_piece > 1 ||
-					mf->board[j + jj][i + ii] == P_OBS)
+			if (mf->board[j + jj][i + ii] == mf->adv || cov_piece > 1
+					|| mf->board[j + jj][i + ii] == P_OBS)
 				return (0);
 			score += mf->board[j + jj][i + ii];
 		}

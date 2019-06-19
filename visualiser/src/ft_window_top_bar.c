@@ -45,8 +45,9 @@ static void				ft_topbar_player_name(t_master *mstr)
 	pos[1] = 15;
 	ft_window_text_draw(mstr, pos, ft_color_gradient(0, 0, mstr->color_1_tg, 0),
 			mstr->player_1 ? mstr->player_1 : "NO PLAYER");
-	pos[0] = -15 + mstr->xres -
-		ft_strlen(mstr->player_2 ? mstr->player_2 : "NO PLAYER") * LARGEUR_CHAR;
+	pos[0] = -15 + mstr->xres
+		- ft_strlen(mstr->player_2 ? mstr->player_2 : "NO PLAYER")
+		* LARGEUR_CHAR;
 	ft_window_text_draw(mstr, pos, ft_color_gradient(0, 0, mstr->color_2_tg, 0),
 			mstr->player_2 ? mstr->player_2 : "NO PLAYER");
 }

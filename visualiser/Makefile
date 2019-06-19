@@ -11,6 +11,18 @@
 # **************************************************************************** #
 
 include ./dependancies_visualiser.mk
+include ../libft/dependancies_libft.mk
+include ../shared_val.mk
+
+ifeq ($(L_LIBFT_DIR),)
+$(error LIBFT_DEPENDANCIES not included)
+endif
+ifeq ($(L_VISUALISER_DIR),)
+$(error CHAMPION_DEPENDANCIES not included)
+endif
+ifeq ($(SHARE_SRC_DIR),)
+$(error SHARE_VAL not included)
+endif
 
 DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_VISUALISER_DIR)_object.mk
 L_FT    := ../libft
@@ -27,9 +39,13 @@ DEPENDANCIES:= $(DEPENDANCIES_VISUALISER)
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re debug simulink
 
 all: $(NAME)
+
+simulink:
+	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
+	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

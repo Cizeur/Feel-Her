@@ -6,13 +6,17 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:11 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/18 07:47:39 by cgiron           ###   ########.fr        #
+#    Updated: 2019/06/19 17:04:37 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 -include ../libft/dependancies_libft.mk
 -include ../shared_val.mk
 -include ./shared_val.mk
+
+ifeq ($(SHARE_SRC_DIR),)
+$(error SHARE_VAL not included)
+endif
 
 L_CHAMPION_DIR	:= champion
 

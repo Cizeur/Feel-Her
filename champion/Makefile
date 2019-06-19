@@ -11,11 +11,23 @@
 # **************************************************************************** #
 
 include ./dependancies_champion.mk
--include ../shared_val.mk
+include ../libft/dependancies_libft.mk
+include ../shared_val.mk
+
+ifeq ($(L_LIBFT_DIR),)
+$(error LIBFT_DEPENDANCIES not included)
+endif
+ifeq ($(L_CHAMPION_DIR),)
+$(error CHAMPION_DEPENDANCIES not included)
+endif
+ifeq ($(SHARE_SRC_DIR),)
+$(error SHARE_VAL not included)
+endif
 
 DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_CHAMPION_DIR)_object.mk
 L_FT    := ../libft
 EXFLAGS := -L $(L_FT) -lft
+SIMULINK := $(SHARE_INC_DIR)/$(NAME_LIBFT)
 
 NAME 	:= $(NAME_CHAMPION)
 SRC_DIR := $(SHARE_SRC_DIR)
@@ -23,14 +35,17 @@ INC_DIR := $(SHARE_INC_DIR)
 OBJ_DIR := $(SHARE_OBJ_DIR)
 SRC 	:= $(SRC_CHAMPION)
 OBJ		:= $(patsubst %.c,%.o,$(SRC))
-DEPENDANCIES:= $(DEPENDANCIES_CHAMPION)
 
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re debug simulink
 
 all: $(NAME)
+
+simulink:
+	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
+	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -41,7 +56,7 @@ $(OBJ_DIR):
 
 -include $(DEPENDANCY_OBJ_INC_FILE)
 
-$(NAME): $(OBJ) $(DEPENDANCIES)
+$(NAME): $(OBJ) $(DEPENDANCIES_CHAMPION)
 	$(MAKE) -C $(L_FT) "CFLAGS=$(CFLAGS)" --no-print-directory
 	$(CC)  $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 

@@ -14,8 +14,8 @@
 
 void		ft_check_too_big(t_master *mstr, int *size)
 {
-	if (size[1] >= (mstr->xres - 1) * FILL_PERCENT / 100 ||
-		size[0] >= (mstr->yres - TOP_ROW_THICKNESS - 1) * FILL_PERCENT / 100)
+	if (size[1] >= (mstr->xres - 1) * FILL_PERCENT / 100
+		|| size[0] >= (mstr->yres - TOP_ROW_THICKNESS - 1) * FILL_PERCENT / 100)
 		ft_exit(FAIL_WINDOW_TO_SMALL, mstr);
 }
 
