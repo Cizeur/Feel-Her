@@ -1,0 +1,42 @@
+Plein de grosse modif:
+
+Les dependances de makefiles sont magique 
+essaie de faire un touch sur le header gnl apres un make de la libft
+
+make simulink est necessaire pour guarder le lien entre les header libft 
+utilise par la libft et ceux utiliser par les binaire (a faire apres cp)
+
+normalement les makefiles check les includes avant de faire de la merde.
+
+dependancies_FOLDER.mk stock les sources et les export
+dependancies_FOLDER_object.mk stock les dependances header des .o 
+(mon script shell ft_header checker t'en fait la liste)
+
+shared_val.mk : pour les valeurs partagee entre les makefile 
+(le nom des directory src obj incl met surtout tu peux desactiver -Wall -Werror
+-Wextra sur tout les makefiles en meme temps)
+
+-flto pour appliquer les opti a tout le programme
+mlx_hook 17 pour fermer proprement le programme quand tu clique sur croix
+
+Oublie pas le champion a ton nom, rend ressource avec ton script shell et la vm
+
+J'AI UTILISE VPATH WHOOP WHOOP
+
+En correction : c'est chaque joueur sur chaque map le premier a 3 victoire 
+	(sur 5 parties)
+	si on fait bien les combats equilibre (meme seed -p1 -p2 inverse)
+	la correction prend donc 45 minute si tu fais ca avec sh test ...
+	8 jours sans
+	essaie correction.sh vu que j'ai useeee ton script pour ma correction
+	celui est magique ^^ (et vierge de correction) il lance automatiquement
+	une correction lit lance le avec  -h (-b est pas trop optionnel sur une full
+	correction)
+
+42_checker est magique il verifie que t'es bien createur ^^ (cp resoud ca)
+	il verifie aussi les operateurs en fin de ligne (ce aue fait pas la norminette)
+	et les dissociation entre non fichier et header 42
+	PS la regle all affichee comme non fonctionnelle sur le Makefile principale
+	elle est au bonne endroit possiblement un probleme avec les multi binaire
+
+
