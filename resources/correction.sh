@@ -104,7 +104,7 @@ seed=$(($RANDOM%10000))
 evalstr=$(echo $player_eval | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
 for player_chal in $challenger_folder/*.filler
 do
-chalstr=$(echo $player_chal | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
+	chalstr=$(echo $player_chal | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
 	echo "\033[30;1;43m" "PLAYER" $chalstr "STARTING" "\033[0m"
 	for map_playing in $map_folder/*
 	do
@@ -160,10 +160,10 @@ chalstr=$(echo $player_chal | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
 				((total--))
 			fi
 		done
-		if [ $total -eq 2 ]; then
+		if [ $total -eq +2 ]; then
 			echo "\033[0;32m" $evalstr "(eval) won the round !\033[0m"
 			((score_eval++))
-		elif [ $total -eq +2 ]; then
+		elif [ $total -eq -2 ]; then
 			echo "\033[0;31m" $chalstr "(eval) won the round !\033[0m"
 			((score_chal++))
 		else
