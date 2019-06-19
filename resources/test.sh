@@ -155,13 +155,13 @@ do
 	elif [ $total -eq -2 ]; then
 		echo "\033[0;31m$player2 (p2) won the round !\033[0m"
 	else
-		echo "no clear winer..."
+		echo "no clear winner..."
 	fi
 	if [ $WATCH_PROMPT -ne 0 ]; then
 		read -p "watch round ? (y/n) " answer
 		if [ "$answer" == "y" -o "$answer" == "Y" ]; then
 			cat test_outputs/round_"$istr"_output_a | $visualizer &
-			cat test_outputs/round_"$istr"_output_b | $visualizer 
+			cat test_outputs/round_"$istr"_output_b | $visualizer
 		fi
 	fi
 	if [ $KEEP_OUTPUT -eq 0 ]; then
