@@ -25,7 +25,8 @@ function usage
 	- for a folder of map\n\
 	- it will crash on invalid map - champion - player\n\
 	- it will stop if champion loose\n\
-	- use -b in conjunction with wp an wm to check output\n"
+	- use -b in conjunction with wp an wm to check output\n
+	- use sh ./correction.sh [] \033[0;32m 2>&1 | tee whoopwhoop.txt\033[0m to store the output and see it\n"
 }
 
 ########################## Variables initialization ############################
@@ -152,7 +153,10 @@ do
 				echo "\033[39;1;41mCRASH CHECK OUTPUT FILE\033[0m"
 				echo "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\033[0m"
 				echo ""
-				exit 1
+				read -p "An error occured - Check if last piece overflow ? (y/n) " answer
+				if [ "$answer" == "n" -o "$answer" == "n" ]; then
+					exit 1
+				fi
 			fi
 			if [ $score_temp_eval -gt $score_temp_chal ]; then
 				((total++))
