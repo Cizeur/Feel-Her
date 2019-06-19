@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 static void				ft_topbar_title(t_master *mstr)
 {

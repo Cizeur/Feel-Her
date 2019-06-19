@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 static void		ft_tracer_cell_fill(t_master *mstr, int i, int j)
 {

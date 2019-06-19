@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 void			ft_define_error_check(t_master *mstr)
 {

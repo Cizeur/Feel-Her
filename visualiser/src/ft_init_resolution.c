@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 void		ft_init_resolution(t_master *mstr, char **argv, int argc)
 {

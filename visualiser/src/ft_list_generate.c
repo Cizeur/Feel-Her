@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 void	ft_list_generate(t_master *mstr)
 {

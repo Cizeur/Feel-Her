@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 static void		ft_color_toggling(int key, t_master *mstr)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 static int		ft_update_j(t_master *mstr, int i, int j, int sz)
 {

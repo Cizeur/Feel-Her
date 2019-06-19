@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 int				ft_parser_gnl(t_master *mstr, char *line)
 {

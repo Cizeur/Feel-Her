@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 void		ft_tracer_grid_size(t_master *mstr, int *size)
 {
