@@ -10,20 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-include ./dependancies_ft.mk
+include ./dependancies_libft.mk
+-include ../shared_val.mk
+-include ./shared_val.mk
 
-NAME = $(NAME_FT)
-SRC_DIR := $(SRC_DIR_FT)
-INC_DIR := $(INC_DIR_FT)
-OBJ_DIR := $(OBJ_DIR_FT)
-INCL	:= $(INC_FT)
-SRC := $(SRC_FT)
-OBJ := $(OBJ_FT)
-DEPENDANCIES:= $(DEPENDANCIES_FT) 
+DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_LIBFT_DIR)_object.mk
+
+NAME 	:= $(NAME_LIBFT)
+SRC_DIR := $(SHARE_SRC_DIR)
+INC_DIR := $(SHARE_INC_DIR)
+OBJ_DIR := $(SHARE_OBJ_DIR)
+SRC 	:= $(SRC_LIBFT)
+OBJ		:= $(patsubst %.c,%.o,$(SRC))
+DEPENDANCIES:= $(DEPENDANCIES_LIBFT)
 
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
-
 
 .PHONY: all clean fclean re debug
 
@@ -32,12 +34,14 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(DEPENDANCIES)
+%.o:%.c $(DEPENDANCIES_LIBFT)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS)  -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
 
-$(NAME): $(OBJ) $(DEPENDANCIES)
-	ar rc $(NAME) $(OBJ)
+-include $(DEPENDANCY_OBJ_INC_FILE)
+
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(addprefix $(OBJ_DIR)/,$(OBJ))
 	ranlib $(NAME)
 
 debug: CFLAGS += $(SHARE_DEBUG)

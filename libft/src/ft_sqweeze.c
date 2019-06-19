@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static void		ft_tabinit(size_t *i, int tab[4], size_t n)
 {

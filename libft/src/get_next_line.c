@@ -6,11 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 11:42:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 12:40:28 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
+#include <stdlib.h>
 
 static int		ft_free_return(char **gnl, int val)
 {
@@ -19,7 +21,7 @@ static int		ft_free_return(char **gnl, int val)
 	return (val);
 }
 
-int				ft_complete_line(char **gnl, int fd, char *buf, int *r)
+static int		ft_complete_line(char **gnl, int fd, char *buf, int *r)
 {
 	char		*temp;
 

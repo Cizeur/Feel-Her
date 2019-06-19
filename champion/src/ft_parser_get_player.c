@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft/libft.h"
+#include "libft/get_next_line.h"
 
 int	ft_parser_get_player(t_filler *mst)
 {

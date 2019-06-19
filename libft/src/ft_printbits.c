@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-void	ft_printbits(uintmax_t byte, int size)
+void	ft_printbits(long long int byte, int size)
 {
-	uintmax_t	i;
-	int			sep;
+	long long int	i;
+	int				sep;
 
 	sep = size;
 	i = 1;

@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 16:04:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 18:58:37 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:37:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include "libft/libft.h"
 
 void		ft_parser_special_cases(t_master *mstr, char *line)
 {

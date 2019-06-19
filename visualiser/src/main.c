@@ -6,11 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 08:43:17 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 19:07:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:33:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include <mlx.h>
+#include <stdlib.h>
 
 static int		ft_loop_hook(t_master *mstr)
 {

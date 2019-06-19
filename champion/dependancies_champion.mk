@@ -10,13 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
--include ../libft/dependancies_ft.mk
+-include ../libft/dependancies_libft.mk
+-include ../shared_val.mk
+-include ./shared_val.mk
 
-L_FILL_CHAMPION_DIR	:= champion
+L_CHAMPION_DIR	:= champion
 
-NAME_FILL_CHAMPION	:= cgiron-yforeau.filler
+NAME_CHAMPION	:= cgiron-yforeau.filler
 
-SRC_FILL_CHAMPION =  ft_parser_alloc_double_array.c\
+SRC_CHAMPION =  \
+	ft_parser_alloc_double_array.c\
 	ft_parser_free_double_array.c\
 	ft_parser_get_arrays.c\
 	ft_parser_get_dims.c\
@@ -28,21 +31,15 @@ SRC_FILL_CHAMPION =  ft_parser_alloc_double_array.c\
 	parser.c\
 	sub_solver.c\
 
-SRC_DIR_FILL_CHAMPION	:= src
-INC_DIR_FILL_CHAMPION	:= includes
-OBJ_DIR_FILL_CHAMPION	:= obj
-INC_FILL_CHAMPION		:= \
-				$(INC_DIR_FILL_CHAMPION)/libft/libft.h\
-				$(INC_DIR_FILL_CHAMPION)/libft/get_next_line.h
-OBJ_FILL_CHAMPION		:= $(addprefix $(OBJ_DIR_FILL_CHAMPION)/,$(SRC_FILL_CHAMPION:.c=.o))
-SRC_FILL_CHAMPION_F		:= $(addprefix $(SRC_DIR_FILL_CHAMPION)/,$(SRC_FILL_CHAMPION))
+INC_CHAMPION					:= filler.h libft/get_next_line.h libft/libft.h
 
-DEPENDANCIES_FILL_CHAMPION_O	:= Makefile $(INC_FILL_CHAMPION) ./dependancies_champion.mk
-DEPENDANCIES_FILL_CHAMPION		= $(addprefix ../,$(DEPENDANCIES_FT_EXPORT)) $(DEPENDANCIES_FILL_CHAMPION_O)
-DEPENDANCIES_FILL_CHAMPION_F 	:= $(DEPENDANCIES_FILL_CHAMPION) $(SRC_FILL_CHAMPION_F)
+DEPENDANCIES_CHAMPION_O			:= Makefile ./dependancies_$(L_CHAMPION_DIR).mk\
+								 ./dependancies_$(L_CHAMPION_DIR)_object.mk\
+								 ../shared_val.mk
+DEPENDANCIES_CHAMPION			:= $(DEPENDANCIES_CHAMPION_O) \
+ 								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))
 
-SHARE_FLAGS			:= -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
-SHARE_FLAGS			+= -I $(INC_DIR_FILL_CHAMPION)
-SHARE_DEBUG			:= -O0 -g
-SHARE_FLAGS_FILL_CHAMPION_EXPORT	:= -I $(addprefix $(L_FILL_CHAMPION_DIR)/,$(INC_DIR_FILL_CHAMPION))
-DEPENDANCIES_FILL_CHAMPION_EXPORT	:= $(addprefix $(L_FILL_CHAMPION_DIR)/,$(DEPENDANCIES_FILL_CHAMPION_F))
+INC_CHAMPION_EXPORT				:= $(addprefix $(SHARE_INC_DIR)/,$(INC_CHAMPION))
+SRC_CHAMPION_EXPORT				:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_CHAMPION))
+DEPENDANCIES_CHAMPION_E 		:= $(DEPENDANCIES_CHAMPION) $(SRC_CHAMPION_EXPORT) $(INC_CHAMPION_EXPORT)
+DEPENDANCIES_CHAMPION_EXPORT	:= $(addprefix $(L_CHAMPION_DIR)/,$(DEPENDANCIES_CHAMPION_E))

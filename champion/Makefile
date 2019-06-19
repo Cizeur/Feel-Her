@@ -11,20 +11,22 @@
 # **************************************************************************** #
 
 include ./dependancies_champion.mk
+-include ../shared_val.mk
 
-NAME = $(NAME_FILL_CHAMPION)
-SRC_DIR := $(SRC_DIR_FILL_CHAMPION)
-INC_DIR := $(INC_DIR_FILL_CHAMPION)
-OBJ_DIR := $(OBJ_DIR_FILL_CHAMPION)
-INCL	:= $(INC_FILL_CHAMPION)
-SRC := $(SRC_FILL_CHAMPION)
-OBJ := $(OBJ_FILL_CHAMPION)
-DEPENDANCIES:= $(DEPENDANCIES_FILL_CHAMPION)
-
+DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_CHAMPION_DIR)_object.mk
 L_FT    := ../libft
+EXFLAGS := -L $(L_FT) -lft
+
+NAME 	:= $(NAME_CHAMPION)
+SRC_DIR := $(SHARE_SRC_DIR)
+INC_DIR := $(SHARE_INC_DIR)
+OBJ_DIR := $(SHARE_OBJ_DIR)
+SRC 	:= $(SRC_CHAMPION)
+OBJ		:= $(patsubst %.c,%.o,$(SRC))
+DEPENDANCIES:= $(DEPENDANCIES_CHAMPION)
+
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
-EXFLAGS	+= -L $(L_FT) -lft
 
 .PHONY: all clean fclean re debug
 
@@ -33,13 +35,15 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(DEPENDANCIES_FILL_CHAMPION_O)
+%.o:%.c $(DEPENDANCIES_CHAMPION_O)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS)  -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
+
+-include $(DEPENDANCY_OBJ_INC_FILE)
 
 $(NAME): $(OBJ) $(DEPENDANCIES)
 	$(MAKE) -C $(L_FT) "CFLAGS=$(CFLAGS)" --no-print-directory
-	$(CC)  $(EXFLAGS)  $(OBJ) -o $(NAME)
+	$(CC)  $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C $(L_FT) --no-print-directory

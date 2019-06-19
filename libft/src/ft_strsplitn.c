@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static char		**ft_splitn(char const *s, char c, size_t *sz, size_t n)
 {

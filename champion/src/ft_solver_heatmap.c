@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 14:14:41 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/06 10:26:29 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 13:37:21 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft/libft.h"
 
 void			ft_solver_heatmap_init(t_filler *mfill, int i, int j)
 {

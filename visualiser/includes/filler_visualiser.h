@@ -6,14 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 18:34:38 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 18:41:30 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 16:23:06 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_VISUALISER_H
 # define FILLER_VISUALISER_H
 
-# include <mlx.h>
 # include "libft/libft.h"
 
 /*

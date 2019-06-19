@@ -6,11 +6,11 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 10:50:03 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 13:53:42 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:57:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <filler_visualiser.h>
+#include "filler_visualiser.h"
 
 static int	ft_rainbow(int val, int amp)
 {

@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:20:45 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 19:04:57 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:45:49 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include <mlx.h>
 
 void	ft_window_text_draw(t_master *mstr, int pos[2], int color, char *text)
 {

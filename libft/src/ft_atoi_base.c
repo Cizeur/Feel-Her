@@ -6,11 +6,11 @@
 /*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 16:35:27 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/07 15:04:14 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 12:56:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_isvalid_base(char *str)
+static int			ft_isvalid_base(char *str)
 {
 	int		i;
 	int		vdouble;
@@ -36,7 +36,7 @@ int			ft_isvalid_base(char *str)
 	return (1);
 }
 
-int			part_of_base(char num, char *base, int *ind)
+static int			part_of_base(char num, char *base, int *ind)
 {
 	int		i;
 	int		part;
@@ -55,7 +55,7 @@ int			part_of_base(char num, char *base, int *ind)
 	return (part);
 }
 
-int			base_size(char *base)
+static int			base_size(char *base)
 {
 	int		sz;
 
@@ -65,7 +65,7 @@ int			base_size(char *base)
 	return (sz);
 }
 
-int			ft_atoi_base(char *str, char *base)
+int					ft_atoi_base(char *str, char *base)
 {
 	long	nb;
 	int		sign;

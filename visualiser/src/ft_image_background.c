@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 10:46:47 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/14 11:24:07 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:53:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include <mlx.h>
 
 void			ft_image_background(t_master *mstr)
 {

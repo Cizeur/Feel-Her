@@ -6,16 +6,13 @@
 /*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 18:19:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/13 15:52:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 10:20:32 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <stdint.h>
 
 typedef struct	s_list
 {
@@ -88,7 +85,7 @@ void			ft_strswap(char **a, char **b);
 void			ft_tab_strsort(char **tab,
 		int (*f)(const char *, const char *));
 void			ft_tab_strrev(char **tab);
-void			ft_printbits(uintmax_t bytes, int octets);
+void			ft_printbits(long long int bytes, int octets);
 char			**ft_strsplitn(char const *s, char c, size_t n);
 char			*ft_strnjoin(char *d, const char *s, size_t n,
 		int mallocd);

@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft/get_next_line.h"
+#include "libft/libft.h"
+#include <stdlib.h>
 
 static int	fill_board(t_filler *mst, const char *line, int *board, int len)
 {

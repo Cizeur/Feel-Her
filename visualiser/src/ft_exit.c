@@ -6,11 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 08:24:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/05/20 10:50:35 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:43:20 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler_visualiser.h"
+#include <stdlib.h>
+#include <mlx.h>
 
 static void			ft_free_all(t_master *mstr)
 {

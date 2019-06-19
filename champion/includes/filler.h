@@ -6,20 +6,17 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:12:48 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/17 12:13:43 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 13:35:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
-
-# include "libft/libft.h"
-# include "libft/get_next_line.h"
-
 # define P_O 1
 # define P_X 2
 # define P_EMPTY 3
 # define P_OBS	 3
+# include <stdlib.h>
 
 /*
 ** Pour les tableaux premiere dimension y, seconde dimension x

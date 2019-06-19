@@ -6,11 +6,13 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 08:50:25 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/17 12:14:23 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/06/19 13:36:19 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft/libft.h"
+#include "libft/get_next_line.h"
 
 static void	ft_parser_get_dims(char *dims, int *x, int *y)
 {

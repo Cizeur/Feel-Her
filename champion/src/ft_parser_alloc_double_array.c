@@ -6,11 +6,13 @@
 /*   By: yforeau <yforeau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 15:20:08 by yforeau           #+#    #+#             */
-/*   Updated: 2019/06/07 07:13:36 by yforeau          ###   ########.fr       */
+/*   Updated: 2019/06/19 13:38:13 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft/libft.h"
+#include <stdlib.h>
 
 void	**ft_parser_alloc_double_array(int x, int y, size_t size)
 {

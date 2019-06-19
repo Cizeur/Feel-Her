@@ -10,13 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
--include ../libft/dependancies_ft.mk
+-include ../libft/dependancies_libft.mk
+-include ../shared_val.mk
+-include ./shared_val.mk
 
-L_VISU_FILL_DIR	:= visualiser
+L_VISUALISER_DIR	:= visualiser
 
-NAME_VISU_FILL	:= filler_visualiser
+NAME_VISUALISER	:= filler_visualiser
 
-SRC_VISU_FILL = main.c\
+SRC_VISUALISER = main.c\
 	ft_define_error_check.c\
 	ft_parser.c\
 	ft_parser_check_size.c\
@@ -54,20 +56,15 @@ SRC_VISU_FILL = main.c\
 	ft_list_destroy.c\
 	ft_chr_counter.c
 
-SRC_DIR_VISU_FILL	:= src
-INC_DIR_VISU_FILL	:= includes
-OBJ_DIR_VISU_FILL	:= obj
-INC_VISU_FILL		:= $(INC_DIR_VISU_FILL)/filler_visualiser.h\
-				$(INC_DIR_VISU_FILL)/libft/libft.h
-OBJ_VISU_FILL		:= $(addprefix $(OBJ_DIR_VISU_FILL)/,$(SRC_VISU_FILL:.c=.o))
-SRC_VISU_FILL_F		:= $(addprefix $(SRC_DIR_VISU_FILL)/,$(SRC_VISU_FILL))
+INC_VISUALISER					:= filler_visualiser.h libft/get_next_line.h libft/libft.h
 
-DEPENDANCIES_VISU_FILL_O	:= Makefile $(INC_VISU_FILL) ./dependancies_visu.mk
-DEPENDANCIES_VISU_FILL		:= $(addprefix ../,$(DEPENDANCIES_FT_EXPORT)) $(DEPENDANCIES_VISU_FILL_O)
-DEPENDANCIES_VISU_FILL_F 	:=  $(DEPENDANCIES_VISU_FILL) $(SRC_VISU_FILL_F)
+DEPENDANCIES_VISUALISER_O		:= Makefile ./dependancies_$(L_VISUALISER_DIR).mk\
+								 ./dependancies_$(L_VISUALISER_DIR)_object.mk\
+								 ../shared_val.mk
+DEPENDANCIES_VISUALISER			:= $(DEPENDANCIES_VISUALISER_O) \
+ 								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))
 
-SHARE_FLAGS			:= -Wall -Wextra -Werror -O3 -ffreestanding -fno-builtin
-SHARE_FLAGS			+= -I $(INC_DIR_VISU_FILL)
-SHARE_DEBUG			:= -O0 -g
-SHARE_FLAGS_VISU_FILL_EXPORT	:= -I $(addprefix $(L_VISU_FILL_DIR)/,$(INC_DIR_VISU_FILL))
-DEPENDANCIES_VISU_FILL_EXPORT	:= $(addprefix $(L_VISU_FILL_DIR)/,$(DEPENDANCIES_VISU_FILL_F))
+INC_VISUALISER_EXPORT			:= $(addprefix $(SHARE_INC_DIR)/,$(INC_VISUALISER))
+SRC_VISUALISER_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_VISUALISER))
+DEPENDANCIES_VISUALISER_E 		:= $(DEPENDANCIES_VISUALISER) $(SRC_VISUALISER_EXPORT) $(INC_VISUALISER_EXPORT)
+DEPENDANCIES_VISUALISER_EXPORT	:= $(addprefix $(L_VISUALISER_DIR)/,$(DEPENDANCIES_VISUALISER_E))

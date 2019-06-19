@@ -10,23 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-include ./dependancies_visu.mk
+include ./dependancies_visualiser.mk
 
-NAME = $(NAME_VISU_FILL)
-SRC_DIR := $(SRC_DIR_VISU_FILL)
-INC_DIR := $(INC_DIR_VISU_FILL)
-OBJ_DIR := $(OBJ_DIR_VISU_FILL)
-INCL	:= $(INC_VISU_FILL)
-SRC := $(SRC_VISU_FILL)
-OBJ := $(OBJ_VISU_FILL)
-DEPENDANCIES:= $(DEPENDANCIES_VISU_FILL)
-
+DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_VISUALISER_DIR)_object.mk
 L_FT    := ../libft
+EXFLAGS := -L $(L_FT) -lft
+EXFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 
+NAME 	:= $(NAME_VISUALISER)
+SRC_DIR := $(SHARE_SRC_DIR)
+INC_DIR := $(SHARE_INC_DIR)
+OBJ_DIR := $(SHARE_OBJ_DIR)
+SRC 	:= $(SRC_VISUALISER)
+OBJ		:= $(patsubst %.c,%.o,$(SRC))
+DEPENDANCIES:= $(DEPENDANCIES_VISUALISER)
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
-EXFLAGS	+= -lmlx -framework OpenGL -framework AppKit
-EXFLAGS	+= -L $(L_FT) -lft
 
 .PHONY: all clean fclean re debug
 
@@ -35,13 +34,15 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(DEPENDANCIES_VISU_FILL_O)
+%.o:%.c $(DEPENDANCIES_VISUALISER_O)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS)  -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
+
+-include $(DEPENDANCY_OBJ_INC_FILE)
 
 $(NAME): $(OBJ) $(DEPENDANCIES)
 	$(MAKE) -C $(L_FT) "CFLAGS=$(CFLAGS)" --no-print-directory
-	$(CC)  $(EXFLAGS)  $(OBJ) -o $(NAME)
+	$(CC)  $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C $(L_FT) --no-print-directory
